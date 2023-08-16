@@ -1,0 +1,24 @@
+@if(isset($bukuhukum) && count($bukuhukum) > 0)
+	<section class="bg-primary bg-opacity-50 py-3">
+		<div class="container container-jdih">
+			<h3 class="mt-5 mb-3 h-title text-center">Perpustakaan JDIH</h3>
+			<div class="d-flex flex-column justify-content-center align-items-center">
+				<div class="d-flex justify-content-between">
+					@php($cbuku = count($bukuhukum))
+					@foreach($bukuhukum as $key => $value)
+						<div class="col text-center position-relative">
+							<img src="{{asset('images/'.$value->guid)}}" class="img-fluid w-100" alt="{{$value->guid}}">
+							<a class="stretched-link link-dark text-decoration-none mt-2 text-center" href="{{route('page', ['id' => $value->id])}}">
+								<span class="fw-bold text-truncate-2 px-2">{{$value->judul}}</span>
+							</a>
+						</div>
+
+					@endforeach
+				</div>
+				<div class="text-center mt-3">
+					<a class="small btn btn-sm btn-primary rounded-0" href="/lspage/bh">Selengkapnya Perpustakaan JDIH -></a>
+				</div>
+			</div>
+		</div>
+	</section>
+	@endif

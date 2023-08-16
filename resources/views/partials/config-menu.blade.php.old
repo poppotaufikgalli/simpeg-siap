@@ -1,0 +1,75 @@
+<section class="bg-primary bg-opacity-50 py-3">
+	<div class="container container-jdih position-relative">
+		@if(isset($menuGrid) && isset($menuGrid['main']))
+			<div class="row g-2">
+				@foreach($menuGrid['main'] as $key => $value)
+				<div class="col-md-6 col-lg-3 bg-danger">
+					<div class="position-relative">
+						<a class="stretched-link link-light text-decoration-none" href="{{route('statdokhukum', ['id' => $value->id, 'title' => $value->nama])}}">
+							<div class="d-flex gap-2 justify-content-center">
+								@if($value->guid != '')
+									<img src="{{asset('/images/menuIcon/'.$value->guid)}}" class="card-img">
+								@else
+									<embed src="{{asset('/images/stack.svg')}}" class="card-img" type="image/svg+xml" /> 
+								@endif
+								<div class="position-absolute top-50 start-0 p-2">
+							    	<h5 class="">{{$value->judul}}</h5>
+							  	</div>
+							</div>
+						</a>
+					</div>
+				</div>
+				@endforeach
+			</div>
+		@endif
+	</div>
+</section>
+<section class="bg-danger bg-opacity-50 py-2" style="background-image: url('{{asset("images/spacer.png")}}');">
+	<div class="container container-jdih">
+		<div class="row g-4 my-4">
+			<div class="col">
+				@if(isset($menuGrid) && isset($menuGrid['main']))
+					@php($cmenu = isset($menuSidebar) && count($menuSidebar) > 0 ? 5 : 3)
+					@php($cmenu = count($menuGrid['main']) < $cmenu ? count($menuGrid['main']) : $cmenu)
+					<div class="row row-cols-1 row-cols-md-{{$cmenu}} g-3">
+						@foreach($menuGrid['main'] as $key => $value)
+						<div class="col">
+							<div class="card p-3">
+							  	@if($value->guid != '')
+									<img src="{{asset('/images/menuIcon/'.$value->guid)}}" class="card-img">
+								@else
+									<embed src="{{asset('/images/stack.svg')}}" class="card-img" type="image/svg+xml" /> 
+									<div class="position-absolute top-50 start-50 translate-middle">
+								    	<h5 class="text-bg-primary text-center">{{$value->judul}}</h5>
+								  	</div>
+								@endif
+							</div>
+						</div>
+						@endforeach
+					</div>
+				@endif
+			</div>
+			@if(isset($menuSidebar) && (count($menuSidebar['main']) > 0))
+				<div class="col-sm-12 col-md-4 col-lg-4">
+					<div class="position-sticky">
+						<div class="card mb-3">
+							<ul class="list-group list-group-flush">
+								@foreach($menuSidebar['main'] as $key => $value)
+								<li class="list-group-item">
+									<a class="stretched-link link-dark text-decoration-none text-truncate-3" href="{{route('cariprodukhukum', ['id' => $value->id])}}">
+										@if($value->guid != '')
+											<img src="{{asset('/images/menuIcon/'.$value->guid)}}" class="img-fluid">
+										@else
+											<i class="bi bi-link-45deg"></i> {{$value->judul}}
+										@endif
+									</a>
+								</li>
+								@endforeach
+							</ul>
+						</div>
+					</div>
+				</div>
+			@endif
+		</div>
+	</div>
+</section>

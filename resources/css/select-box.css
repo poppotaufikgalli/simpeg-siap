@@ -1,0 +1,119 @@
+._select-box {
+  position: relative;
+  display: flex;
+  width: 400px;
+  flex-direction: column;
+}
+
+._select-box ._options-container {
+  /*background: #fff;*/
+  color: #2f3640;
+  max-height: 0;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.4s;
+  border-radius: 0 0 8px 8px;
+  border: 1px solid #ced4da;
+  overflow: hidden;
+
+  order: 1;
+}
+
+._selected {
+  /*background: #fff;*/
+  border-radius: 8px;
+  margin-bottom: 8px;
+  color: #2f3640;
+  position: relative;
+
+  border: 1px solid #ced4da;
+
+  order: 0;
+}
+
+._selected::after {
+  content: "";
+  background: url("caret-down-fill.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  position: absolute;
+  height: 100%;
+  width: 24px;
+  right: 5px;
+  top: 5px;
+
+  transition: all 0.4s;
+}
+
+._select-box ._options-container._active {
+  max-height: 240px;
+  opacity: 1;
+  overflow-y: scroll;
+  margin-top: 35px;
+}
+
+._select-box ._options-container._active + ._selected::after {
+  transform: rotateX(180deg);
+  top: -6px;
+}
+
+._select-box ._options-container::-webkit-scrollbar {
+  width: 8px;
+  background: #0d141f;
+  border-radius: 0 0 8px 0;
+}
+
+._select-box ._options-container::-webkit-scrollbar-thumb {
+  background: #525861;
+  border-radius: 0 0 8px 0;
+}
+
+._select-box ._option,
+._selected {
+  padding: 4px 12px;
+  cursor: pointer;
+}
+
+._select-box ._option:hover {
+  background: #414b57;
+}
+
+._select-box label {
+  color: #2f3640;
+  cursor: pointer;
+}
+
+._select-box ._option:hover label{
+  color: #fff;
+}
+
+._select-box ._option ._radio {
+  display: none;
+}
+
+/* Searchbox */
+
+._search-box input {
+  width: 100%;
+  padding: 4px 8px;
+  /*font-family: "Roboto", sans-serif;
+  font-size: 16px;*/
+  position: absolute;
+  border-radius: 8px 8px 0 0;
+  z-index: 100;
+  border: 1px solid #ced4da;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s;
+}
+
+._search-box input:focus {
+  outline: none;
+}
+
+._select-box ._options-container._active ~ ._search-box input {
+  opacity: 1;
+  pointer-events: auto;
+}

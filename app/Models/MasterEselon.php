@@ -1,0 +1,47 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+
+class MasterEselon extends Model
+{
+    use HasFactory;
+
+    protected $table = 'master_eselon';
+
+    protected $primaryKey = 'id';
+    protected $keyType = 'string';
+
+    public function jnsjab()
+    {
+        return $this->belongsTo(MasterJenisJabatan::class, 'id_jenis_jabatan', 'id');
+    }
+
+    protected $fillable = [
+        'id',
+        'nama',
+        'jabatan_asn',
+        'id_jenis_jabatan',
+        'status',
+    ];
+
+    //public $timestamps = false;
+
+    protected static function boot() {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->created_by = is_object(Auth::guard(config('app.guards.web'))->user()) ? Auth::guard(config('app.guards.web'))->user()->id : 1;
+            $model->updated_by = NULL;
+        });
+
+        static::updating(function ($model) {
+            $model->updated_by = is_object(Auth::guard(config('app.guards.web'))->user()) ? Auth::guard(config('app.guards.web'))->user()->id : 1;
+            $model->updated_at = Carbon::now();
+        });
+    }
+}
