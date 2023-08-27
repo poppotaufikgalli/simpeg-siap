@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\DiklatStr;
+namespace App\Http\Livewire\Diklat;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Validator;
@@ -83,7 +83,7 @@ class Formulir extends Component
 
     public function render()
     {
-        return view('livewire.diklat-str.formulir');
+        return view('livewire.diklat.formulir');
     }
 
     public function mount()

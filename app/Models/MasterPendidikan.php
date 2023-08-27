@@ -44,5 +44,10 @@ class MasterPendidikan extends Model
             $model->updated_by = is_object(Auth::guard(config('app.guards.web'))->user()) ? Auth::guard(config('app.guards.web'))->user()->id : 1;
             $model->updated_at = Carbon::now();
         });
+
+        static::addGlobalScope('order', function (Builder $builder) {
+            $builder->orderBy('tk_pendidikan_id', 'asc');
+            $builder->orderBy('nama', 'asc');
+        });
     }
 }

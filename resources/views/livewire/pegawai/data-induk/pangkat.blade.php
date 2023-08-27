@@ -140,14 +140,14 @@
                             @php($btnColor = in_array($value->kdok, $arsip) ? 'btn-success' : 'btn-primary' )
                             <label>{{$value->nama}}</label>
                             <button type="button" class="btn btn-block {{$btnColor}} d-flex justify-content-between" 
-                                wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('pegawai_arsip.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'pangkat-terakhir')"
+                                wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('arsip_elektronik.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'pangkat-terakhir')"
                             >
                                 SK Pangkat <i class="bi bi-cloud-upload ms-2"></i> 
                             </button>
                             @php($value->jnsdok = "lamp_".$value->jnsdok)
                             @php($value->nama = "Lampiran ".$value->nama)
                             <button type="button" class="btn btn-block {{$btnColor}} d-flex justify-content-between" 
-                                wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('pegawai_arsip.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'pangkat-terakhir')"
+                                wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('arsip_elektronik.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'pangkat-terakhir')"
                             >
                                 Lampiran (*jika ada) <i class="bi bi-cloud-upload ms-2"></i> 
                             </button>

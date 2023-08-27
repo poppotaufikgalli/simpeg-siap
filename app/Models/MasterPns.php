@@ -9,7 +9,7 @@ class MasterPns extends Model
 {
     use HasFactory;
 
-    protected $table = 'peg_apns';
+    protected $table = 'master_pns';
 
     protected $primaryKey = 'nip';
     protected $keyType = 'string';

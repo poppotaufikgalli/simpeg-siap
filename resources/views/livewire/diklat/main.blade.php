@@ -33,9 +33,9 @@
                                 <td>{{ $value->ref_simpeg }}</td>
                                 <td>
                                     <div class="d-flex gap-1">
-                                        <a href="{{route('diklat_str.show', ['id' => $value->id])}}" class="btn btn-xs btn-info text-white"><i class="bi bi-eye"></i></a>
-                                        <a href="{{route('diklat_str.edit', ['id' => $value->id])}}" class="btn btn-xs btn-primary"><i class="bi bi-pencil"></i></a>
-                                        <button class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal" data-bs-target1="Referensi Diklat Struktural" data-bs-id="{{$value->id}}" data-bs-recipient="{{$value->nama}}" data-bs-router="diklat_str"><i class="bi bi-trash"></i></button>
+                                        <a href="{{route('diklat.show', ['id' => $value->id])}}" class="btn btn-xs btn-info text-white"><i class="bi bi-eye"></i></a>
+                                        <a href="{{route('diklat.edit', ['id' => $value->id])}}" class="btn btn-xs btn-primary"><i class="bi bi-pencil"></i></a>
+                                        <button class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal" data-bs-target1="Referensi Diklat Struktural" data-bs-id="{{$value->id}}" data-bs-recipient="{{$value->nama}}" data-bs-router="diklat"><i class="bi bi-trash"></i></button>
                                     </div>
                                 </td>   
                             </tr>

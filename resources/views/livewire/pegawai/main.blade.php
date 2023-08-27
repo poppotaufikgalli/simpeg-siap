@@ -140,7 +140,7 @@
                                 <td>{{$value->usiath}} th</td>
                                 <td>
                                     <a href="{{route('pegawai.show', ['id' => $value->nip])}}" class="btn btn-xs btn-info text-white"><i class="bi bi-eye"></i></a>
-                                    <a href="{{route('pegawai.edit', ['id' => $value->nip, 'page' => 'identitas-pegawai'])}}" class="btn btn-xs btn-primary"><i class="bi bi-pencil"></i></a>
+                                    <a href="{{route('pegawai.edit', ['id' => $value->nip, 'page' => 'data-induk'])}}" class="btn btn-xs btn-primary"><i class="bi bi-pencil"></i></a>
                                     <button class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal" data-bs-target1="Akses" data-bs-id="{{$value->id}}" data-bs-recipient="{{$value->nama}}"><i class="bi bi-trash"></i></button>
                                 </td>
                             </tr>

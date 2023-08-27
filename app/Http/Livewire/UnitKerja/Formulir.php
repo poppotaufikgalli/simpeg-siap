@@ -24,15 +24,15 @@ class Formulir extends Component
 
     public function store()
     {
-        $parent_opd = $this->dataset['parent_opd'] ?? 1;
+        //$parent_opd = $this->dataset['parent_opd'] ?? 1;
 
         $retData = [
             'id' => $this->dataset['_id'],
-            'parent_opd' => $parent_opd,
+            'parent_opd' => $this->dataset['parent_opd'] ?? null,
             'status' => isset($this->dataset['status']) && $this->dataset['status'] == 'on' ? 1 : 0, 
             'nama' => $this->dataset['nama'],
             'disingkat' => $this->dataset['disingkat'] ?? '',
-            'id_eselon' => $this->dataset['id_eselon'] ?? 21,
+            'id_eselon' => $this->dataset['id_eselon'] ?? 99,
             'sfilter' => isset($this->dataset['sfilter']) && $this->dataset['sfilter']  == 'on' ? 1 : 0,
             'alamat' => $this->dataset['alamat'] ?? '',
         ];
@@ -60,7 +60,7 @@ class Formulir extends Component
    
         MasterOPD::create($retData);
         
-        if($this->dataset['nama_jabatan_kepala'] != ""){
+        if(isset($this->dataset['nama_jabatan_kepala']) && $this->dataset['nama_jabatan_kepala'] != ""){
             MasterJabatan::updateOrCreate( ['id' => $this->sid], [
                 'id' => $retData['id'],
                 'parent_id' => $retData['parent_opd'],
@@ -109,7 +109,7 @@ class Formulir extends Component
         
         MasterOPD::find($this->sid)->update($retData);
 
-        if($this->dataset['nama_jabatan_kepala'] != ""){
+        if( isset($this->dataset['nama_jabatan_kepala']) && $this->dataset['nama_jabatan_kepala'] != ""){
             $kepala = MasterReferensiJabatan::where('nama', '=', $this->dataset['nama_jabatan_kepala'])->first();
             if($kepala == null){
                 $result = MasterReferensiJabatan::create([
@@ -156,7 +156,12 @@ class Formulir extends Component
 
     public function changeParent($selId){
         if($this->sid == ""){
-            $this->dataset['_id'] = $selId;
+            if($selId == ""){
+                //$this->dataset['_id'] = $selId;
+                $this->dataset['_id'] = $this->checkMaxIDOPD(null);
+            }else{
+                $this->dataset['_id'] = $selId . sprintf('%02d', $this->checkMaxIDOPD($selId));
+            }
         }
     }
 
@@ -188,8 +193,18 @@ class Formulir extends Component
                 $this->dataset['nama_jabatan_kepala'] = $kepala->nama;
             }
         }else{
-            $this->dataset["_id"] = '1';
+            $this->dataset['_id'] = $this->checkMaxIDOPD(null);
         }
-        
+    }
+
+    public function checkMaxIDOPD($parent_opd)
+    {
+        $data = MasterOPD::select('id')->where('parent_opd', '=', $parent_opd)
+            ->orderByRaw('CONVERT(id, SIGNED) desc')->first();
+        //dd($data);
+        if($data == null){
+            return 1;
+        }
+        return substr($data->id, -2) +1;
     }
 }

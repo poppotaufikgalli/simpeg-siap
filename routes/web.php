@@ -11,6 +11,7 @@ use App\Http\Controllers\AksesController;
 //simpeg
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\MasterPersonelController;
 use App\Http\Controllers\MasterJenisPersonelController;
 use App\Http\Controllers\MasterJenisPegawaiController;
 use App\Http\Controllers\MasterKedudukanPegawaiController;
@@ -50,7 +51,7 @@ use App\Http\Controllers\Pendidikan\MasterPendidikanController;
 use App\Http\Controllers\Pendidikan\MasterTingkatPendidikanController;
 use App\Http\Controllers\Pendidikan\MasterJenisProfesiController;
 use App\Http\Controllers\Pendidikan\MasterJenisKursusController;
-use App\Http\Controllers\Pendidikan\MasterDiklatStrController;
+use App\Http\Controllers\Pendidikan\MasterDiklatController;
 
 use App\Http\Controllers\Instansi\MasterInstansiController;
 use App\Http\Controllers\Instansi\MasterJenisInstansiController;
@@ -173,13 +174,14 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::prefix('personel')->group(function () {
             Route::prefix('{id_jenis_personel}')->group(function () {
-                Route::get('/', [PegawaiController::class, 'index'])->name('personel');
-                Route::get('/create', [PegawaiController::class, 'create'])->name('personel.create');
-                Route::post('/store', [PegawaiController::class, 'store'])->name('personel.store');
-                Route::get('/show/{id}', [PegawaiController::class, 'show'])->name('personel.show');
-                Route::get('/edit/{id}', [PegawaiController::class, 'edit'])->name('personel.edit');
-                Route::post('/update', [PegawaiController::class, 'update'])->name('personel.update');
-                Route::post('/destroy', [PegawaiController::class, 'destroy'])->name('personel.destroy');
+                Route::get('/', [MasterPersonelController::class, 'index'])->name('personel');
+                Route::get('/create', [MasterPersonelController::class, 'create'])->name('personel.create');
+                //Route::post('/store', [MasterPersonelController::class, 'store'])->name('personel.store');
+                Route::get('/show/{id}', [MasterPersonelController::class, 'show'])->name('personel.show');
+                Route::get('/{page}/edit/{id}', [MasterPersonelController::class, 'edit'])->name('personel.edit');
+                //Route::post('/update', [MasterPersonelController::class, 'update'])->name('personel.update');
+                Route::post('/destroy', [MasterPersonelController::class, 'destroy'])->name('personel.destroy');
+                Route::post('/uploadArsip', [MasterPersonelController::class, 'uploadArsip'])->name('personel.uploadArsip');
             });
         });
 
@@ -440,11 +442,11 @@ Route::group(['middleware' => ['auth']], function() {
         });
 
         Route::prefix('diklat_str')->group(function () {
-            Route::get('/', [MasterDiklatStrController::class, 'index'])->name('diklat_str');
-            Route::get('/create', [MasterDiklatStrController::class, 'create'])->name('diklat_str.create');
-            Route::get('/show/{id}', [MasterDiklatStrController::class, 'show'])->name('diklat_str.show');
-            Route::get('/edit/{id}', [MasterDiklatStrController::class, 'edit'])->name('diklat_str.edit');
-            Route::post('/destroy', [MasterDiklatStrController::class, 'destroy'])->name('diklat_str.destroy');
+            Route::get('/', [MasterDiklatController::class, 'index'])->name('diklat');
+            Route::get('/create', [MasterDiklatController::class, 'create'])->name('diklat.create');
+            Route::get('/show/{id}', [MasterDiklatController::class, 'show'])->name('diklat.show');
+            Route::get('/edit/{id}', [MasterDiklatController::class, 'edit'])->name('diklat.edit');
+            Route::post('/destroy', [MasterDiklatController::class, 'destroy'])->name('diklat.destroy');
         });
 
         Route::prefix('group_arsip')->group(function () {
@@ -455,13 +457,13 @@ Route::group(['middleware' => ['auth']], function() {
             Route::post('/destroy', [MasterGroupArsipController::class, 'destroy'])->name('group_arsip.destroy');
         });
 
-        Route::prefix('pegawai_arsip')->group(function () {
-            Route::get('/', [MasterPegawaiArsipController::class, 'index'])->name('pegawai_arsip');
-            Route::get('/create', [MasterPegawaiArsipController::class, 'create'])->name('pegawai_arsip.create');
-            Route::post('/store', [MasterPegawaiArsipController::class, 'store'])->name('pegawai_arsip.store');
-            Route::get('/show/{id}', [MasterPegawaiArsipController::class, 'show'])->name('pegawai_arsip.show');
-            Route::get('/edit/{id}', [MasterPegawaiArsipController::class, 'edit'])->name('pegawai_arsip.edit');
-            Route::post('/destroy', [MasterPegawaiArsipController::class, 'destroy'])->name('pegawai_arsip.destroy');
+        Route::prefix('arsip_elektronik')->group(function () {
+            Route::get('/', [MasterPegawaiArsipController::class, 'index'])->name('arsip_elektronik');
+            Route::get('/create', [MasterPegawaiArsipController::class, 'create'])->name('arsip_elektronik.create');
+            Route::post('/store', [MasterPegawaiArsipController::class, 'store'])->name('arsip_elektronik.store');
+            Route::get('/show/{id}', [MasterPegawaiArsipController::class, 'show'])->name('arsip_elektronik.show');
+            Route::get('/edit/{id}', [MasterPegawaiArsipController::class, 'edit'])->name('arsip_elektronik.edit');
+            Route::post('/destroy', [MasterPegawaiArsipController::class, 'destroy'])->name('arsip_elektronik.destroy');
         });
 
         /*Route::prefix('tipedokhukum')->group(function () {

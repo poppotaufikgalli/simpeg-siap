@@ -102,6 +102,7 @@ class PegawaiController extends Controller
             'id' => $id,
             'dataset' => $dataset->toArray(),
             'displayPhoto' => $dataset->file_bmp,
+            'page' => $page,
         ];
         //dd($data);
         return view('admin/pegawai/formulir', $data);

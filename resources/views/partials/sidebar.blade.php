@@ -27,8 +27,8 @@
 				<span>Formasi Jabatan OPD</span>
 			</a>
 		</li>
-		<li class="nav-item {{$selRoute == 'arsip' ? 'active' : ''}}">
-			<a class="nav-link" href="{{route('dashboard')}}">
+		<li class="nav-item {{$selRoute == 'arsip_elektronik' ? 'active' : ''}}">
+			<a class="nav-link" href="{{route('arsip_elektronik')}}">
 				<i class="bi bi-columns-gap"></i>
 				<span>Arsip Elektronik</span>
 			</a>
@@ -186,10 +186,10 @@
 				<span>Jenis Kursus</span>
 			</a>
 		</li>
-		<li class="nav-item {{$selRoute == 'diklat_str' ? 'active' : ''}}">
-			<a class="nav-link py-2" href="{{route('diklat_str')}}">
+		<li class="nav-item {{$selRoute == 'diklat' ? 'active' : ''}}">
+			<a class="nav-link py-2" href="{{route('diklat')}}">
 				<i class="bi bi-people-fill"></i>
-				<span>Diklat Struktural</span>
+				<span>Master Diklat</span>
 			</a>
 		</li>
 		<hr>

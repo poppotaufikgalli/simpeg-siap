@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use DateTimeInterface;
 
 class MasterRiwayatPangkat extends Model
 {
@@ -22,6 +23,11 @@ class MasterRiwayatPangkat extends Model
     public function npangkat()
     {
         return $this->belongsTo(MasterPangkat::class, 'kgolru');
+    }
+
+    public function jnspangkat()
+    {
+        return $this->belongsTo(MasterJenisKP::class, 'knpang');
     }
 
     protected $fillable = [
@@ -44,6 +50,13 @@ class MasterRiwayatPangkat extends Model
         'akhir',
     ];
 
+    protected $dates = ['tmtpang', 'tstlud', 'tntbakn', 'tskpang'];
+
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d');
+    }
+
     public $timestamps = false;
 
     protected static function boot() {
@@ -59,8 +72,8 @@ class MasterRiwayatPangkat extends Model
             $model->updated_at = Carbon::now();
         });
 
-        //static::addGlobalScope('order', function (Builder $builder) {
-        //    $builder->orderByRaw('CONVERT(id, SIGNED) asc');
-        //});
+        static::addGlobalScope('order', function (Builder $builder) {
+            $builder->orderBy('kgolru', 'desc');
+        });
     }
 }

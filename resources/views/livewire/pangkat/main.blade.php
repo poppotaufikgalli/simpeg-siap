@@ -1,5 +1,15 @@
 <div>
     <div class="card-body">
+        <div class="mb-3 row">
+            <label for="nama" class="col-sm-2 col-form-label">Jenis Pangkat</label>
+            <div class="col-sm-3">
+                <select class="form-select" id="id_jenis_personel" wire:model="id_jenis_personel">
+                    <option value="">Pilih Jenis Pangkat</option>
+                    <option value="1">PNS</option>
+                    <option value="2">Militer</option>
+                </select>
+            </div>
+        </div>
         <div class="table-responsive">
             <table class="table table-sm display" id="tbListData" width="100%" cellspacing="0">
                 <thead class="table-dark">

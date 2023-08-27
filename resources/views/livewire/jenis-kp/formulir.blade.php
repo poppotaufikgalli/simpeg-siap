@@ -24,6 +24,15 @@
                 </div>
             </div>
             <div class="mb-3 row">
+                <label for="status" class="col-sm-2 col-form-label">Status</label>
+                <div class="col-sm-10 d-flex align-items-center">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="status" wire:model="dataset.status" wire:change="changeStts($event.target.checked)">
+                        <label class="form-check-label" for="status" id="lblStts">{{$lblStts}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 row">
                 <div class="col-sm-10 offset-sm-2">
                     @if(in_array($method, ['create', 'edit']))
                         <button class="btn btn-sm btn-primary">Simpan</button>

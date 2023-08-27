@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Pendidikan;
 
 use App\Http\Controllers\Controller;
-use App\Models\MasterDiklatStr;
+use App\Models\MasterDiklat;
 use Illuminate\Http\Request;
 
-class MasterDiklatStrController extends Controller
+class MasterDiklatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class MasterDiklatStrController extends Controller
     {
         return view('referensi/index', [
             'PageTitle' => 'Master Diklat Struktural',
-            'route' => 'diklat_str',
+            'route' => 'diklat',
         ]);
     }
 
@@ -30,7 +30,7 @@ class MasterDiklatStrController extends Controller
     {
         return view('referensi/formulir', [
             "PageTitle" => 'Tambah Data Master Diklat Struktural',
-            'route' => 'diklat_str',
+            'route' => 'diklat',
             "next" => 'store',
             "method" => 'create',
         ]);
@@ -53,11 +53,11 @@ class MasterDiklatStrController extends Controller
      * @param  \App\Models\MasterJenisDiklatStr  $masterJenisDiklatStr
      * @return \Illuminate\Http\Response
      */
-    public function show(MasterDiklatStr $masterDiklatStr, $id)
+    public function show(MasterDiklat $masterDiklat, $id)
     {
         return view('referensi/formulir', [
             "PageTitle" => 'Lihat Data Master Diklat Struktural',
-            'route' => 'diklat_str',
+            'route' => 'diklat',
             "next" => 'show',
             "method" => 'show',
             "id" => $id,
@@ -70,11 +70,11 @@ class MasterDiklatStrController extends Controller
      * @param  \App\Models\MasterJenisDiklatStr  $masterJenisDiklatStr
      * @return \Illuminate\Http\Response
      */
-    public function edit(MasterDiklatStr $masterDiklatStr, $id)
+    public function edit(MasterDiklat $masterDiklat, $id)
     {
         return view('referensi/formulir', [
             "PageTitle" => 'Edit Data Master Diklat Struktural',
-            'route' => 'diklat_str',
+            'route' => 'diklat',
             "next" => 'update',
             "method" => 'edit',
             "id" => $id,
@@ -88,7 +88,7 @@ class MasterDiklatStrController extends Controller
      * @param  \App\Models\MasterJenisDiklatStr  $masterJenisDiklatStr
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterDiklatStr $masterDiklatStr)
+    public function update(Request $request, MasterDiklat $masterDiklat)
     {
         //
     }
@@ -99,7 +99,7 @@ class MasterDiklatStrController extends Controller
      * @param  \App\Models\MasterJenisDiklatStr  $masterJenisDiklatStr
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MasterDiklatStr $masterDiklatStr, Request $request)
+    public function destroy(MasterDiklat $masterDiklat, Request $request)
     {
         $id = $request->id;
         $del = $masterDiklatStr::find($id);

@@ -21,6 +21,7 @@ class MasterJenisKP extends Model
         'id',
         'nama',
         'ref_simpeg',
+        'status'
     ];
 
     public $timestamps = false;

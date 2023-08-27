@@ -20,34 +20,23 @@
 				</div>
 			</div>
 			<div class="card-body mb-3">
-				<ul class="nav nav-tabs" id="myTaba" role="tablist">
-				  	<li class="nav-item" role="presentation">
-				    	<button class="nav-link active" id="data-induk-tab" data-bs-toggle="tab" data-bs-target="#data-induk-tab-pane" type="button" role="tab" aria-controls="data-induk-tab-pane" aria-selected="true">Data Induk</button>
+				@php($activePage = request()->route('page'))
+				<ul class="nav nav-tabs">
+				  	<li class="nav-item">
+				    	<a class="nav-link {{$activePage == 'data-induk' ? 'active' : ''}}" aria-current="page" href="{{route('pegawai.edit', ['id' => $id, 'page' => 'data-induk'])}}">Data Induk</a>
 				  	</li>
-				  	<li class="nav-item" role="presentation">
-				    	<button class="nav-link" id="riwayat-pegawai-tab" data-bs-toggle="tab" data-bs-target="#riwayat-pegawai-tab-pane" type="button" role="tab" aria-controls="riwayat-pegawai-tab-pane" aria-selected="false">Riwayat Pegawai</button>
+				  	<li class="nav-item">
+				    	<a class="nav-link {{$activePage == 'riwayat-pegawai' ? 'active' : ''}}" href="{{route('pegawai.edit', ['id' => $id, 'page' => 'riwayat-pegawai'])}}">Riwayat Pegawai</a>
 				  	</li>
-				  	<li class="nav-item" role="presentation">
-				    	<button class="nav-link" id="riwayat-pendidikan-tab" data-bs-toggle="tab" data-bs-target="#riwayat-pendidikan-tab-pane" type="button" role="tab" aria-controls="riwayat-pendidikan-tab-pane" aria-selected="false">Riwayat Pendidikan</button>
+				  	<li class="nav-item">
+				    	<a class="nav-link {{$activePage == 'riwayat-pendidikan' ? 'active' : ''}}" href="{{route('pegawai.edit', ['id' => $id, 'page' => 'riwayat-pendidikan'])}}">Riwayat Pendidikan</a>
 				  	</li>
-				  	<li class="nav-item" role="presentation">
-				    	<button class="nav-link" id="data-keluarga-tab" data-bs-toggle="tab" data-bs-target="#data-keluarga-tab-pane" type="button" role="tab" aria-controls="data-keluarga-tab-pane" aria-selected="false">Data Keluarga</button>
+				  	<li class="nav-item">
+				    	<a class="nav-link {{$activePage == 'data-keluarga' ? 'active' : ''}}" href="{{route('pegawai.edit', ['id' => $id, 'page' => 'data-keluarga'])}}">Data Keluarga</a>
 				  	</li>
 				</ul>
-				<div class="tab-content" id="myTabContent">
-					<div class="tab-pane fade show active" id="data-induk-tab-pane" role="tabpanel" aria-labelledby="data-induk-tab" tabindex="0">
-						@include('admin.pegawai.data-induk.index')
-					</div>
-					<div class="tab-pane fade" id="riwayat-pegawai-tab-pane" role="tabpanel" aria-labelledby="riwayat-pegawai-tab" tabindex="0">
-						@include('admin.pegawai.riwayat-pegawai.index')
-					</div>
-					<div class="tab-pane fade" id="riwayat-pendidikan-tab-pane" role="tabpanel" aria-labelledby="riwayat-pendidikan-tab" tabindex="0">
-						@include('admin.pegawai.riwayat-pendidikan.index')
-					</div>
-					<div class="tab-pane fade" id="data-keluarga-tab-pane" role="tabpanel" aria-labelledby="data-keluarga-tab" tabindex="0">
-						@include('admin.pegawai.data-keluarga.index')
-					</div>
-				</div>
+				@php($selRoute = 'admin.pegawai.'.$page.'.index')
+				@include($selRoute)
 			</div>
 		</div>
 	</div>

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use DateTimeInterface;
 
 class MasterRiwayatGajiBerkala extends Model
 {
@@ -39,6 +40,13 @@ class MasterRiwayatGajiBerkala extends Model
     ];
 
     public $timestamps = false;
+
+    protected $dates = ['tstahu', 'tmtngaj'];
+
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d');
+    }
 
     protected static function boot() {
         parent::boot();

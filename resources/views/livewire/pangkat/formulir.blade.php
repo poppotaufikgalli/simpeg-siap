@@ -10,27 +10,39 @@
             <div class="mb-3 row">
                 <label for="_id" class="col-sm-2 col-form-label">ID Pangkat</label>
                 <div class="col-sm-3">
-                    <input type="number" class="form-control" id="_id" wire:model.debounce.500ms="dataset._id" {{$sid != '' ? 'disabled' : 'required'}}>
-                </div>
-                <label for="nama" class="col-sm-2 offset-sm-1 col-form-label">Kode Golongan</label>
-                <div class="col-sm-3">
-                    <input type="text" class="form-control" id="nama" wire:model.debounce.500ms="dataset.nama" required>
+                    <input type="text" class="form-control" id="_id" wire:model.debounce.500ms="dataset._id" {{$sid != '' ? 'disabled' : 'required'}}>
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="nama_pangkat" class="col-sm-2 col-form-label">Nama Golongan Ruang</label>
+                <label for="nama" class="col-sm-2 col-form-label">Jenis Pangkat</label>
+                <div class="col-sm-3">
+                    <select class="form-select" id="id_jenis_personel" wire:model="dataset.id_jenis_personel">
+                        <option value="">Pilih Jenis Pangkat</option>
+                        <option value="1">PNS</option>
+                        <option value="2">Militer</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="nama_pangkat" class="col-sm-2 col-form-label">Nama Pangkat</label>
                 <div class="col-sm-4">
                     <input type="text" class="form-control" id="nama_pangkat" wire:model.debounce.500ms="dataset.nama_pangkat" required>
                 </div>
-                <label for="ref_simpeg" class="col-sm-2 col-form-label">Ref. SIMPEG</label>
+                <!--<label for="ref_simpeg" class="col-sm-2 col-form-label">Ref. SIMPEG</label>
                 <div class="col-sm-2">
                     <input type="text" class="form-control" id="ref_simpeg" wire:model.debounce.500ms="dataset.ref_simpeg">
+                </div>-->
+            </div>
+            <div class="mb-3 row">
+                <label for="nama" class="col-sm-2 col-form-label">Golongan Ruang (Singkatan Militer)</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="nama" wire:model.debounce.500ms="dataset.nama">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="pajak" class="col-sm-2 col-form-label">Besar Pengenaan Pajak</label>
                 <div class="col-sm-3">
-                    <input type="number" class="form-control" id="pajak" wire:model.debounce.500ms="dataset.pajak" required>
+                    <input type="number" class="form-control" id="pajak" wire:model.debounce.500ms="dataset.pajak">
                 </div>
             </div>
             <div class="mb-3 row">

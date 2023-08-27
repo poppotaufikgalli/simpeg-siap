@@ -80,7 +80,7 @@
                         <div class="col-sm-3 d-grid g-2">
                             @php($btnColor = in_array($value->kdok, $arsip) ? 'btn-success' : 'btn-primary' )
                             <button type="button" class="btn btn-block {{$btnColor}} d-flex justify-content-between" 
-                                wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('pegawai_arsip.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'pns')"
+                                wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('arsip_elektronik.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'pns')"
                             >
                                 {{$value->nama}} <i class="bi bi-cloud-upload"></i> 
                             </button>

@@ -7,21 +7,41 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use DateTimeInterface;
 
-class MasterDiklatStr extends Model
+class MasterRiwayatDiklat extends Model
 {
     use HasFactory;
 
-    protected $table = 'master_diklat_str';
+    protected $table = 'master_riwayat_diklat';
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'nip';
+    public $incrementing = false;
     protected $keyType = 'string';
 
     protected $fillable = [
-        "id",
-        "nama",
-        "ref_simpeg",
+        'nip',
+        'jdiklat',
+        'kdiklat',
+        'ndiklat',
+        'tempat',
+        'pan',
+        'sebagai',
+        'angkatan',
+        'tmulai',
+        'takhir',
+        'jam',
+        'nsttpp',
+        'tsttpp',
+        'akhir',
     ];
+
+    protected $dates = ['tmulai', 'takhir', 'tsttpp'];
+
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d');
+    }
 
     public $timestamps = false;
 
@@ -39,7 +59,7 @@ class MasterDiklatStr extends Model
         });
 
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderByRaw('CONVERT(id, SIGNED) asc');
+            $builder->orderBy('jdiklat', 'asc');
         });
     }
 }

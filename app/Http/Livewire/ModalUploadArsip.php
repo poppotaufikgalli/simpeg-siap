@@ -53,6 +53,7 @@ class ModalUploadArsip extends Component
             'sid' => $this->sid,
             'isArsip' => $this->isArsip,
             'isUpload' => $this->isUpload,
+            'hash' => $this->hash,
         ]);
     }
 }

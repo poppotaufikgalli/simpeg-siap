@@ -22,7 +22,10 @@ class MasterPegawaiArsipController extends Controller
      */
     public function index()
     {
-        //
+        return view('arsip_elektronik/index', [
+            'PageTitle' => 'Arsip Elektronik',
+            'route' => 'arsip_elektronik',
+        ]);
     }
 
     /**
@@ -100,7 +103,8 @@ class MasterPegawaiArsipController extends Controller
         return response()->json([
             'path' => $file,
             'name' => $filename,
-            'mime_type' => $mime
+            'mime_type' => $mime,
+            'request' => $request,
         ]);
     }
 
@@ -121,9 +125,15 @@ class MasterPegawaiArsipController extends Controller
      * @param  \App\Models\MasterPegawaiArsip  $masterPegawaiArsip
      * @return \Illuminate\Http\Response
      */
-    public function edit(MasterPegawaiArsip $masterPegawaiArsip)
+    public function edit(MasterPegawaiArsip $masterPegawaiArsip, $id)
     {
-        //
+        return view('arsip_elektronik/formulir', [
+            'PageTitle' => "Edit Arsip Elektronik",
+            'route' => 'arsip_elektronik',
+            'next' => 'update',
+            'method' => 'edit',
+            'id' => $id
+        ]);
     }
 
     /**

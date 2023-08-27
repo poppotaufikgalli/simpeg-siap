@@ -3,13 +3,13 @@
         <div class="col-sm-3">
             <div class="d-flex flex-column gap-3">
                 <div class="list-group">
-                    <a href="#identitas-personel" class="list-group-item list-group-item-action active" id="identitas-personel-tab" data-bs-toggle="tab" data-bs-target="#identitas-personel" type="button" role="tab" aria-controls="identitas-personel" aria-selected="true">Pangkat</a>
-                    <button type="button" class="list-group-item list-group-item-action" id="cpns-tab" data-bs-toggle="tab" data-bs-target="#cpns" type="button" role="tab" aria-controls="cpns" aria-selected="false">Jabatan</button>
-                    <button type="button" class="list-group-item list-group-item-action" id="pns-tab" data-bs-toggle="tab" data-bs-target="#pns" type="button" role="tab" aria-controls="pns" aria-selected="false">Penghargaan/ Tanda Jasa</button>
-                    <button type="button" class="list-group-item list-group-item-action" id="pangkat-terakhir-tab" data-bs-toggle="tab" data-bs-target="#pangkat-terakhir" type="button" role="tab" aria-controls="pangkat-terakhir" aria-selected="false">DP3 / P2KP</button>
-                    <button type="button" class="list-group-item list-group-item-action" id="tempat-kerja-tab" data-bs-toggle="tab" data-bs-target="#tempat-kerja" type="button" role="tab" aria-controls="tempat-kerja" aria-selected="false">Hukuman Disiplin</button>
-                    <button type="button" class="list-group-item list-group-item-action" id="pendidikan-terakhir-tab" data-bs-toggle="tab" data-bs-target="#pendidikan-terakhir" type="button" role="tab" aria-controls="pendidikan-terakhir" aria-selected="false">Cuti</button>
-                    <button type="button" class="list-group-item list-group-item-action" id="jabatan-terakhir-tab" data-bs-toggle="tab" data-bs-target="#jabatan-terakhir" type="button" role="tab" aria-controls="jabatan-terakhir" aria-selected="false">Organisasi</button>
+                    <button type="button" class="list-group-item list-group-item-action active" id="riw-pangkat-tab" data-bs-toggle="tab" data-bs-target="#riw-pangkat" type="button" role="tab" aria-controls="riw-pangkat" aria-selected="true">Pangkat</button>
+                    <button type="button" class="list-group-item list-group-item-action" id="riw-jabatan-tab" data-bs-toggle="tab" data-bs-target="#riw-jabatan" type="button" role="tab" aria-controls="riw-jabatan" aria-selected="false">Jabatan</button>
+                    <button type="button" class="list-group-item list-group-item-action" id="riw-penghargaan-tab" data-bs-toggle="tab" data-bs-target="#riw-penghargaan" type="button" role="tab" aria-controls="riw-penghargaan" aria-selected="false">Penghargaan/ Tanda Jasa</button>
+                    <button type="button" class="list-group-item list-group-item-action" id="riw-dp3-tab" data-bs-toggle="tab" data-bs-target="#riw-dp3" type="button" role="tab" aria-controls="riw-dp3" aria-selected="false">DP3 / P2KP</button>
+                    <button type="button" class="list-group-item list-group-item-action" id="riw-hukuman-disiplin-tab" data-bs-toggle="tab" data-bs-target="#riw-hukuman-disiplin" type="button" role="tab" aria-controls="riw-hukuman-disiplin" aria-selected="false">Hukuman Disiplin</button>
+                    <button type="button" class="list-group-item list-group-item-action" id="riw-cuti-tab" data-bs-toggle="tab" data-bs-target="#riw-cuti" type="button" role="tab" aria-controls="riw-cuti" aria-selected="false">Cuti</button>
+                    <button type="button" class="list-group-item list-group-item-action" id="riw-organisasi-tab" data-bs-toggle="tab" data-bs-target="#riw-organisasi" type="button" role="tab" aria-controls="riw-organisasi" aria-selected="false">Organisasi</button>
                     <button type="button" class="list-group-item list-group-item-action" id="gaji-berkala-tab" data-bs-toggle="tab" data-bs-target="#gaji-berkala" type="button" role="tab" aria-controls="gaji-berkala" aria-selected="false">Tugas Luar Negeri</button>
                     <button type="button" class="list-group-item list-group-item-action" id="pengalaman-kerja-tab" data-bs-toggle="tab" data-bs-target="#pengalaman-kerja" type="button" role="tab" aria-controls="pengalaman-kerja" aria-selected="false">Bahasa</button>
                     <button type="button" class="list-group-item list-group-item-action" id="pengalaman-kerja-tab" data-bs-toggle="tab" data-bs-target="#pengalaman-kerja" type="button" role="tab" aria-controls="pengalaman-kerja" aria-selected="false">Pindah Instansi</button>
@@ -18,45 +18,50 @@
         </div>
         <div class="col-sm-9">
             <div class="tab-content">
-                <div class="tab-pane active" id="identitas-personel" role="tabpanel" aria-labelledby="identitas-personel-tab" tabindex="0">
-                    @livewire('pegawai.data-induk.identitas-pegawai', [
+                <div class="tab-pane active" id="riw-pangkat" role="tabpanel" aria-labelledby="riw-pangkat-tab" tabindex="0">
+                    @livewire('pegawai.riwayat-pegawai.riw-pangkat', [
                         'method' => $method, 
                         'next' => $next, 
                         'sid' => $id ?? '',
                     ])          
                 </div>
-                <div class="tab-pane" id="cpns" role="tabpanel" aria-labelledby="cpns-tab" tabindex="0">   
-                     @livewire('pegawai.data-induk.cpns', [
+                <div class="tab-pane" id="riw-jabatan" role="tabpanel" aria-labelledby="riw-jabatan-tab" tabindex="0">   
+                     @livewire('pegawai.riwayat-pegawai.riw-jabatan', [
                         'method' => $method, 
                         'next' => $next, 
                         'sid' => $id ?? '',
                     ])  
                 </div>
-                <div class="tab-pane" id="pns" role="tabpanel" aria-labelledby="pns-tab" tabindex="0">
-                    @livewire('pegawai.data-induk.pns', [
+                <div class="tab-pane" id="riw-penghargaan" role="tabpanel" aria-labelledby="riw-penghargaan-tab" tabindex="0">
+                    @livewire('pegawai.riwayat-pegawai.riw-penghargaan', [
                         'method' => $method, 
                         'next' => $next, 
                         'sid' => $id ?? '',
                     ])
                 </div>
-                <div class="tab-pane" id="pangkat-terakhir" role="tabpanel" aria-labelledby="pangkat-terakhir-tab" tabindex="0">
-                    @livewire('pegawai.data-induk.pangkat', [
+                <div class="tab-pane" id="riw-dp3" role="tabpanel" aria-labelledby="riw-dp3-tab" tabindex="0">
+                    @livewire('pegawai.riwayat-pegawai.riw-dp3', [
                         'method' => $method, 
                         'next' => $next, 
                         'sid' => $id ?? '',
                     ])
                 </div>
-                <!--<div class="tab-pane" id="pendidikan-terakhir" role="tabpanel" aria-labelledby="pendidikan-terakhir-tab" tabindex="0">...</div>
-                <div class="tab-pane" id="tempat-kerja" role="tabpanel" aria-labelledby="tempat-kerja-tab" tabindex="0">...</div>-->
-                <div class="tab-pane" id="jabatan-terakhir" role="tabpanel" aria-labelledby="jabatan-terakhir-tab" tabindex="0">
-                    @livewire('pegawai.data-induk.jabatan', [
+                <div class="tab-pane" id="riw-hukuman-disiplin" role="tabpanel" aria-labelledby="riw-hukuman-disiplin-tab" tabindex="0">
+                    @livewire('pegawai.riwayat-pegawai.riw-hukuman-disiplin', [
                         'method' => $method, 
                         'next' => $next, 
                         'sid' => $id ?? '',
                     ])
                 </div>
-                <div class="tab-pane" id="gaji-berkala" role="tabpanel" aria-labelledby="gaji-berkala-tab" tabindex="0">
-                    @livewire('pegawai.data-induk.gaji-berkala', [
+                <div class="tab-pane" id="riw-cuti" role="tabpanel" aria-labelledby="riw-cuti-tab" tabindex="0">
+                    @livewire('pegawai.riwayat-pegawai.riw-cuti', [
+                        'method' => $method, 
+                        'next' => $next, 
+                        'sid' => $id ?? '',
+                    ])
+                </div>
+                <div class="tab-pane" id="riw-organisasi" role="tabpanel" aria-labelledby="riw-organisasi-tab" tabindex="0">
+                    @livewire('pegawai.riwayat-pegawai.riw-cuti', [
                         'method' => $method, 
                         'next' => $next, 
                         'sid' => $id ?? '',

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Livewire\DiklatStr;
+namespace App\Http\Livewire\Diklat;
 
 use Livewire\Component;
 use Livewire\WithPagination;
 
-use App\Models\MasterDiklatStr;
+use App\Models\MasterDiklat;
 
 class Main extends Component
 {
@@ -19,7 +19,7 @@ class Main extends Component
     
     public function render()
     {
-        $retData = MasterDiklatStr::where(function($query){
+        $retData = MasterDiklat::where(function($query){
             if($this->_id != ""){
                 $query->where('id', 'like', '%'.$this->_id.'%');
             }
@@ -35,7 +35,7 @@ class Main extends Component
 
         $this->resetPage();
 
-        return view('livewire.diklat-str.main', [
+        return view('livewire.diklat.main', [
             'master_diklat_str' => $retData,
         ]);
     }

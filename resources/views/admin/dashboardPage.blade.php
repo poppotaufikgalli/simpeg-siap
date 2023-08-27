@@ -5,6 +5,15 @@
 @section('content')
 	<div class="container-fluid mt-n10">
 
+		<div class="col-lg-12 mb-4">
+      <!-- Project Card Example -->
+      <div class="card shadow mb-4">
+        <div class="card-body">
+          <p class="fs-5 text-justify">Selamat datang di aplikasi <span class="fs-4 fw-bold">SIMPERS</span> (Sistem Informasi Penyimpanan Data Personel) Disminpers Koarmada I, aplikasi ini adalah tool untuk mempermudah proses layanan penyimpanan data personel di lingkungan Mako Koarmada I. Dengan aplikasi ini layanan penyimpanan data personel dapat dilaksanakan secara efektif dan efisien.</p>
+         </div>
+        </div>
+      </div>    	
+
 		@php($border=['primary', 'success', 'info', 'danger', 'warning'])
 		<!-- Content Row -->
 		@if(isset($tipedokhukum))

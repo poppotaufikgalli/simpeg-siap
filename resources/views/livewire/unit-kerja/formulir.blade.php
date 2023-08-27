@@ -11,6 +11,7 @@
                 <label for="parent_opd" class="col-sm-2 col-form-label">Unit Kerja Induk</label>
                 <div class="col-sm-10">
                     <select class="form-select" id="parent_opd" wire:model="dataset.parent_opd" wire:change="changeParent($event.target.value)" {{$method == 'create' ? '' : 'disabled'}}>
+                        <option value="">Pilih Unit Induk</option>
                         @if($opd_utama)
                             @foreach($opd_utama as $key => $value)
                                 <option value="{{$value->id}}" {{$value->status != 1 ? 'disabled' : '' }}>{{$value->id}} - {{$value->nama}}</option>
@@ -48,7 +49,7 @@
                 <div class="col-sm-5">
                     <select class="form-select" id="id_eselon" wire:model="dataset.id_eselon">
                         @if($master_eselon)
-                            <option selected disabled>Pilih Eseon</option>
+                            <option value="">Pilih Eseon</option>
                             <option value="99">Non</option>
                             @foreach($master_eselon as $key => $value)
                                 <option value="{{$value->id}}">{{$value->nama}}</option>
@@ -74,7 +75,7 @@
             <div class="mb-3 row">
                 <label for="nama_jabatan_kepala" class="col-sm-2 col-form-label">Nama Jabatan Kepala</label>
                 <div class="col-sm-10">
-                    <input type="search" class="form-control" maxlength="15" id="nama_jabatan_kepala" wire:model.debounce.500ms="dataset.nama_jabatan_kepala" placeholder="Kosongkan jika tidak ada">
+                    <input type="search" class="form-control" id="nama_jabatan_kepala" wire:model.debounce.500ms="dataset.nama_jabatan_kepala" placeholder="Kosongkan jika tidak ada">
                 </div>
             </div>
             <div class="mb-3 row">

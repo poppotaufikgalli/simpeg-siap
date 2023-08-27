@@ -128,28 +128,28 @@
                             @php($sjnsdok = $value->jnsdok)
                             <label>{{$snama}}</label>
                             <button type="button" class="btn btn-block {{$btnColor}} d-flex justify-content-between" 
-                                wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('pegawai_arsip.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'jabatan-terakhir')"
+                                wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('arsip_elektronik.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'jabatan-terakhir')"
                             >
                                 SK Jabatan <i class="bi bi-cloud-upload ms-2"></i> 
                             </button>
                             @php($value->jnsdok = "lamp_".$sjnsdok)
                             @php($value->nama = "Lampiran ".$snama)
                             <button type="button" class="btn btn-block {{$btnColor}} d-flex justify-content-between" 
-                                wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('pegawai_arsip.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'jabatan-terakhir')"
+                                wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('arsip_elektronik.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'jabatan-terakhir')"
                             >
                                 Lampiran (*jika ada) <i class="bi bi-cloud-upload ms-2"></i> 
                             </button>
                             @php($value->jnsdok = "pp_lamp_".$sjnsdok)
                             @php($value->nama = "SK Pelantikan ".$snama)
                             <button type="button" class="btn btn-block {{$btnColor}} d-flex justify-content-between" 
-                                wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('pegawai_arsip.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'jabatan-terakhir')"
+                                wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('arsip_elektronik.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'jabatan-terakhir')"
                             >
                                 Pernyataan Pelantikan (*jika ada) <i class="bi bi-cloud-upload ms-2"></i> 
                             </button>
                             @php($value->jnsdok = "ba_pp_lamp_".$sjnsdok)
                             @php($value->nama = "BA Sumpah ".$snama)
                             <button type="button" class="btn btn-block {{$btnColor}} d-flex justify-content-between" 
-                                wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('pegawai_arsip.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'jabatan-terakhir')"
+                                wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('arsip_elektronik.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'jabatan-terakhir')"
                             >
                                 Berita Acara Sumpah (*jika ada) <i class="bi bi-cloud-upload ms-2"></i> 
                             </button>

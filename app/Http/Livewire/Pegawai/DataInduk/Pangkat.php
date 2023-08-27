@@ -30,7 +30,7 @@ class Pangkat extends Component
 
         $data['akhir'] = $this->akhir;
 
-         MasterRiwayatPangkat::where('nip', '=', $this->sid)->update([
+        MasterRiwayatPangkat::where('nip', '=', $this->sid)->update([
             'akhir' => 0,
         ]);
 

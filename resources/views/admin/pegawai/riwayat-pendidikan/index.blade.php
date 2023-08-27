@@ -3,7 +3,7 @@
         <div class="col-sm-3">
             <div class="d-flex flex-column gap-3">
                 <div class="list-group">
-                    <a href="#identitas-personel" class="list-group-item list-group-item-action active" id="identitas-personel-tab" data-bs-toggle="tab" data-bs-target="#identitas-personel" type="button" role="tab" aria-controls="identitas-personel" aria-selected="true">Pendidikan Umum</a>
+                    <button type="button" class="list-group-item list-group-item-action" id="pendum-tab" data-bs-toggle="tab" data-bs-target="#pendum" type="button" role="tab" aria-controls="pendum" aria-selected="false">Pendidikan Umum</button>
                     <button type="button" class="list-group-item list-group-item-action" id="cpns-tab" data-bs-toggle="tab" data-bs-target="#cpns" type="button" role="tab" aria-controls="cpns" aria-selected="false">Diklat Struktural</button>
                     <button type="button" class="list-group-item list-group-item-action" id="pns-tab" data-bs-toggle="tab" data-bs-target="#pns" type="button" role="tab" aria-controls="pns" aria-selected="false">Diklat Fungsional</button>
                     <button type="button" class="list-group-item list-group-item-action" id="pangkat-terakhir-tab" data-bs-toggle="tab" data-bs-target="#pangkat-terakhir" type="button" role="tab" aria-controls="pangkat-terakhir" aria-selected="false">Diklat Teknis</button>
@@ -18,8 +18,8 @@
         </div>
         <div class="col-sm-9">
             <div class="tab-content">
-                <div class="tab-pane active" id="identitas-personel" role="tabpanel" aria-labelledby="identitas-personel-tab" tabindex="0">
-                    @livewire('pegawai.data-induk.identitas-pegawai', [
+                <div class="tab-pane active" id="pendum" role="tabpanel" aria-labelledby="pendum-tab" tabindex="0">
+                    @livewire('pegawai.riwayat-pendidikan.pendum', [
                         'method' => $method, 
                         'next' => $next, 
                         'sid' => $id ?? '',

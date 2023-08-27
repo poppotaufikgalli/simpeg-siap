@@ -7,6 +7,7 @@
                         <th width="10%">ID</th>
                         <th width="40%">Nama Jenis Kenaikan Pangkat</th>
                         <th>Referensi SIMPEG</th>
+                        <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -21,6 +22,13 @@
                         <th>
                             <input type="search" class="form-control" id="ref_simpeg" wire:model="ref_simpeg" placeholder="Cari dengan Referensi SIMPEG">
                         </th>
+                        <th>
+                            <select class="form-select" id="status" wire:model="status">
+                                <option value="">Semua</option>
+                                <option value="1">Aktif</option>
+                                <option value="0">Tidak Aktif</option>
+                            </select>
+                        </th>
                         <th>Jumlah Data : {{$master_jenis_kp->total()}}</th>
                     </tr>
                 </thead>
@@ -31,6 +39,7 @@
                                 <td align="center">{{ $value->id }}</td>
                                 <td>{{ $value->nama }}</td>
                                 <td>{{ $value->ref_simpeg }}</td>
+                                <td>{{ $value->status == 1 ? 'Aktif' : 'Tidak Aktif' }}</td>
                                 <td>
                                     <div class="d-flex gap-1">
                                         <a href="{{route('jenis_kp.show', ['id' => $value->id])}}" class="btn btn-xs btn-info text-white"><i class="bi bi-eye"></i></a>

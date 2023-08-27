@@ -16,6 +16,7 @@ class Main extends Component
     public $_id;
     public $nama;
     public $ref_simpeg;
+    public $status=1;
     
     public function render()
     {
@@ -30,6 +31,10 @@ class Main extends Component
 
             if($this->ref_simpeg != ""){
                 $query->where('ref_simpeg', '=', $this->ref_simpeg);
+            }
+
+            if($this->status != ""){
+                $query->where('status', '=', $this->status);
             }
 
         })->Paginate(20)->withQueryString();

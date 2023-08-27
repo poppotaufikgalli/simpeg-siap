@@ -124,7 +124,7 @@
                     @foreach($master_jenis_arsip as $value)
                         <div class="col-sm-3 d-grid g-2">
                             <button type="button" class="btn btn-block btn-primary d-flex justify-content-between" 
-                                wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('pegawai_arsip.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'cpns')"
+                                wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('arsip_elektronik.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'cpns')"
                             >
                                 {{$value->nama}} <i class="bi bi-cloud-upload"></i> 
                             </button>

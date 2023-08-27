@@ -14,6 +14,7 @@ class Main extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $_id;
+    public $id_jenis_personel = 0;
     public $nama;
     public $nama_pangkat;
     public $ref_simpeg;
@@ -40,6 +41,10 @@ class Main extends Component
             
             if($this->pajak != ""){
                 $query->where('pajak', 'like', '%'.$this->pajak.'%');
+            }
+
+            if($this->id_jenis_personel != ""){
+                $query->where('id_jenis_personel', '=', $this->id_jenis_personel);
             }
         })->Paginate(20)->withQueryString();
 

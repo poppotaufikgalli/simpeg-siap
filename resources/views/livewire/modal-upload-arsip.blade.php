@@ -34,7 +34,7 @@
                                                     data-bs-hash="{{$hash}}"
                                                     data-bs-id="{{$value->id}}" 
                                                     data-bs-recipient="{{$value->filename}}" 
-                                                    data-bs-router="pegawai_arsip"
+                                                    data-bs-router="arsip_elektronik"
                                                 >
                                                     <i class="bi bi-trash"></i>
                                                 </button>
@@ -63,9 +63,9 @@
                 const myModalAlternative = new bootstrap.Modal('#modalUploadArsip', {})
                 myModalAlternative.show();
 
-                const {route, data, sid, isArsip, isUpload} = e.detail;
-                console.log(isArsip)
+                const {route, data, sid, isArsip, isUpload, hash} = e.detail;
                 var filename = sid+"_"+data['jnsdok'];
+                //console.log(filename)
                 var _nfile = 1;
                 var _filenameUpload = "";
                 document.getElementById('ndokUpload').innerHTML = "Upload Dokumen "+data['nama']
@@ -100,11 +100,14 @@
                 });
 
                 myDropzone.on("success", function(file, response) {
-                    console.log(response)
+                    //console.log(response)
                     @this.set('arsip', data['id']);
                     _nfile = _nfile +1;
 
                     myModalAlternative.hide();
+
+                    window.location.hash = hash
+                    location.reload();
                 });
             });
 

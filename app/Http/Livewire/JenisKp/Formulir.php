@@ -15,6 +15,7 @@ class Formulir extends Component
     public $next;
 
     public $dataset;
+    public $lblStts = 'Tidak Aktif';
 
     public function store()
     {
@@ -22,6 +23,7 @@ class Formulir extends Component
             'id' => $this->dataset['_id'],
             'nama' => $this->dataset['nama'],
             'ref_simpeg' => $this->dataset['ref_simpeg'] ?? null,
+            'status' => $this->dataset['status'] ?? 0,
         ];
 
         $validator = Validator::make($retData, [
@@ -54,6 +56,7 @@ class Formulir extends Component
         $retData = [
             'nama' => $this->dataset['nama'],
             'ref_simpeg' => $this->dataset['ref_simpeg'] ?? null,
+            'status' => $this->dataset['status'] ?? 0,
         ];
 
         $id = $this->sid;
@@ -87,16 +90,23 @@ class Formulir extends Component
         return view('livewire.jenis-kp.formulir');
     }
 
+    public function changeStts($selId)
+    {
+        $this->lblStts = $selId == true ? 'Aktif' : 'Tidak Aktif';
+    }
+
     public function mount()
     {
         if($this->sid != ''){
             $dataset = MasterJenisKP::find($this->sid);
 
             if($dataset){
+                $this->changeStts($dataset->status);
                 $this->dataset = [
                     '_id' => $dataset->id,
                     'nama' => $dataset->nama,
                     'ref_simpeg' => $dataset->ref_simpeg,
+                    'status' => $dataset->status,
                 ];
             }
         }

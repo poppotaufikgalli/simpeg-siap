@@ -109,7 +109,9 @@ class MasterOPDController extends Controller
         $del->delete();
 
         $del = MasterJabatan::find($id);
-        $del->delete();
+        if($del != null){
+            $del->delete();    
+        }
         
         return redirect('/unit_kerja')->withSuccess("Berhasil Menghapus Data");
     }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use DateTimeInterface;
 
 class MasterRiwayatJabatan extends Model
 {
@@ -18,10 +19,15 @@ class MasterRiwayatJabatan extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
-    /*public function npangkat()
+    public function neselon()
     {
-        return $this->belongsTo(MasterPangkat::class, 'kgolru');
-    }*/
+        return $this->belongsTo(MasterEselon::class, 'keselon');
+    }
+
+    public function nopd()
+    {
+        return $this->belongsTo(MasterOPD::class, 'id_opd', 'id');
+    }
 
     protected $fillable = [
         'nip',
@@ -46,6 +52,13 @@ class MasterRiwayatJabatan extends Model
 
     public $timestamps = false;
 
+    protected $dates = ['tmtjab', 'tlantik', 'tskjabat'];
+
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d');
+    }
+
     protected static function boot() {
         parent::boot();
 
@@ -57,6 +70,10 @@ class MasterRiwayatJabatan extends Model
         static::updating(function ($model) {
             $model->updated_by = is_object(Auth::guard(config('app.guards.web'))->user()) ? Auth::guard(config('app.guards.web'))->user()->id : 1;
             $model->updated_at = Carbon::now();
+        });
+
+        static::addGlobalScope('order', function (Builder $builder) {
+            $builder->orderBy('tmtjab', 'desc');
         });
     }
 }
