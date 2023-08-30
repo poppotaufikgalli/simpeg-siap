@@ -4,20 +4,13 @@
             <table class="table table-sm display" id="tbListData" width="100%" cellspacing="0">
                 <thead class="table-dark">
                     <tr>
-                        <th width="10%">NIP</th>
+                        <th width="20%">NIP</th>
                         <th>Nama</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <thead class="table-light">
-                    <tr>
-                        <th>
-                            <input type="search" class="form-control" id="nip" wire:model="nip" placeholder="Cari dengan NIP">
-                        </th>
-                        <th>
-                            <input type="search" class="form-control" id="namapeg" wire:model="namapeg" placeholder="Cari dengan Nama">
-                        </th>
-                        <th>Jumlah Data : {{$master_pegawai->total()}}</th>
+                        <th width="5%">Jumlah Referensi</th>
+                        <th width="5%">Jumlah Terupload</th>
+                        <th>%</th>
+                        <th width="30%">Progress</th>
+                        <th width="5%">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,21 +19,45 @@
                             <tr>
                                 <td align="center">{{ $value->nip }}</td>
                                 <td>{{ $value->namapeg }}</td>
+                                @php($jmlRef = $value->jml1 + $value->jml3)
+                                <td align="center">{{$value->jml1 + $value->jml3}}</td>
+                                @php($jmlArsip = $value->jml2 + $value->jml4)
+                                <td align="center">{{$value->jml2 + $value->jml4}}</td>
+                                @php($progres = ($jmlArsip / $jmlRef) *100)
+                                <td align="center" width="5%">
+                                    {{ $progres > 0 ? number_format($progres, 2) : $progres }} %
+                                </td>
                                 <td>
-                                    <div class="d-flex gap-1">
-                                        <a href="{{route('arsip_elektronik.show', ['id' => $value->nip])}}" class="btn btn-xs btn-info text-white"><i class="bi bi-eye"></i></a>
-                                        <a href="{{route('arsip_elektronik.edit', ['id' => $value->nip])}}" class="btn btn-xs btn-primary"><i class="bi bi-pencil"></i></a>
-                                        <button class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal" data-bs-target1="Referensi Jenis Profesi" data-bs-id="{{$value->nip}}" data-bs-recipient="{{$value->namapeg}}" data-bs-router="arsip_elektronik"><i class="bi bi-trash"></i></button>
+                                    <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar progress-bar-striped" style="width: {{$progres}}%"></div>
                                     </div>
+                                </td>
+                                <td align="center">
+                                    @php($nip = str_replace('/', '-', $value->nip))
+                                    <a href="{{route('arsip_elektronik.show', ['id' => $nip])}}" class="btn btn-xs btn-info text-white"><i class="bi bi-eye"></i></a>
                                 </td>   
                             </tr>
                       @endforeach
                     @endif
                 </tbody>
             </table>
-            <div class="float-end">
-                {{ $master_pegawai->links() }}
-            </div>
+            
         </div>
     </div>
+    <script>
+        document.addEventListener('livewire:load', function () {
+            var ndatatable = document.getElementById("tbListData")
+            if(ndatatable){
+                const table = new DataTable('#tbListData', {
+                    order: [[4, 'desc']],
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+                //table.context[0].nTHead.classList.add('d-none')
+                //search by agolia
+            }
+        });
+    </script>
 </div>

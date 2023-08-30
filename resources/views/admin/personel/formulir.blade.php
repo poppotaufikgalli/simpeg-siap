@@ -87,49 +87,12 @@
 			  triggerEl.click();
 			}
 		})
-	    
 
-	    //Dropzone.autoDiscover = false;
-        /*document.addEventListener("DOMContentLoaded", function() {
-            let myDropzone = new Dropzone("div#dropzone-cpns", { 
-                url: "{{route('pegawai.store', ['page' => 'cpns'])}}",
-                chunking: true,
-                //clickable: true,
-                //addRemoveLinks: true,
-                maxFiles: 1,
-                method: "POST",
-                maxFilesize: 40000000000,
-                chunkSize: 1000000,
-                parallelChunkUploads: true,
-                acceptedFiles: ".pdf,.PDF, image/*",
-            });
-
-            myDropzone.on("addedfile", file => {
-                let extension = file.name.split('.').pop();
-                document.getElementById('file_skcpns').value = 'cpns_'+document.getElementById('tmtcpns').value+"."+extension;
-
-                console.log(file)
-            });
-
-            myDropzone.on("sending", function(file, xhr, formData) {
-                formData.append("_token", '{{ csrf_token() }}');
-                formData.append("sid", document.getElementById('sid').value) ;
-                formData.append("nama_file", document.getElementById('file_skcpns').value);
-            });
-
-            myDropzone.on("success", function(file, response) {
-                console.log("success")
-                document.getElementById('file_skcpns').click();
-                document.getElementById("file_skcpns").dispatchEvent(new Event('input'));
-
-                if(response != 0){
-                   var anchorEl = document.createElement('a');
-                   anchorEl.setAttribute('href',response);
-                   anchorEl.setAttribute('target','_blank');
-                   anchorEl.innerHTML = "<br>Download File";
-                   file.previewTemplate.appendChild(anchorEl);
-                }
-            });
-        });*/
+		window.addEventListener('reloadPage', function(e) {
+	        console.log(e)
+	        const {detail} = e;
+	        window.location.hash = detail
+	        location.reload();
+	    });
 	</script>
 @endsection

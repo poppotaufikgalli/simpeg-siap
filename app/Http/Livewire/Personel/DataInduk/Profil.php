@@ -25,6 +25,7 @@ class Profil extends Component
     use WithFileUploads;
 
     public $sid;
+    public $nama;
     public $next;
     public $method;
     public $dataset;
@@ -40,7 +41,14 @@ class Profil extends Component
 
     public $arsip = [];
 
-    protected $listeners = ['updatedArsip'];
+    protected $listeners = ['updatedArsip', "callModal"];
+
+    public function callModal($nama){
+        $this->emitTo('modal-upload-arsip-personel', 'openModalPersonel', $this->sid, $nama, 'data-induk', 'master_pegawai', [
+            'nip' => $this->sid,
+        ]);
+    }
+
     //public $profilePic;
     public function updatedArsip($kdok)
     {
@@ -215,6 +223,7 @@ class Profil extends Component
                 $this->dataset = $dataset->toArray();
                 $this->dataset['nip'] = (string)$this->sid;
                 $this->profile_image = 'storage/photo/'.$dataset->file_bmp;
+                $this->nama = $dataset->nama;
             }
         }
     }

@@ -44,6 +44,7 @@
                         'method' => $method, 
                         'next' => $next, 
                         'sid' => $id ?? '',
+                        'id_jenis_personel' => $id_jenis_personel,
                     ])
                 </div>
                 <div class="tab-pane fade" id="pangkat-terakhir" role="tabpanel" aria-labelledby="pangkat-terakhir-tab" tabindex="0">
@@ -80,5 +81,6 @@
         </div>
     </div>
     @livewire('modal-upload-arsip', ['sid' => $id ?? ''])
+    @livewire('modal-upload-arsip-personel', ['sid' => $id ?? ''])
     @include('partials/modalHapus')
 </div>

@@ -27,7 +27,14 @@ window.Notyf = Notyf
 import * as GLightbox from 'glightbox/dist/js/glightbox';
 window.GLightbox = GLightbox
 
+import pdfmake from 'pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import DataTable from "datatables.net-bs5"
+import 'datatables.net-buttons-bs5';
+import 'datatables.net-buttons/js/buttons.colVis.mjs';
+import 'datatables.net-buttons/js/buttons.html5.mjs';
+import 'datatables.net-buttons/js/buttons.print.mjs';
 window.DataTable = DataTable
 
 import IMask from 'imask';

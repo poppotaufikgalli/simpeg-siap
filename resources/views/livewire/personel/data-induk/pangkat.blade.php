@@ -122,20 +122,4 @@
             </div>
         </div>
     </form>
-    @if($master_jenis_arsip)
-        <div class="card card-body mt-2">
-            <div class="d-flex flex-column">
-                @foreach($master_jenis_arsip as $value)
-                    <div class="d-flex justify-content-start align-items-center gap-2">
-                        @php($btnColor = in_array($value->kdok, $arsip) ? 'btn-success' : 'btn-primary' )
-                        <button type="button" class="btn btn-block {{$btnColor}} d-flex justify-content-between" 
-                            wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('arsip_elektronik.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'pangkat-terakhir')"
-                        >
-                            SK {{$value->nama}} <i class="bi bi-cloud-upload ms-2"></i> 
-                        </button>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    @endif
 </div>

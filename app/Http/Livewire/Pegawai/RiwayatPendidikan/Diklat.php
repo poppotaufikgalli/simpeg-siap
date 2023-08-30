@@ -29,7 +29,17 @@ class Diklat extends Component
 
     //public $master_diklat = [];
 
-    protected $listeners = ["tambah", "tutup", "edit", "delete"];
+    protected $listeners = ["tambah", "tutup", "edit", "delete", "callModal"];
+
+    public function callModal($tmulai, $group_name, $jenis){
+        $hash = preg_replace("![^a-z0-9]+!i", "-", strtolower($group_name));
+        //$type, $name, $hash, $table, $key
+        $this->emitTo('modal-upload-arsip-personel', 'openModalPersonel', $jenis, $tmulai, $hash, 'master_riwayat_diklat', [
+            'nip' => $this->sid,
+            'tmulai' => $tmulai,
+            'jdiklat' => $this->jdiklat,
+        ]);
+    }
 
     public function store(){
         $data = array_map(function($value) {

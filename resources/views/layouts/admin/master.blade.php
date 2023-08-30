@@ -48,5 +48,7 @@
 			</div>
 		</div>
 	</div>
+	<!-- Logout Modal-->
+	@livewire('modal-ganti-password')
 @yield('js-content')
 @include('layouts.admin.footer')

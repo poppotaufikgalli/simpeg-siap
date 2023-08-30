@@ -24,8 +24,20 @@ class Cpns extends Component
     public $method;
     public $dataset;
     public $arsip = [];
+    public $okUpload = false;
 
     public $master_jenis_arsip = [];
+
+    protected $listeners = ["callModal"];
+
+    public function callModal(){
+        //$type, $name, $hash, $table, $key
+        //$hash = preg_replace("![^a-z0-9]+!i", "-", strtolower($nama_jkeluarga));
+        $name = $this->dataset['kgolru'] .'_'. date('d-m-Y',strtotime($this->dataset['tmtcpns']));
+        $this->emitTo('modal-upload-arsip-personel', 'openModalPersonel', 'cpns', $name, 'cpns', 'master_cpns', [
+            'nip' => $this->sid,
+        ]);
+    }
 
     public function submit()
     {
@@ -70,7 +82,7 @@ class Cpns extends Component
     {
         return view('livewire.personel.data-induk.cpns', [
             'master_pejabat' => MasterPejabat::get(),
-            'master_pangkat' => MasterPangkat::get(),
+            'master_pangkat' => MasterPangkat::where('id_jenis_personel', '=', $this->id_jenis_personel)->get(),
             //'master_jenis_arsip' => MasterJenisArsip::where('jnsdok', '=', 'cpns')->get(),
         ]);
     }
@@ -89,10 +101,12 @@ class Cpns extends Component
             $this->method = 'edit';
             $this->next = 'update';
             $this->getMasterArsip();
+            $this->okUpload = true;
         }else{
             $this->dataset['nip'] = $this->sid; 
             $this->method = 'create';
             $this->next = 'store';
+            $this->okUpload = false;
         }
     }
 }

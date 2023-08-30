@@ -37,6 +37,7 @@ class UserController extends Controller
         $data['group'] = Group::get();
         if($request->method() == 'POST'){
             $reqAll = $request->only('name', 'nama', 'nip', 'gid');
+            //dd($reqAll);
             $filter = array_filter($reqAll, function($value) {
                 return $value != "";
             });
@@ -48,7 +49,7 @@ class UserController extends Controller
                     return $value != "";
                 });
 
-                $data['data'] = User::Where($filter)->whereHas('roleInfo', function ($query) use ($request) {
+                $data['data'] = User::Where($filter)->where(function ($query) use ($request) {
                     if($request->gid != null){
                         $query->where('gid', '=', $request->gid);
                     }
@@ -98,16 +99,16 @@ class UserController extends Controller
         $reqData = $request->all();
         //dd($reqData);
         $validator = Validator::make($reqData, [
-            'nip' => 'required|unique:hak_akses,nip',
-            'nama' => 'required|unique:hak_akses,nama',
+            'nip' => 'required|unique:users,nip',
+            'name' => 'required|unique:users,name',
             'gid' => 'required',
         ],[
             'nip.required' => 'NIP tidak boleh kosong',
             //'nip.size' => 'NIP tidak Valid',
             'nip.unique' => 'NIP telah terdaftar',
 
-            'nama.required' => 'Nama tidak boleh kosong',
-            'nama.unique' => 'Nama telah terdaftar',
+            'name.required' => 'Nama tidak boleh kosong',
+            'name.unique' => 'Nama telah terdaftar',
 
             'gid.required' => 'Group tidak boleh kosong',
         ]);
@@ -118,8 +119,9 @@ class UserController extends Controller
         }
 
         $reqData['crid'] = $request->session()->get('nip');
+        $reqData['password'] = md5($request->nip);
 
-        Akses::create($reqData);
+        User::create($reqData);
         return redirect('/user')->with('success', "Data User berhasil ditambahkan.");
     }
 
@@ -132,7 +134,7 @@ class UserController extends Controller
     public function show(Akses $akses, $id)
     {
         $data = [
-            'data' => $akses::find($id),
+            'data' => User::find($id),
             'method' => 'show',
             'next' => 'user',
             'group' => Group::get(),
@@ -149,7 +151,7 @@ class UserController extends Controller
     public function edit(Akses $akses, $id)
     {
         $data = [
-            'data' => $akses::find($id),
+            'data' => User::find($id),
             'method' => 'edit',
             'next' => 'user.update',
             'group' => Group::get(),
@@ -166,19 +168,19 @@ class UserController extends Controller
      */
     public function update(Request $request, Akses $akses)
     {
-        $reqData = $request->only('nip', 'nama', 'gid');
+        $reqData = $request->only('nip', 'name', 'gid');
         $id = $request->id;
         $validator = Validator::make($reqData, [
-            'nip' => ['required', Rule::unique('hak_akses')->ignore($id)],
-            'nama' => ['required', Rule::unique('hak_akses')->ignore($id)],
+            'nip' => ['required', Rule::unique('users')->ignore($id)],
+            'name' => ['required', Rule::unique('users')->ignore($id)],
             'gid' => 'required',
         ],[
             'nip.required' => 'NIP tidak boleh kosong',
             //'nip.size' => 'NIP tidak Valid',
             'nip.unique' => 'NIP telah terdaftar',
 
-            'nama.required' => 'Nama tidak boleh kosong',
-            'nama.unique' => 'Nama telah terdaftar',
+            'name.required' => 'Nama tidak boleh kosong',
+            'name.unique' => 'Nama telah terdaftar',
 
             'gid.required' => 'Group tidak boleh kosong',
         ]);
@@ -190,7 +192,7 @@ class UserController extends Controller
 
         $reqData['crid'] = $request->session()->get('nip');
         //dd($reqData);
-        $akses::find($id)->update($reqData);
+        User::find($id)->update($reqData);
         return redirect('/user')->with('success', "Data User berhasil diubah.");
     }
 
@@ -203,7 +205,7 @@ class UserController extends Controller
     public function destroy(Request $request, Akses $akses)
     {
         $id = $request->id;
-        $akses::find($id)->delete();
+        User::find($id)->delete();
         return redirect('/user')->with('success', "Data User berhasil dihapus.");
     }
 }

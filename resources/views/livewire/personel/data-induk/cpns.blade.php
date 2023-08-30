@@ -118,19 +118,13 @@
         </div>
     </form>
 
-    @if($master_jenis_arsip)
+    @if($okUpload == true)
         <div class="card card-body mt-2">
-            <div class="row g-2">
-                @foreach($master_jenis_arsip as $value)
-                    <div class="col-sm-3 d-grid g-2">
-                        <button type="button" class="btn btn-block btn-primary d-flex justify-content-between" 
-                            wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('arsip_elektronik.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'cpns')"
-                        >
-                            {{$value->nama}} <i class="bi bi-cloud-upload"></i> 
-                        </button>
-                    </div>
-                @endforeach
-            </div>
+            <button type="button" class="btn btn-xs btn-success" 
+                wire:click="callModal()"
+            >
+                <i class="bi bi-cloud-upload me-2"></i> Upload SK CPNS
+            </button>
         </div>
     @endif
 </div>

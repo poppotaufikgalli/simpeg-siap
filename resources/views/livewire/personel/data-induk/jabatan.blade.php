@@ -140,17 +140,4 @@
             </div>
         </div>
     </form>
-    @if($master_jenis_arsip)
-        <div class="card card-body mt-2">
-            @foreach($master_jenis_arsip as $value)
-                <div class="d-flex justify-content-start align-items-center gap-2">
-                    <button type="button" class="btn btn-block btn-primary" 
-                        wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('arsip_elektronik.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'jabatan-terakhir')"
-                    >
-                        SK Jabatan <i class="bi bi-cloud-upload ms-2"></i> 
-                    </button>
-                </div>
-            @endforeach
-        </div>
-    @endif
 </div>

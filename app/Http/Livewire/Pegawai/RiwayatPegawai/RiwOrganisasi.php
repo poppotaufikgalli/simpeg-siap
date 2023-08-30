@@ -25,7 +25,19 @@ class RiwOrganisasi extends Component
     public $tmulai;
     public $master_jenis_arsip = [];
 
-    protected $listeners = ["tambah", "tutup", "edit", "delete"];
+    protected $listeners = ["tambah", "tutup", "edit", "delete", "callModal"];
+
+    public function callModal($norg, $jborg, $tmulai){
+        //$type, $name, $hash, $table, $key
+        //$hash = preg_replace("![^a-z0-9]+!i", "-", strtolower($nama_jkeluarga));
+        $name = $jborg .'_'. date('d-m-Y',strtotime($tmulai));
+        $this->emitTo('modal-upload-arsip-personel', 'openModalPersonel', $norg, $name, 'riw-organisasi', 'master_riwayat_organisasi', [
+            'nip' => $this->sid,
+            'norg' => $norg,
+            'jborg' => $jborg,
+            'tmulai' => $tmulai,
+        ]);
+    }
 
     public function store(){
         $data = array_map(function($value) {

@@ -67,7 +67,7 @@ class MasterRiwayatPendum extends Model
         });
 
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('ktpu', 'desc');
+            $builder->orderByRaw('CONVERT(ktpu, SIGNED) desc');
         });
     }
 }

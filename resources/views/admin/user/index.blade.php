@@ -22,13 +22,10 @@
 			  			@csrf
 			  			<div class="row g-2">
 						    <div class="col-sm-3">
-						      	<input type="text" class="form-control" id="name" name="name" placeholder="Cari dengan :UID">
-						    </div>
-						    <div class="col-sm-3">
 						      	<input type="text" class="form-control" id="name" name="name" placeholder="Nama">
 						    </div>
 						    <div class="col-sm-3">
-						      	<input type="text" class="form-control" id="employee_id" name="employee_id" placeholder="NIP">
+						      	<input type="text" class="form-control" id="nip" name="nip" placeholder="NIP">
 						    </div>
 						    <div class="col-sm-2">
 						    	<select class="form-control" id="gid" name="gid">
@@ -52,7 +49,6 @@
 						  <tr>
 								<th>No</th>
 								<th>Username</th>
-								<th>Email</th>
 								<th>Nama</th>
 								<th>NIP</th>
 								<th>Group</th>
@@ -61,38 +57,22 @@
 								<th>Aksi</th>
 						  </tr>
 						</thead>
-						<tfoot class="table-light">
-						  <tr>
-								<th>No</th>
-								<th>Username</th>
-								<th>Email</th>
-								<th>Nama</th>
-								<th>NIP</th>
-								<th>Group</th>
-								<th>Tanggal Daftar</th>
-								<th>Tanggal Update</th>
-								<th>Aksi</th>
-						  </tr>
-						</tfoot>
 						<tbody>
 							@if($data)
 							  @foreach($data as $key => $value)
 									<tr>
 										<td>{{$data->firstItem() + $key}}</td>
-										<td>{{$value->name}}</td>
-										<td>{{$value->email}}</td>
-										<td></td>
 										<td>{{$value->nip}}</td>
-										<td>
-											
-										</td>
-										<td></td>
-										<td></td>
+										<td>{{$value->name}}</td>
+										<td>{{$value->nip}}</td>
+										<td>{{$value->ngid->nama ?? ''}}</td>
+										<td>{{$value->created_at != "" ? $value->created_at->format('d-m-Y H:i:s') : ''}}</td>
+										<td>{{$value->updated_at != "" ? $value->updated_at->format('d-m-Y H:i:s') : ''}}</td>
 										<td>
 											<div class="d-flex gap-1">
 												<a href="{{route('user.show', ['id' => $value->id])}}" class="btn btn-xs btn-info text-white"><i class="bi bi-eye"></i></a>
 												<a href="{{route('user.edit', ['id' => $value->id])}}" class="btn btn-xs btn-primary"><i class="bi bi-pencil"></i></a>
-												<button class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal" data-bs-target1="User" data-bs-id="{{$value->id}}" data-bs-recipient="{{$value->name}}"><i class="bi bi-trash"></i></button>
+												<button class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal" data-bs-target1="Users" data-bs-id="{{$value->id}}" data-bs-recipient="{{$value->name}}" data-bs-router="user"><i class="bi bi-trash"></i></button>
 											</div>
 										</td>
 									</tr>

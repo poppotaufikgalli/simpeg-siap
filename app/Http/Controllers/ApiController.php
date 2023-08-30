@@ -10,6 +10,9 @@ use App\Models\VJDIHN;
 use App\Models\User;
 use App\Models\survey;
 use App\Models\VDokHukumVerify;
+
+use App\Models\VPegawai;
+use App\Models\VPersonel;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
@@ -20,6 +23,24 @@ class ApiController extends Controller
     public function getPegawai($nip)
     {
         $retval = $this->SIAPUser(['nip' => $nip]);
+        return response()->json($retval, 200);
+    }
+
+    public function getPegawaiInternal($nip)
+    {
+        $retval = VPersonel::where(['nip' => $nip])->first();
+        return response()->json($retval, 200);
+    }
+
+    public function getRekapPersonel(){
+        $data = VPersonel::select('nama_jenis_personel', DB::raw("count(*) as total"))
+            ->groupBy('nama_jenis_personel')->get();
+        foreach ($data as $key => $value) {
+            //$retval['labels'][] = $value->nama_jenis_personel;
+            $retval['datasets'][$key]['data'] = [$value->total];
+            $retval['datasets'][$key]['label'] = $value->nama_jenis_personel;
+        }
+        
         return response()->json($retval, 200);
     }
 
@@ -163,7 +184,7 @@ class ApiController extends Controller
 
     public function getRekapJnsHukum($value='')
     {
-        $jnshukum = $this->GetJnsDokHukum();
+        /*$jnshukum = $this->GetJnsDokHukum();
         $retval = [];
         if(isset($jnshukum)){
             foreach ($jnshukum as $key => $value) {
@@ -183,7 +204,34 @@ class ApiController extends Controller
             $retval['pusat']['datasets'][0]['label'] = "Pusat";
             $retval['daerah']['datasets'][0]['label'] = "Daerah";
             //$retval['pusat']['datasets'][0]['data'] = $retval['pusat']['ndata'];
+        }*/
+        //$retval['labels'] = ['Laki-laki', "Perempuan"];
+        $retval['datasets'] = [
+            [
+                "label" => ['Laki-laki'],
+                "data" => [0],
+            ],
+            [
+                "label" => ['Perempuan'],
+                "data" => [0],
+            ],
+        ];
+        $data = VPersonel::select('kjkel', DB::raw("count(*) as total"))
+            ->groupBy('kjkel')->get();
+        foreach ($data as $key => $value) {
+            //$retval['labels'][] = $value->nama_jenis_personel;
+            if($value->kjkel == 1){
+                $retval['datasets'][$key]['data'] = [$value->total];
+                $retval['datasets'][$key]['label'] = 'Laki-laki';    
+            }
+
+            if($value->kjkel == 2){
+                $retval['datasets'][$key]['data'] = [$value->total ?? 0];
+                $retval['datasets'][$key]['label'] = 'Perempuan';    
+            }
+            
         }
+
 
         return response()->json($retval, 200);
     }

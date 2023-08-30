@@ -29,7 +29,16 @@ class Pendum extends Component
 
     public $master_pendidikan = [];
 
-    protected $listeners = ["tambah", "tutup", "edit", "delete"];
+    protected $listeners = ["tambah", "tutup", "edit", "delete", "callModal"];
+
+    public function callModal($idx, $ktpu, $kjur){
+        $hash = preg_replace("![^a-z0-9]+!i", "-", strtolower($ktpu));
+        $this->emitTo('modal-upload-arsip-personel', 'openModalPersonel', $ktpu, $idx, $hash, 'master_riwayat_pendum', [
+            'nip' => $this->sid,
+            'ktpu' => $ktpu,
+            'kjur' => $kjur,
+        ]);
+    }
 
     public function store(){
         $data = array_map(function($value) {

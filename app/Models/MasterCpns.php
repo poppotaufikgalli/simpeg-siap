@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 use Carbon\Carbon;
+use DateTimeInterface;
 
 class MasterCpns extends Model
 {
@@ -16,6 +17,11 @@ class MasterCpns extends Model
 
     protected $primaryKey = 'nip';
     protected $keyType = 'string';
+
+    public function npangkat()
+    {
+        return $this->belongsTo(MasterPangkat::class, 'kgolru');
+    }
 
     protected $fillable = [
         'nip',
@@ -31,12 +37,19 @@ class MasterCpns extends Model
         'tmtlgas',
         'mskerjabl',
         'mskerjath',
-        'file_skcpns',
+        'filename',
         'srtsehattgl',
         'srtsehatno',
     ];
 
     public $timestamps = false;
+
+    protected $dates = ['tskcpns', 'tmtcpns', 'tntbakn', 'tsttpp', 'tmtlgas', 'srtsehattgl'];
+
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d');
+    }
 
     protected static function boot() {
         parent::boot();

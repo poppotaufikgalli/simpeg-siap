@@ -21,10 +21,14 @@ use App\Http\Controllers\ApiController;
 
 Route::get('/getPegawai/{nip}', [ApiController::class, 'getPegawai'])->name('api.getPegawai');
 
+Route::get('/getPegawaiInternal/{nip}', [ApiController::class, 'getPegawaiInternal'])->name('api.getPegawaiInternal');
+Route::get('/getRekapPersonel', [ApiController::class, 'getRekapPersonel'])->name('api.getRekapPersonel');
+
 Route::get('/getKonten/{page}/{searchText?}', [ApiController::class, 'getKonten'])->name('api.getKonten');
 Route::get('/getMenu', [ApiController::class, 'getMenu'])->name('api.getMenu');
 Route::get('/getDataRekap/{id}', [ApiController::class, 'getDataRekap'])->name('api.getDataRekap');
 Route::get('/getRekapJnsHukum', [ApiController::class, 'getRekapJnsHukum'])->name('api.getRekapJnsHukum');
+
 
 Route::get('/getDataSurvey', [ApiController::class, 'getDataSurvey'])->name('api.getDataSurvey');
 

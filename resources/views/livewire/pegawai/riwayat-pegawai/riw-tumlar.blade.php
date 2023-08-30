@@ -28,6 +28,11 @@
                                 <td align="center">{{ $value->tsk->format('d-m-Y') }}</td>
                                 <td>
                                     <div class="d-flex gap-1">
+                                         <button type="button" class="btn btn-xs btn-success" 
+                                            wire:click="callModal('{{$value->tsk->format('Y')}}', '{{$value->tsk}}', '{{$value->ktpu}}'), '{{$value->filename}}'"
+                                        >
+                                            <i class="bi bi-cloud-upload"></i> 
+                                        </button>
                                         <button wire:click="$emitSelf('edit', {{$value}})" class="btn btn-xs btn-primary"><i class="bi bi-pencil"></i></button>
                                         <button wire:click="$emitSelf('delete', {{$value}})" class="btn btn-xs btn-danger"><i class="bi bi-trash"></i></button>
                                     </div>

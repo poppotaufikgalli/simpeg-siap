@@ -20,7 +20,12 @@
                     @if($master_riwayat_pangkat)
                       @foreach($master_riwayat_pangkat as $key => $value)
                             <tr>
-                                <td>{{ $value->npangkat->nama_pangkat }} ({{ $value->npangkat->nama }})</td>
+                                <td>
+                                    {{ $value->npangkat->nama_pangkat }}
+                                    @if($value->npangkat->nama != "")
+                                        ({{ $value->npangkat->nama }})
+                                    @endif
+                                </td>
                                 <td>{{ $value->tmtpang->format('d-m-Y') }}</td>
                                 <td>{{ $value->nskpang }}</td>
                                 <td>{{ $value->tskpang->format('d-m-Y') }}</td>
@@ -28,12 +33,49 @@
                                 <td align="center">{{ $value->akhir == 1 ? 'Ya' : '' }}</td>
                                 <td>
                                     <div class="d-flex gap-1">
+                                        <button type="button" class="btn btn-xs btn-success" 
+                                            wire:click="callModal('{{$value->npangkat->nama}}', '{{$value->kgolru}}', '{{$value->tmtpang}}'), '{{$value->filename}}'"
+                                        >
+                                            <i class="bi bi-cloud-upload"></i> 
+                                        </button>
                                         <button wire:click="$emitSelf('edit', {{$value}})" class="btn btn-xs btn-primary"><i class="bi bi-pencil"></i></button>
                                         <button wire:click="$emitSelf('delete', {{$value}})" class="btn btn-xs btn-danger"><i class="bi bi-trash"></i></button>
                                     </div>
                                 </td>   
                             </tr>
                       @endforeach
+                    @endif
+                    @if($master_pns)
+                         <tr>
+                            <td>
+                                PNS - {{ $master_pns->npangkat->nama_pangkat }}
+                                @if($master_pns->npangkat->nama != "")
+                                    ({{ $master_pns->npangkat->nama }})
+                                @endif
+                            </td>
+                            <td>{{ $master_pns->tmtpns->format('d-m-Y') }}</td>
+                            <td>{{ $master_pns->skpns }}</td>
+                            <td>{{ $master_pns->tskpns->format('d-m-Y') }}</td>
+                            <td>Pengangkatan PNS</td>
+                            <td align="center">&nbsp;</td>
+                            <td>&nbsp;</td>   
+                        </tr>
+                    @endif
+                    @if($master_cpns)
+                         <tr>
+                            <td>
+                                CPNS -
+                                @if($master_cpns->npangkat->nama != "")
+                                    ({{ $master_cpns->npangkat->nama }})
+                                @endif
+                            </td>
+                            <td>{{ $master_cpns->tmtcpns->format('d-m-Y') }}</td>
+                            <td>{{ $master_cpns->skcpns }}</td>
+                            <td>{{ $master_cpns->tskcpns->format('d-m-Y') }}</td>
+                            <td>Pengangkatan CPNS</td>
+                            <td align="center">&nbsp;</td>
+                            <td>&nbsp;</td>   
+                        </tr>
                     @endif
                 </tbody>
             </table>
@@ -59,6 +101,7 @@
                         'tmtpang' => $tmtpang,
                         'kgolru' => $kgolru,
                         'knpang' => $knpang,
+                        'id_jenis_personel' => $id_jenis_personel,
                     ])
                 </div>
             @endif

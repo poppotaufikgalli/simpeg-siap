@@ -13,6 +13,7 @@ use App\Models\MasterJenisArsip;
 class Pns extends Component
 {
     public $sid;
+    public $id_jenis_personel;
     public $next;
     public $method;
     public $dataset;
@@ -20,6 +21,19 @@ class Pns extends Component
 
     public $arsip = [];
     public $master_jenis_arsip = [];
+
+    public $okUpload = false;
+
+    protected $listeners = ["callModal"];
+
+    public function callModal(){
+        //$type, $name, $hash, $table, $key
+        //$hash = preg_replace("![^a-z0-9]+!i", "-", strtolower($nama_jkeluarga));
+        $name = $this->dataset['kgolru'] .'_'. date('d-m-Y',strtotime($this->dataset['tmtpns']));
+        $this->emitTo('modal-upload-arsip-personel', 'openModalPersonel', 'pns', $name, 'pns', 'master_pns', [
+            'nip' => $this->sid,
+        ]);
+    }
 
     public function submit()
     {
@@ -69,7 +83,7 @@ class Pns extends Component
     {
         return view('livewire.personel.data-induk.pns', [
             'master_pejabat' => MasterPejabat::get(),
-            'master_pangkat' => MasterPangkat::get(),
+            'master_pangkat' => MasterPangkat::where('id_jenis_personel', '=', $this->id_jenis_personel)->get(),
             //'master_jenis_arsip' => MasterJenisArsip::where('jnsdok', '=', 'pns')->get(),
         ]);
     }
@@ -87,9 +101,11 @@ class Pns extends Component
             $this->dataset['nip'] = (string)$dataset->nip;
             $this->method = 'edit';
             $this->getMasterArsip();
+            $this->okUpload = true;
         }else{
             $this->dataset['nip'] = $this->sid;
             $this->method = 'create';
+            $this->okUpload = false;
         }
     }
 }

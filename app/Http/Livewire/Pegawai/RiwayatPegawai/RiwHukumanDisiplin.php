@@ -25,7 +25,17 @@ class RiwHukumanDisiplin extends Component
     public $tmt;
     public $master_jenis_arsip = [];
 
-    protected $listeners = ["tambah", "tutup", "edit", "delete"];
+    protected $listeners = ["tambah", "tutup", "edit", "delete", "callModal"];
+
+    public function callModal($njns, $jhukum, $tmt){
+        //$type, $name, $hash, $table, $key
+        //$hash = preg_replace("![^a-z0-9]+!i", "-", strtolower($nama_jkeluarga));
+        $name = $jhukum .'_'. date('d-m-Y',strtotime($tmt));
+        $this->emitTo('modal-upload-arsip-personel', 'openModalPersonel', $njns, $name, 'riw-hukuman-disiplin', 'master_riwayat_hukdis', [
+            'nip' => $this->sid,
+            'tmt' => $tmt,
+        ]);
+    }
 
     public function store(){
         $data = array_map(function($value) {

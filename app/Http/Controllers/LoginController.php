@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 use App\Models\User;
+use App\Models\Group;
 
 class LoginController extends Controller
 {
@@ -44,7 +45,8 @@ class LoginController extends Controller
                 ->onlyInput('nip');
         }else{
             Auth::login($user); 
-            return $this->authenticated($request, $user);
+            $akses = Group::find($user->gid);
+            return $this->authenticated($request, $user, $akses['lsakses']);
         }
     }
 
@@ -63,22 +65,24 @@ class LoginController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    protected function authenticated(Request $request, $user) 
+    protected function authenticated(Request $request, $user, $akses) 
     {
         $request->session()->put('authenticated', time());
+        $request->session()->put('id', $user->id);
         $request->session()->put('nama', $user->name);
         $request->session()->put('nip', $user->nip);
         $menu = [];
-        /*$dokakses = [];
+        $dokakses = [];
         $konakses = [];
         $makses = [];
         $dakses = [];
         $kakses = [];
-        $nkakses = $this->getHal();
-        //dd($akses);
+        /*$nkakses = $this->getHal();
+        //dd($akses);*/
 
         if($akses != ''){
             $adata = json_decode($akses, true);
+            //dd($akses);
             $mdata = json_decode($adata['menu'], true);
 
             if(isset($adata['menu'])){
@@ -114,7 +118,7 @@ class LoginController extends Controller
         $request->session()->put('dakses', $dakses);
         $request->session()->put('konakses', $konakses);
         $request->session()->put('kakses', $kakses);
-        $request->session()->put('nkakses', $nkakses);*/
+        //$request->session()->put('nkakses', $nkakses);
 
         $request->session()->put('menu', $menu);
         return redirect()->intended('dashboard')->withSuccess('Berhasil Login');

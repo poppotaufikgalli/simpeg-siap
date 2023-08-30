@@ -24,7 +24,18 @@ class RiwDp3 extends Component
     public $selesai;
     public $master_jenis_arsip = [];
 
-    protected $listeners = ["tambah", "tutup", "edit", "delete"];
+    protected $listeners = ["tambah", "tutup", "edit", "delete", "callModal"];
+
+    public function callModal($thnnilai, $mulai, $selesai){
+        //$type, $name, $hash, $table, $key
+        //$hash = preg_replace("![^a-z0-9]+!i", "-", strtolower($nama_jkeluarga));
+        $name = date('d-m-Y',strtotime($mulai)) .'-s.d-'. date('d-m-Y',strtotime($selesai));
+        $this->emitTo('modal-upload-arsip-personel', 'openModalPersonel', $thnnilai, $name, 'riw-dp3', 'master_riwayat_p2kp', [
+            'nip' => $this->sid,
+            'mulai' => $mulai,
+            'selesai' => $selesai,
+        ]);
+    }
 
     public function store(){
         $data = array_map(function($value) {

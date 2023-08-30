@@ -26,7 +26,18 @@ class RiwCuti extends Component
     public $nsk;
     public $master_jenis_arsip = [];
 
-    protected $listeners = ["tambah", "tutup", "edit", "delete"];
+    protected $listeners = ["tambah", "tutup", "edit", "delete", "callModal"];
+
+    public function callModal($njns, $tmulai, $nsk){
+        //$type, $name, $hash, $table, $key
+        $name = preg_replace("![^a-z0-9]+!i", "-", strtolower($nsk)).'_'. date('d-m-Y',strtotime($tmulai));
+        //$name = $nsk .'_'. date('d-m-Y',strtotime($tmtjab));
+        $this->emitTo('modal-upload-arsip-personel', 'openModalPersonel', $njns, $name, 'riw-cuti', 'master_riwayat_cuti', [
+            'nip' => $this->sid,
+            'tmulai' => $tmulai,
+            'nsk' => $nsk,
+        ]);
+    }
 
     public function store(){
         $data = array_map(function($value) {

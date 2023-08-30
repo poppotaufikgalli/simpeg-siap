@@ -25,6 +25,7 @@
                         'method' => $method, 
                         'next' => $next, 
                         'sid' => $id ?? '',
+                        'id_jenis_personel' => $id_jenis_personel,
                     ])          
                 </div>
                 <div class="tab-pane" id="riw-jabatan" role="tabpanel" aria-labelledby="riw-jabatan-tab" tabindex="0">   
@@ -88,5 +89,6 @@
         </div>
     </div>
     @livewire('modal-upload-arsip', ['sid' => $id ?? ''])
+    @livewire('modal-upload-arsip-personel', ['sid' => $id ?? ''])
     @include('partials/modalHapus')
 </div>

@@ -6,6 +6,9 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
+use App\Models\MasterCpns;
+use App\Models\MasterPns;
+
 use App\Models\MasterRiwayatPangkat;
 use App\Models\MasterPangkat;
 use App\Models\MasterStlud;
@@ -15,6 +18,7 @@ use App\Models\MasterJenisKp;
 class RiwPangkat extends Component
 {
     public $sid;
+    public $id_jenis_personel;
     public $method;
     public $next;
     public $subPage = 'list';
@@ -22,15 +26,31 @@ class RiwPangkat extends Component
     public $lblAkhir = "Tidak";
     public $master_riwayat_pangkat;
 
+    public $master_cpns;
+    public $master_pns;
+
     public $tmtpang;
     public $kgolru;
     public $knpang;
 
-    protected $listeners = ['tambah', 'edit', 'tutup', 'delete'];
+    protected $listeners = ['tambah', 'edit', 'tutup', 'delete', "callModal"];
+
+    public function callModal($ngolru, $kgolru, $tmtpang){
+        //$type, $name, $hash, $table, $key
+        //$hash = preg_replace("![^a-z0-9]+!i", "-", strtolower($nama_jkeluarga));
+        $name = $kgolru .'_'. date('d-m-Y',strtotime($tmtpang));
+        $this->emitTo('modal-upload-arsip-personel', 'openModalPersonel', $ngolru, $name, 'riw-pangkat', 'master_riwayat_pangkat', [
+            'nip' => $this->sid,
+            'kgolru' => $kgolru,
+            'tmtpang' => $tmtpang,
+        ]);
+    }
     
     public function render()
     {
         $this->master_riwayat_pangkat =  MasterRiwayatPangkat::where('nip', '=', $this->sid)->get();
+        $this->master_cpns = MasterCpns::where('nip', '=', $this->sid)->first();
+        $this->master_pns = MasterPns::where('nip', '=', $this->sid)->first();
 
         return view('livewire.personel.riwayat-pegawai.riw-pangkat');
     }

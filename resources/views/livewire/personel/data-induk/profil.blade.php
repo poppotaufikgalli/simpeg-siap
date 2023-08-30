@@ -21,6 +21,21 @@
                         <div class="col-sm-4">
                             <input type="text" class="form-control" id="nip" wire:model="dataset.nip" oninput="this.value = this.value.replace(/[^a-zA-Z0-9./]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="18" {{$sid != '' ? 'disabled' : 'required'}}>
                         </div>
+                        <div class="col-sm-6">
+                            @if(in_array($method, ['edit']))
+                                <div class="d-flex align-content-start flex-wrap gap-1">
+                                    @if($master_jenis_arsip)
+                                        @foreach($master_jenis_arsip as $value)
+                                            <button type="button" class="btn btn-sm btn-primary" 
+                                                wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('arsip_elektronik.store', ['page' => $value->nama])}}', '{{$value}}', true, true)"
+                                            >
+                                                {{$value->nama}} <i class="bi bi-cloud-upload"></i> 
+                                            </button>
+                                        @endforeach
+                                    @endif
+                                </div>
+                            @endif
+                        </div>
                     </div>
                     <hr/>
                     <div class="mb-2 row">
@@ -281,7 +296,7 @@
         </div>
     </form>
     @if(in_array($method, ['edit']))
-        <div class="card card-body mt-2">
+        <div class="card card-body mt-2 d-none">
             <div class="row g-2">
                 @if($master_jenis_arsip)
                     @foreach($master_jenis_arsip as $value)

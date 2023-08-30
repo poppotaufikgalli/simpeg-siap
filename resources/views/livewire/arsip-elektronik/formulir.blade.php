@@ -21,21 +21,25 @@
                 <thead class="table-dark">
                     <tr>
                         <th>Item</th>
-                        <th>Jenis</th>
+                        <th>Keterangan</th>
+                        <th>Group</th>
                         <th width="10%">Aksi</th>
                     </tr>
                 </thead>
                 <thead class="table-light">
                     <tr>
                         <th>
-                            <input type="search" class="form-control" id="nama" wire:model="nama" placeholder="Cari Nama Item">
+                            <input type="search" class="form-control" id="judul" wire:model="judul" placeholder="Cari Nama Item">
                         </th>
                         <th>
-                            <select class="form-select" id="group_arsip_id" wire:model="group_arsip_id">
+                            <input type="search" class="form-control" id="ket" wire:model="ket" placeholder="Cari Nama Keterangan">
+                        </th>
+                        <th>
+                            <select class="form-select" id="group" wire:model="group">
                                 <option value="">Semua</option>
-                                @if($master_group_arsip)
-                                    @foreach($master_group_arsip as $value)
-                                        <option value="{{$value->id}}">{{$value->nama}}</option>
+                                @if($lsGroup)
+                                    @foreach($lsGroup as $key => $value)
+                                        <option value="{{$value}}">{{$value}}</option>
                                     @endforeach
                                 @endif
                             </select>
@@ -47,44 +51,33 @@
                     @if($lsArsip)
                         @php($group_arsip_id = "")
                         @foreach($lsArsip as $key => $value)
-                            @if($group_arsip_id != $value->group_arsip_id)
+                            @if($group_arsip_id != $value->group)
                                 <tr>
-                                    <td colspan="3" class="bg-primary text-light">
-                                        {{$value->ngrDok->nama}}
+                                    <td colspan="4" class="bg-primary text-light">
+                                        {{$value->group}}
                                     </td>
                                 </tr>
                             @endif
                             <tr>
-                                <td>{{ $value->nama }}</td>
-                                <td align="center">{{ $value->ngrDok->nama }}</td>
+                                <td>{{ $value->judul }}</td>
+                                <td align="center">{{ $value->ket }}</td>
+                                <td align="center">{{ $value->group }}</td>
                                 <td>
-                                    <div class="d-flex gap-1">
-                                        <button class="btn btn-sm btn-primary">File</button>
-                                        <button class="btn btn-sm btn-info">Lampiran</button>
-                                        <button class="btn btn-sm btn-warning">BA</button>
-                                        <button class="btn btn-sm btn-secondary">PP</button>
+                                    <div class="d-grid gap-1">
+                                        @if($value->filename != "")
+                                            <button class="btn btn-sm btn-primary"
+                                                wire:click="callModal('{{$value->filename}}')"
+                                            ><i class="bi bi-eye me-2"></i> File</button>
+                                        @endif
                                     </div>
                                 </td>   
                             </tr>
-                            @php($group_arsip_id = $value->group_arsip_id)
+                            @php($group_arsip_id = $value->group)
                         @endforeach
                     @endif
                 </tbody>
             </table>
         </div>
     </div>
-    <script>
-        window.addEventListener('errors', function(e) {
-            const notyf = new Notyf();
-            const {detail} = e;
-
-            var lserror = Object.values(detail);
-            console.log(lserror)
-            if(lserror.length > 0){
-                for (var i = lserror.length - 1; i >= 0; i--) {
-                    notyf.error(lserror[i][0])
-                }
-            }
-        });
-    </script>
+    @livewire('modal-upload-arsip-personel', ['sid' => $sid ?? ''])
 </div>

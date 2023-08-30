@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Models\Group;
 use App\Models\RefTipeDokHukum;
+use App\Models\MasterJenisPersonel;
 
 class GroupController extends Controller
 {
@@ -87,8 +88,8 @@ class GroupController extends Controller
             $reqData['lsakses']['menu'] = json_encode($request->lsakses);
         }
 
-        if($request->input('dokakses')){
-            $reqData['lsakses']['dokakses'] =  json_encode($request->dokakses);    
+        if($request->input('arsip')){
+            $reqData['lsakses']['arsip'] =  json_encode($request->arsip);    
         }
 
         if($request->input('kontenakses')){
@@ -112,6 +113,7 @@ class GroupController extends Controller
     {
         $data = [
             'data' => $group::find($id),
+            'personel' => MasterJenisPersonel::where('stts', '=', 1)->get(),
             'method' => 'show',
             'next' => 'group',
             'routelist' => $this->getControllerList(),
@@ -132,6 +134,7 @@ class GroupController extends Controller
     {
         $data = [
             'data' => $group::find($id),
+            'personel' => MasterJenisPersonel::where('stts', '=', 1)->get(),
             'method' => 'edit',
             'next' => 'group.update',
             'routelist' => $this->getControllerList(),

@@ -4,10 +4,14 @@
             <i class="bi bi-person-square"></i>
             <span>Personel</span>
         </a>
+        
         <div id="collapsePersonel" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-gradient bg-gradient-primary-to-secondary py-2 collapse-inner rounded m-0">
                 @foreach($master_jenis_personel as $value)
-                    <a class="collapse-item text-wrap text-gradient-light-to-primary" href="{{route('personel', ['id_jenis_personel' => $value->id_jenis_personel])}}">{{$value->nama}}</a>
+                    @php($link =$value->nama)
+                    @if(in_array($link, Session::get('konakses')))
+                        <a class="collapse-item text-wrap text-gradient-light-to-primary" href="{{route('personel', ['id_jenis_personel' => $value->id_jenis_personel])}}">{{$value->nama}}</a>
+                    @endif
                 @endforeach
             </div>
         </div>

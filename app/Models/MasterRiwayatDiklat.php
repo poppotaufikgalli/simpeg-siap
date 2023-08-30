@@ -19,6 +19,11 @@ class MasterRiwayatDiklat extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
+    public function njdiklat()
+    {
+        return $this->belongsTo(MasterJenisDiklat::class, 'jdiklat');
+    }
+
     protected $fillable = [
         'nip',
         'jdiklat',

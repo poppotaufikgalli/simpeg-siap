@@ -7,9 +7,23 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 use App\Models\MasterJenisProfesi;
-use App\Models\VPegawai;
+use App\Models\VPersonel;
 use App\Models\MasterJenisArsip;
 use App\Models\MasterGroupArsip;
+
+use App\Models\MasterRiwayatPangkat;
+use App\Models\MasterRiwayatJabatan;
+use App\Models\MasterRiwayatPenghargaan;
+use App\Models\MasterRiwayatDp3;
+use App\Models\MasterRiwayatTumlar;
+use App\Models\MasterRiwayatHukdis;
+use App\Models\MasterRiwayatCuti;
+use App\Models\MasterRiwayatOrganisasi;
+use App\Models\MasterRiwayatPendum;
+use App\Models\MasterRiwayatDiklat;
+use App\Models\MasterRiwayatKeluarga;
+
+use DB;
 
 class Formulir extends Component
 {
@@ -19,85 +33,34 @@ class Formulir extends Component
     public $dataset;
 
     public $nama;
-    public $group_arsip_id;
+    public $judul;
+    public $ket;
+    public $group;
 
-    public function store()
+    protected $listeners = ['callModal'];
+
+    public function callModal($filename)
     {
-        $retData = [
-            'id' => $this->dataset['_id'],
-            'nama' => $this->dataset['nama'],
-        ];
-
-        $validator = Validator::make($retData, [
-            'id' => 'required|unique:master_profesi',
-            'nama' => 'required|unique:master_profesi',
-        ],[
-            'id.required' => 'ID Profesi tidak boleh kosong',
-            'id.unique' => 'ID Profesi Telah terdaftar',
-
-            'nama.required' => 'Nama Profesi tidak boleh kosong',
-            'nama.unique' => 'Nama Profesi Telah terdaftar',
-        ]);
-
-        if($validator->fails())
-        {
-            $this->dispatchBrowserEvent('errors', $validator->errors());
-        }
-
-        $validator->validate();
-   
-        MasterJenisProfesi::create($retData);
-
-        return redirect('/jenis_profesi')->with([
-            'success'=> "Data Master Profesi Terkait berhasil ditambahkan."
-        ]);
-    }
-
-    public function update()
-    {
-        $retData = [
-            'nama' => $this->dataset['nama'],
-        ];
-
-        $id = $this->sid;
-
-        $validator = Validator::make($retData, [
-            'nama' => [
-                'required', 
-                Rule::unique('master_profesi')->ignore($id),
-            ],
-        ],[
-            'nama.required' => 'Nama Profesi tidak boleh kosong',
-            'nama.unique' => 'Nama Profesi Telah terdaftar',
-        ]);
-
-        if($validator->fails())
-        {
-            $this->dispatchBrowserEvent('errors', $validator->errors());
-        }
-
-        $validator->validate();
-        
-        MasterJenisProfesi::find($this->sid)->update($retData);
-
-        return redirect('/jenis_profesi')->with([
-            'success'=> "Data Master Profesi Terkait berhasil diubah."
-        ]);
+        $this->emitTo('modal-upload-arsip-personel', 'openFile', $filename);
     }
 
     public function render()
     {
-        $retData = MasterJenisArsip::where(function($query){
-            if($this->nama != ""){
-                $query->where('nama', 'like', '%'.$this->nama.'%');
-            }
+        $retData0 = DB::table('master_jenis_arsip')
+            ->leftjoin('master_pegawai_arsip', function ($join) {
+                    $join->on('master_jenis_arsip.jnsdok','=','master_pegawai_arsip.jnsdok');
+                    $join->on('master_pegawai_arsip.nip','=',DB::raw("'".$this->sid."'"));
+                })
+            ->select('master_pegawai_arsip.nip as nip', 'master_jenis_arsip.nama as judul',  DB::raw("'Identitas' as `group`"), 'master_jenis_arsip.jnsdok as ket', 'master_pegawai_arsip.filename as filename')
+            ->get();
+        $retData1 = DB::table('varsipelektronik')->where('nip', '=', $this->sid)->get();
 
-            if($this->group_arsip_id != ""){
-                $query->where('group_arsip_id', '=', $this->group_arsip_id);
-            }
-        })->orderBy('group_arsip_id', 'asc')->get();
+        $retData = $retData0->merge($retData1);
+
+        $lsgroup = ['Identitas', 'Pangkat', 'Jabatan', 'Penghargaan / Tanda Jasa', 'DP3 / P2KP / SKP', 'Pencantuman Gelar', 'Hukuman Disiplin', 'Cuti', 'Organisasi', 'Pendidikan Umum', 'Pendidikan Kepemimpinan', 'Pendidikan/Kursus', 'Keluarga'];
         return view('livewire.arsip-elektronik.formulir', [
             'lsArsip' => $retData,
+            'lsGroup' => $lsgroup,
             'master_group_arsip' => MasterGroupArsip::all(),
         ]);
     }
@@ -105,7 +68,7 @@ class Formulir extends Component
     public function mount()
     {
         if($this->sid != ""){
-            $dataset = VPegawai::where('nip', '=', $this->sid)->first();
+            $dataset = VPersonel::where('nip', '=', $this->sid)->first();
 
             if($dataset){
                 $this->dataset = [

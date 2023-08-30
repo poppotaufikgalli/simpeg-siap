@@ -12,6 +12,8 @@ use Laravel\Sanctum\NewAccessToken;
 
 use Illuminate\Database\Eloquent\Model;
 
+use DateTimeInterface;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -20,6 +22,11 @@ class User extends Authenticatable
     /**
      * Get the phone associated with the user.
      */
+    public function ngid()
+    {
+        return $this->belongsTo(Group::class, 'gid');
+    }
+
     public function roleInfo()
     {
         return $this->belongsTo(Akses::class, 'nip', 'nip');
@@ -52,7 +59,9 @@ class User extends Authenticatable
         'name',
         'email',
         'nip',
-        'stts'
+        'stts',
+        'password',
+        'gid',
     ];
 
     /**
@@ -64,6 +73,13 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    protected $dates = ['created_at', 'updated_at'];
+
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d');
+    }
 
     /**
      * The attributes that should be cast.

@@ -39,5 +39,6 @@
         </div>
     </div>
     @livewire('modal-upload-arsip', ['sid' => $id ?? ''])
+    @livewire('modal-upload-arsip-personel', ['sid' => $id ?? ''])
     @include('partials/modalHapus')
 </div>

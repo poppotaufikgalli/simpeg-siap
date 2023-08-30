@@ -104,8 +104,14 @@ if(myPieChartPusat){
 	const data = {
 		labels: labels,
 		datasets: [{
-			label: 'Pusat',
-			data: [0,1,2,3],
+			label: 'Personel PNS',
+			data: [0],
+			fill: false,
+			borderColor: 'rgb(75, 192, 192)',
+			tension: 0.1
+		},{
+			label: 'Personel Militer',
+			data: [0],
 			fill: false,
 			borderColor: 'rgb(75, 192, 192)',
 			tension: 0.1
@@ -128,12 +134,12 @@ if(myPieChartPusat){
 
   //chart.options.plugins.legend.position = 'right';
 
-  axios.get('/api/getRekapJnsHukum/').then(res => {
+  axios.get('/api/getRekapPersonel/').then(res => {
   	//console.log(res.data)
-  	var dtPusat = res.data.pusat;
-  	if(dtPusat){
-  		chart1.data.labels = dtPusat.labels;
-			chart1.data.datasets = dtPusat.datasets; 
+  	const data = res.data;
+  	if(data){
+  		chart1.data.labels = ["Personel Per Jenis"];
+		chart1.data.datasets = data.datasets; 
   	}
   	
 	}).catch(e => {
@@ -149,8 +155,14 @@ if(myPieChartDaerah){
 	const data = {
 		labels: labels,
 		datasets: [{
-			label: 'Pusat',
-			data: [0,1,2,3],
+			label: 'Laki-laki',
+			data: [0],
+			fill: false,
+			borderColor: 'rgb(75, 192, 192)',
+			tension: 0.1
+		},{
+			label: 'Perempuan',
+			data: [0],
 			fill: false,
 			borderColor: 'rgb(75, 192, 192)',
 			tension: 0.1
@@ -174,13 +186,13 @@ if(myPieChartDaerah){
   //chart.options.plugins.legend.position = 'right';
 
   axios.get('/api/getRekapJnsHukum/').then(res => {
-  	//console.log(res.data)
-  	var dtDaerah = res.data.daerah;
-
-  	if(dtDaerah){
-  		chart2.data.labels = dtDaerah.labels;
-			chart2.data.datasets = dtDaerah.datasets; 
+  	const data = res.data;
+  	console.log(res.data)
+  	if(data){
+  		chart2.data.labels = ["Personel Per Jenis Kelamin"];
+		chart2.data.datasets = data.datasets; 
   	}
+
 	}).catch(e => {
 		console.log(e.err)
 	}).finally(function(){

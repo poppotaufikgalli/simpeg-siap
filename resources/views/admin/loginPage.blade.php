@@ -3,20 +3,26 @@
 @section('title', "Login")
 
 @section('content')
-	<div class="container">
-		<!-- @include('partials/toast') -->
-		<!-- Outer Row -->
-		<div class="row justify-content-center">
-			<div class="col-12 col-lg-6 col-md-8 col-sm-12">
-				<div class="card o-hidden border-1 my-5">
-					<div class="card-body p-0">
+	<style type="text/css">
+		#imgC {
+			background-image: url('{{asset("images/background.jpeg")}}');
+			background-position: center; /* Center the image */
+			height: 100vh;
+  			background-repeat: no-repeat; /* Do not repeat the image */
+  			background-size: cover;
+		}
+	</style>
+	<div class="container-fluid" style="height: 100vh">
+		<div class="row">
+			<div class="col-4">
+				<div class="d-flex justify-content-center align-items-center" style="height : 100%">
+					<div class="card border-0 card-body">
 						<div class="p-5">
 							<div class="text-center">
 								<a href="/">
-									<img src="{{ env('APP_LOGO') }}" alt="app_logo" height="100">
+									<img src="{{asset('images/SIMPERS2.PNG')}}" alt="app_logo" class="img-fluid">
 								</a>
-								<h1>{{ env('APP_NAME') }}</h1>
-								<h2 class="mb-4">{{ env('APP_COMPANY') }}</h2>
+								
 							</div>
 							<form class="user" method="post" action="{{route('login.perform')}}">
 								@csrf
@@ -28,17 +34,12 @@
 								</div>
 								<button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
 							</form>
-							<hr>
-							<div class="d-flex justify-content-between">
-								<div>
-									<i class="bi bi-chevron-left"></i> 
-									<a class="small" href="{{route('beranda')}}">Kembali Ke Beranda</a>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<div class="col-8" id="imgC"></div>			
 		</div>
+		
 	</div>
 @endsection

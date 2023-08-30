@@ -50,7 +50,7 @@ class Jabatan extends Component
         }
 
         return view('livewire.personel.data-induk.jabatan', [
-            'master_opd' => MasterOPD::where('sfilter', '=', 1)->where('status', '=', 1)->get(),
+            'master_opd' => MasterOPD::where('status', '=', 1)->get(),
             'master_jenis_jabatan' => MasterJenisJabatan::where('status', '=', 1)->get(),
             'master_pejabat' => MasterPejabat::all(),
             'master_jenis_arsip' => $master_jenis_arsip,

@@ -26,6 +26,11 @@
                                 <td align="center">{{ $value->takhir->format('d-m-Y') }}</td>
                                 <td>
                                     <div class="d-flex gap-1">
+                                         <button type="button" class="btn btn-xs btn-success" 
+                                            wire:click="callModal('{{$value->norg}}', '{{$value->jborg}}', '{{$value->tmulai}}')"
+                                        >
+                                            <i class="bi bi-cloud-upload"></i> 
+                                        </button>
                                         <button wire:click="$emitSelf('edit', {{$value}})" class="btn btn-xs btn-primary"><i class="bi bi-pencil"></i></button>
                                         <button wire:click="$emitSelf('delete', {{$value}})" class="btn btn-xs btn-danger"><i class="bi bi-trash"></i></button>
                                     </div>
@@ -102,21 +107,6 @@
                         </div>
                     </form>
                 </div>
-                @if($master_jenis_arsip)
-                    <div class="card card-body mt-2">
-                        <div class="d-flex flex-column">
-                            @foreach($master_jenis_arsip as $value)
-                                <div class="d-flex justify-content-start align-items-center gap-2">
-                                    <button type="button" class="btn btn-block btn-primary d-flex justify-content-between" 
-                                        wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('arsip_elektronik.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'riw-organisasi')"
-                                    >
-                                        {{$value->nama}} <i class="bi bi-cloud-upload ms-2"></i> 
-                                    </button>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
             </div>
         </div>
     </div>

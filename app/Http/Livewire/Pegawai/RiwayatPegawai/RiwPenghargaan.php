@@ -26,7 +26,18 @@ class RiwPenghargaan extends Component
     public $nbintang;
     public $master_jenis_arsip = [];
 
-    protected $listeners = ["tambah", "tutup", "edit", "delete"];
+    protected $listeners = ["tambah", "tutup", "edit", "delete", "callModal"];
+
+    public function callModal($nbintang, $njns, $nsk){
+        //$type, $name, $hash, $table, $key
+        $name = preg_replace("![^a-z0-9]+!i", "-", strtolower($njns.'-'.$nsk));
+        //$name = $id_jenis_penghargaan .'_'. date('d-m-Y',strtotime($tmtjab));
+        $this->emitTo('modal-upload-arsip-personel', 'openModalPersonel', $nbintang, $name, 'riw-penghargaan', 'master_riwayat_penghargaan', [
+            'nip' => $this->sid,
+            'nbintang' => $nbintang,
+            'nsk' => $nsk,
+        ]);
+    }
 
     public function store(){
         $data = array_map(function($value) {

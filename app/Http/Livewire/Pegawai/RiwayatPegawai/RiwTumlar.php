@@ -22,7 +22,17 @@ class RiwTumlar extends Component
     public $tsk;
     public $master_pendidikan = [];
 
-    protected $listeners = ['tambah', 'edit', 'tutup', 'delete'];
+    protected $listeners = ['tambah', 'edit', 'tutup', 'delete', "callModal"];
+
+    public function callModal($thn, $tsk, $ktpu){
+        //$type, $name, $hash, $table, $key
+        //$hash = preg_replace("![^a-z0-9]+!i", "-", strtolower($nama_jkeluarga));
+        $name = $ktpu .'_'. date('d-m-Y',strtotime($tsk));
+        $this->emitTo('modal-upload-arsip-personel', 'openModalPersonel', $thn, $name, 'riw-tumlar', 'master_riwayat_tumlar', [
+            'nip' => $this->sid,
+            'tsk' => $tsk,
+        ]);
+    }
 
     public function store(){
         $data = array_map(function($value) {

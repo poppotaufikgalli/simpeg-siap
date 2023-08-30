@@ -36,7 +36,7 @@
 				</li>
 
 				<!-- Nav Item - Alerts -->
-				<li class="nav-item dropdown no-arrow mx-1 d-none d-md-block">
+				<li class="nav-item dropdown no-arrow mx-1 d-none d-md-block d-md-none">
 					<a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="bi bi-bell-fill"></i>
 						<!-- Counter - Alerts -->
@@ -85,7 +85,7 @@
 				</li>
 
 				<!-- Nav Item - Messages -->
-				<li class="nav-item dropdown no-arrow mx-1 d-none d-md-block">
+				<li class="nav-item dropdown no-arrow mx-1 d-none d-md-block d-md-none">
 					<a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="bi bi-envelope-fill"></i>
 						<!-- Counter - Messages -->
@@ -154,7 +154,7 @@
 					</a>
 					<!-- Dropdown - User Information -->
 					<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="left: auto;">
-						<a class="dropdown-item" href="#">
+						<!--<a class="dropdown-item" href="#">
 							<i class="bi bi-person-badge mr-2 text-gray-400"></i>
 							Profile
 						</a>
@@ -165,6 +165,10 @@
 						<a class="dropdown-item" href="#">
 							<i class="bi bi-activity mr-2 text-gray-400"></i>
 							Activity Log
+						</a>-->
+						<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalGantiPassword">
+							<i class="bi bi-activity mr-2 text-gray-400"></i>
+							Ganti Password
 						</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">

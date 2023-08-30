@@ -24,6 +24,11 @@ class MasterRiwayatKeluarga extends Model
         return $this->belongsTo(MasterPekerjaan::class, 'kkerja');
     }
 
+    public function njkeluarga()
+    {
+        return $this->belongsTo(MasterJenisKeluarga::class, 'jkeluarga');
+    }
+
     protected $fillable = [
         "nip",
         "jkeluarga",

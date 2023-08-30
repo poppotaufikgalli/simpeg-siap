@@ -31,7 +31,18 @@ class RiwJabatan extends Component
     public $kjab;
     public $keselon;
 
-    protected $listeners = ['tambah', 'edit', 'tutup', 'delete'];
+    protected $listeners = ['tambah', 'edit', 'tutup', 'delete', "callModal"];
+
+    public function callModal($njab, $kjab, $tmtjab){
+        //$type, $name, $hash, $table, $key
+        //$hash = preg_replace("![^a-z0-9]+!i", "-", strtolower($nama_jkeluarga));
+        $name = $kjab .'_'. date('d-m-Y',strtotime($tmtjab));
+        $this->emitTo('modal-upload-arsip-personel', 'openModalPersonel', $njab, $name, 'riw-jabatan', 'master_riwayat_jabatan', [
+            'nip' => $this->sid,
+            'kjab' => $kjab,
+            'tmtjab' => $tmtjab,
+        ]);
+    }
     
     public function render()
     {

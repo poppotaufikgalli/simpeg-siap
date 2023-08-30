@@ -49,9 +49,11 @@
 							<td width="5%">:</td>
 							<td width="70%">{{$profil['namapeg'] ?? ''}}</td>
 							<td rowspan="7">&nbsp;</td>
-							<td rowspan="7" style="border: 1px solid;">
+							<td rowspan="7" style="border: 1px solid; vertical-align: middle;">
 								@if($profil['file_bmp'] != "")
 									<img src="{{ public_path('storage/photo/'.$profil['file_bmp']) }}" alt="app_logo" height="100">
+								@else
+									<img src="{{ public_path('assets/img/Lambang_Satuan_Koarmada_I.png') }}" alt="app_logo" height="100">
 								@endif
 							</td>
 						</tr>
@@ -139,6 +141,7 @@
 			<tr>
 				<td style="padding-left: 30px;">
 					<table border="1" style="width: 100%">
+						@php($next = 1)
 						@if(isset($pangkat))
 							<tr>
 								<th width="5%">No.</th>
@@ -150,19 +153,34 @@
 							</tr>
 							@foreach($pangkat as $key => $value)
 								<tr>
-									<td>{{$key+1}}.</td>
+									<td>{{$next}}.</td>
 									<td>{{$value->npangkat}} - {{$value->golru}}</td>
 									<td align="center">{{$value->tmtpang != "" ? date('d-m-Y',strtotime($value->tmtpang)) : ''}}</td>
 									<td align="center">{{$value->nskpang}}</td>
 									<td align="center">{{$value->tskpang != "" ? date('d-m-Y',strtotime($value->tskpang)) : ''}}</td>
 									<td align="center">{{$value->nama_jenis_kp}}</td>
+									@php($next = $next+1)
 								</tr>
 							@endforeach
-						@else
+						@endif
+						@if(isset($pns))
 							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
+								<td>{{$next}}.</td>
+								<td>PNS - {{$pns->npangkat}}</td>
+								<td align="center">{{$pns->tmtpns != "" ? date('d-m-Y',strtotime($pns->tmtpns)) : ''}}</td>
+								<td align="center">{{$pns->skpns}}</td>
+								<td align="center">{{$pns->tskpns != "" ? date('d-m-Y',strtotime($pns->tskpns)) : ''}}</td>
+								<td align="center">Pengangkatan PNS</td>
+							</tr>
+						@endif
+						@if(isset($cpns))
+							<tr>
+								<td>{{$next}}.</td>
+								<td>CPNS - {{$cpns->npangkat}}</td>
+								<td align="center">{{$cpns->tmtcpns != "" ? date('d-m-Y',strtotime($cpns->tmtcpns)) : ''}}</td>
+								<td align="center">{{$cpns->skcpns}}</td>
+								<td align="center">{{$cpns->tskcpns != "" ? date('d-m-Y',strtotime($cpns->tskcpns)) : ''}}</td>
+								<td align="center">Pengangkatan CPNS</td>
 							</tr>
 						@endif
 					</table>

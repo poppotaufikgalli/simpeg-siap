@@ -74,22 +74,13 @@
             </div>
         </div>
     </form>
-    @if(in_array($method, ['edit']))
+    @if($okUpload == true)
         <div class="card card-body mt-2">
-            <div class="row g-2">
-                @if($master_jenis_arsip)
-                    @foreach($master_jenis_arsip as $value)
-                        <div class="col-sm-3 d-grid g-2">
-                            @php($btnColor = in_array($value->kdok, $arsip) ? 'btn-success' : 'btn-primary' )
-                            <button type="button" class="btn btn-block {{$btnColor}} d-flex justify-content-between" 
-                                wire:click="$emitTo('modal-upload-arsip', 'openModal','{{route('arsip_elektronik.store', ['page' => $value->nama])}}', '{{$value}}', true, true, 'pns')"
-                            >
-                                {{$value->nama}} <i class="bi bi-cloud-upload"></i> 
-                            </button>
-                        </div>
-                    @endforeach
-                @endif
-            </div>
+            <button type="button" class="btn btn-xs btn-success" 
+                wire:click="callModal()"
+            >
+                <i class="bi bi-cloud-upload me-2"></i> Upload SK PNS
+            </button>
         </div>
     @endif
 </div>

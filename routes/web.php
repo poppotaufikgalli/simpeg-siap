@@ -139,7 +139,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::post('/destroy', [GroupController::class, 'destroy'])->name('group.destroy');
         });
 
-        Route::prefix('config')->group(function () {
+        /*Route::prefix('config')->group(function () {
             Route::get('/', [ConfigController::class, 'index'])->name('config');
             Route::get('/{page}/create/{ref}', [ConfigController::class, 'create'])->name('config.create');
             Route::post('/{page}/store/', [ConfigController::class, 'store'])->name('config.store');
@@ -147,7 +147,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('/edit/{id}', [ConfigController::class, 'edit'])->name('config.edit');
             Route::post('/{page}/update', [ConfigController::class, 'update'])->name('config.update');
             Route::post('/{page}/destroy', [ConfigController::class, 'destroy'])->name('config.destroy');
-        });
+        });*/
         //data master
 
         /*Route::prefix('pegawai')->group(function () {
@@ -162,7 +162,7 @@ Route::group(['middleware' => ['auth']], function() {
             //});
         });*/
 
-        Route::prefix('pegawai')->group(function () {
+        /*Route::prefix('pegawai')->group(function () {
             Route::get('/', [PegawaiController::class, 'index'])->name('pegawai');
             Route::get('/create', [PegawaiController::class, 'create'])->name('pegawai.create');
             Route::post('/{page}/store', [PegawaiController::class, 'store'])->name('pegawai.store');
@@ -170,7 +170,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('/{page}/edit/{id}', [PegawaiController::class, 'edit'])->name('pegawai.edit');
             Route::post('/{page}/update', [PegawaiController::class, 'update'])->name('pegawai.update');
             //Route::post('/destroy', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
-        });
+        });*/
 
         Route::prefix('personel')->group(function () {
             Route::prefix('{id_jenis_personel}')->group(function () {
@@ -225,13 +225,13 @@ Route::group(['middleware' => ['auth']], function() {
             Route::post('/destroy', [MasterOPDController::class, 'destroy'])->name('unit_kerja.destroy');
         });
 
-        Route::prefix('instansi')->group(function () {
+        /*Route::prefix('instansi')->group(function () {
             Route::get('/', [MasterInstansiController::class, 'index'])->name('instansi');
             Route::get('/create', [MasterInstansiController::class, 'create'])->name('instansi.create');
             Route::get('/show/{id}', [MasterInstansiController::class, 'show'])->name('instansi.show');
             Route::get('/edit/{id}', [MasterInstansiController::class, 'edit'])->name('instansi.edit');
             Route::post('/destroy', [MasterInstansiController::class, 'destroy'])->name('instansi.destroy');
-        });
+        });*/
 
         Route::prefix('jenis_jabatan')->group(function () {
             Route::get('/', [MasterJenisJabatanController::class, 'index'])->name('jenis_jabatan');
@@ -303,7 +303,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::post('/destroy', [MasterJenisKawinController::class, 'destroy'])->name('jenis_kawin.destroy');
         });
 
-        Route::prefix('jenis_goldar')->group(function () {
+        /*Route::prefix('jenis_goldar')->group(function () {
             Route::get('/', [MasterJenisGolDarController::class, 'index'])->name('jenis_goldar');
             Route::get('/create', [MasterJenisGolDarController::class, 'create'])->name('jenis_goldar.create');
             //Route::post('/store', [MasterJenisGolDarController::class, 'store'])->name('jenis_goldar.store');
@@ -311,7 +311,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('/edit/{id}', [MasterJenisGolDarController::class, 'edit'])->name('jenis_goldar.edit');
             //Route::post('/update', [MasterJenisGolDarController::class, 'update'])->name('jenis_goldar.update');
             Route::post('/destroy', [MasterJenisGolDarController::class, 'destroy'])->name('jenis_goldar.destroy');
-        });
+        });*/
 
         Route::prefix('pangkat')->group(function () {
             Route::get('/', [MasterPangkatController::class, 'index'])->name('pangkat');
@@ -369,7 +369,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::post('/destroy', [MasterJenisPenghargaanController::class, 'destroy'])->name('jenis_penghargaan.destroy');
         });
 
-        Route::prefix('jenis_pemberhentian')->group(function () {
+        /*Route::prefix('jenis_pemberhentian')->group(function () {
             Route::get('/', [MasterJenisPemberhentianController::class, 'index'])->name('jenis_pemberhentian');
             Route::get('/create', [MasterJenisPemberhentianController::class, 'create'])->name('jenis_pemberhentian.create');
             Route::get('/show/{id}', [MasterJenisPemberhentianController::class, 'show'])->name('jenis_pemberhentian.show');
@@ -399,7 +399,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('/show/{id}', [MasterJenisKompetensiController::class, 'show'])->name('jenis_kompetensi.show');
             Route::get('/edit/{id}', [MasterJenisKompetensiController::class, 'edit'])->name('jenis_kompetensi.edit');
             Route::post('/destroy', [MasterJenisKompetensiController::class, 'destroy'])->name('jenis_kompetensi.destroy');
-        });
+        });*/
 
         Route::prefix('pendidikan')->group(function () {
             Route::get('/', [MasterPendidikanController::class, 'index'])->name('pendidikan');
@@ -417,13 +417,13 @@ Route::group(['middleware' => ['auth']], function() {
             Route::post('/destroy', [MasterTingkatPendidikanController::class, 'destroy'])->name('tingkat_pendidikan.destroy');
         });
 
-        Route::prefix('jenis_profesi')->group(function () {
+        /*Route::prefix('jenis_profesi')->group(function () {
             Route::get('/', [MasterJenisProfesiController::class, 'index'])->name('jenis_profesi');
             Route::get('/create', [MasterJenisProfesiController::class, 'create'])->name('jenis_profesi.create');
             Route::get('/show/{id}', [MasterJenisProfesiController::class, 'show'])->name('jenis_profesi.show');
             Route::get('/edit/{id}', [MasterJenisProfesiController::class, 'edit'])->name('jenis_profesi.edit');
             Route::post('/destroy', [MasterJenisProfesiController::class, 'destroy'])->name('jenis_profesi.destroy');
-        });
+        });*/
 
         Route::prefix('jenis_kursus')->group(function () {
             Route::get('/', [MasterJenisKursusController::class, 'index'])->name('jenis_kursus');
@@ -460,6 +460,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::prefix('arsip_elektronik')->group(function () {
             Route::get('/', [MasterPegawaiArsipController::class, 'index'])->name('arsip_elektronik');
             Route::get('/create', [MasterPegawaiArsipController::class, 'create'])->name('arsip_elektronik.create');
+            Route::post('/upload', [MasterPegawaiArsipController::class, 'upload'])->name('arsip_elektronik.upload');
             Route::post('/store', [MasterPegawaiArsipController::class, 'store'])->name('arsip_elektronik.store');
             Route::get('/show/{id}', [MasterPegawaiArsipController::class, 'show'])->name('arsip_elektronik.show');
             Route::get('/edit/{id}', [MasterPegawaiArsipController::class, 'edit'])->name('arsip_elektronik.edit');

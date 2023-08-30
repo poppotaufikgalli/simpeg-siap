@@ -22,7 +22,7 @@ class MasterPegawaiArsipController extends Controller
      */
     public function index()
     {
-        return view('arsip_elektronik/index', [
+        return view('referensi/index', [
             'PageTitle' => 'Arsip Elektronik',
             'route' => 'arsip_elektronik',
         ]);
@@ -44,6 +44,48 @@ class MasterPegawaiArsipController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function upload(Request $request)
+    {
+        $receiver = new FileReceiver("file", $request, HandlerFactory::classFromRequest($request));
+
+        if ($receiver->isUploaded() === false) {
+            throw new UploadMissingFileException();
+        }
+
+        $save = $receiver->receive();
+        if ($save->isFinished()) {
+            return $this->saveFile2($save->getFile(), $request);
+        }
+
+        // we are in chunk mode, lets send the current progress
+        /** @var AbstractHandler $handler */
+        $handler = $save->handler();
+
+        return response()->json([
+            "done" => $handler->getPercentageDone(),
+            "status" => true,
+        ]);
+    }
+
+    protected function saveFile2(UploadedFile $file, Request $request)
+    {
+        $extension = $file->extension();
+
+        $filename = $request->filename .".".$extension;
+        $path = 'public/'.$request->sid.'/'.$filename;
+
+        $path = Storage::disk('local')->putFileAs('public/'.$request->sid, $file, $filename);
+        $mime = str_replace('/', '-', $file->getMimeType());
+
+        return response()->json([
+            'path' => $file,
+            'name' => $filename,
+            'mime_type' => $mime,
+            'request' => $request,
+        ]);
+    }
+    
     public function store(Request $request)
     {
         //$filename = $request->filename;
@@ -66,10 +108,7 @@ class MasterPegawaiArsipController extends Controller
             $handler = $save->handler();
         }
 
-        return response()->json([
-            "done" => $handler->getPercentageDone(),
-            "status" => true,
-        ]);
+        
     }
 
     protected function saveFile(UploadedFile $file, Request $request)
@@ -114,9 +153,16 @@ class MasterPegawaiArsipController extends Controller
      * @param  \App\Models\MasterPegawaiArsip  $masterPegawaiArsip
      * @return \Illuminate\Http\Response
      */
-    public function show(MasterPegawaiArsip $masterPegawaiArsip)
+    public function show(MasterPegawaiArsip $masterPegawaiArsip, $id)
     {
-        //
+        $nip = str_replace('-','/', $id);
+        return view('referensi/formulir', [
+            'PageTitle' => "Edit Arsip Elektronik",
+            'route' => 'arsip_elektronik',
+            'next' => 'update',
+            'method' => 'edit',
+            'id' => $nip,
+        ]);
     }
 
     /**
@@ -127,13 +173,7 @@ class MasterPegawaiArsipController extends Controller
      */
     public function edit(MasterPegawaiArsip $masterPegawaiArsip, $id)
     {
-        return view('arsip_elektronik/formulir', [
-            'PageTitle' => "Edit Arsip Elektronik",
-            'route' => 'arsip_elektronik',
-            'next' => 'update',
-            'method' => 'edit',
-            'id' => $id
-        ]);
+        
     }
 
     /**
