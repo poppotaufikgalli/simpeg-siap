@@ -19,6 +19,7 @@ class RiwPangkat extends Component
 {
     public $sid;
     public $id_jenis_personel;
+    public $id_korps;
     public $method;
     public $next;
     public $subPage = 'list';

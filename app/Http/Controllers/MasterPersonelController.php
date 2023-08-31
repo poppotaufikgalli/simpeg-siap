@@ -125,6 +125,7 @@ class MasterPersonelController extends Controller
             'id' => $id,
             'displayPhoto' => '',
             'id_jenis_personel' => $id_jenis_personel,
+            'id_korps' => MasterPersonel::where('nip', '=', $id)->first()->id_korps,
             'jenis_diklat' => MasterJenisDiklat::where('status', '=', 1)->get(),
             'jenis_keluarga' => MasterJenisKeluarga::where('status', '=', 1)->get(),
             //'dataset' => $dataset->toArray(),

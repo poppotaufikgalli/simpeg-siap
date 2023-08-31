@@ -54,6 +54,7 @@
                         'sid' => $id ?? '',
                         'akhir' => 1,
                         'id_jenis_personel' => $id_jenis_personel,
+                        'id_korps' => $id_korps,
                     ])
                 </div>
                 <!--<div class="tab-pane" id="pendidikan-terakhir" role="tabpanel" aria-labelledby="pendidikan-terakhir-tab" tabindex="0">...</div>

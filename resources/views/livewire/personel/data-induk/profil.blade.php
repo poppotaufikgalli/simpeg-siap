@@ -209,13 +209,27 @@
                     <div class="mb-2 row">
                         <label for="korps" class="col-sm-2 col-form-label">Korps</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="korps" wire:model="dataset.korps">
+                            <select class="form-control" id="id_korps" wire:model="dataset.id_korps" wire:change="changeKorps($event.target.value)">
+                                <option value="" selected>Pilih Korps</option>
+                                @if($master_korps)
+                                    @foreach($master_korps as $key => $value)
+                                        <option value="{{$value->id}}">{{$value->nama}}</option>
+                                    @endforeach
+                                @endif
+                            </select>
                         </div>
                     </div>
                     <div class="mb-2 row">
                         <label for="kejuruan" class="col-sm-2 col-form-label">Kejuruan</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="kejuruan" wire:model="dataset.kejuruan">
+                            <select class="form-control" id="id_kejuruan_korps" wire:model="dataset.id_kejuruan_korps">
+                                <option value="" selected>Pilih Kejuruan Korps</option>
+                                @if($master_kejuruan_korps)
+                                    @foreach($master_kejuruan_korps as $key => $value)
+                                        <option value="{{$value->id}}">{{$value->nama}} ({{$value->singkatan}})</option>
+                                    @endforeach
+                                @endif
+                            </select>
                         </div>
                     </div>
                     <div class="mb-2 row">

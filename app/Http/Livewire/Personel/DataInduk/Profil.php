@@ -20,6 +20,9 @@ use App\Models\MasterStatusKPE;
 use App\Models\MasterJenisArsip;
 use App\Models\MasterInstansi;
 
+use App\Models\MasterKorps;
+use App\Models\MasterKejuruanKorps;
+
 class Profil extends Component
 {
     use WithFileUploads;
@@ -38,6 +41,8 @@ class Profil extends Component
 
     public $file_bmp;
     public $profile_image = 'assets/img/undraw_profile.svg';
+
+    public $master_kejuruan_korps = [];
 
     public $arsip = [];
 
@@ -76,6 +81,8 @@ class Profil extends Component
             'kjpeg' => 'required',
             'kduduk' => 'required',
             'kskawin' => 'required',
+            'id_korps' => 'required',
+            'id_kejuruan_korps' => 'required',
             //'file_bmp' => 'sometimes|image|max:1024',
             //'kgoldar' => 'required',
             //'stat_kpe' => 'required',
@@ -99,6 +106,8 @@ class Profil extends Component
             'kskawin.required' => 'Status Perkawinan Belum dipilih',
             'file_bmp.image' => 'File yang diupload bukan berupa gambar',
             'file_bmp.max' => 'File yang diupload melebihi batas 1MB',
+            'id_korps.required' => 'Korps Belum dipilih',
+            'id_kejuruan_korps.required' => 'Kejuruan Belum dipilih',
             //'kgoldar' => 'Golongan Darah Belum dipilih',
             //'stat_kpe' => 'Status KPE Belum dipilih',
 
@@ -153,6 +162,8 @@ class Profil extends Component
             'kjpeg' => 'required',
             'kduduk' => 'required',
             'kskawin' => 'required',
+            'id_korps' => 'required',
+            'id_kejuruan_korps' => 'required',
             //'file_bmp' => 'nullable|image|max:1024',
             //'kgoldar' => 'required',
             //'stat_kpe' => 'required',
@@ -171,6 +182,8 @@ class Profil extends Component
             'kskawin.required' => 'Status Perkawinan Belum dipilih',
             'file_bmp.image' => 'File yang diupload bukan berupa gambar',
             'file_bmp.max' => 'File yang diupload melebihi batas 1MB',
+            'id_korps.required' => 'Korps Belum dipilih',
+            'id_kejuruan_korps.required' => 'Kejuruan Belum dipilih',
             //'kgoldar' => 'Golongan Darah Belum dipilih',
             //'stat_kpe' => 'Status KPE Belum dipilih',
 
@@ -194,7 +207,16 @@ class Profil extends Component
 
         Pegawai::where('nip', '=', $this->sid)->update($data);
 
-        $this->dispatchBrowserEvent('informations', "Data Identitas Pegawai berhasil diubah.");
+        //$this->dispatchBrowserEvent('informations', "Data Identitas Pegawai berhasil diubah.");
+        return redirect()->route('personel.edit', [
+            'id' => str_replace('/', '-', $this->dataset['nip']),
+            'method' => 'edit',
+            'next' => 'update',
+            'page' => 'data-induk',
+            'id_jenis_personel' => $this->id_jenis_personel,
+        ])->with([
+            'success'=> "Data Identitas Pegawai berhasil diubah."
+        ]);
     }
 
     public function render()
@@ -209,6 +231,7 @@ class Profil extends Component
             'master_provinsi' => MasterJenisWilayah::where('twil', '=', 1)->get(),
             'master_kpe' => MasterStatusKPE::get(),
             'master_jenis_arsip' => MasterJenisArsip::where('group_arsip_id', '=', 1)->get(),
+            'master_korps' => MasterKorps::where('status', '=', 1)->get(),
         ];
 
         return view('livewire.personel.data-induk.profil', $data);
@@ -220,10 +243,13 @@ class Profil extends Component
             $dataset = Pegawai::where('nip', '=', $this->sid)->first();
 
             if($dataset){
+                $this->changeKorps($dataset->id_korps);
                 $this->dataset = $dataset->toArray();
                 $this->dataset['nip'] = (string)$this->sid;
                 $this->profile_image = 'storage/photo/'.$dataset->file_bmp;
                 $this->nama = $dataset->nama;
+                //dd($dataset);
+                //$this->emitTo('Pangkat','update_korps', $dataset->id_korps);
             }
         }
     }
@@ -242,5 +268,10 @@ class Profil extends Component
     {
         //dd($this->dataset);
         $this->master_kel = MasterJenisWilayah::where('twil','=', 4)->where('kprov', '=', $this->dataset['alkoprop'])->where('kkab', '=', $this->dataset['alkokab'])->where('kkec', '=', $selId)->get();
+    }
+
+    public function changeKorps($selId)
+    {
+        $this->master_kejuruan_korps = MasterKejuruanKorps::where('status', '=', 1)->where('id_korps', '=', $selId)->get();
     }
 }

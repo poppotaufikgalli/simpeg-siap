@@ -27,7 +27,7 @@
 				    	<a class="nav-link {{$activePage == 'data-induk' ? 'active' : ''}}" aria-current="page" href="{{route('personel.edit', ['id' => $mid, 'id_jenis_personel' => $id_jenis_personel, 'page' => 'data-induk'])}}">Data Induk</a>
 				  	</li>
 				  	<li class="nav-item">
-				    	<a class="nav-link {{$activePage == 'riwayat-pegawai' ? 'active' : ''}}" href="{{route('personel.edit', ['id' => $mid, 'id_jenis_personel' => $id_jenis_personel, 'page' => 'riwayat-pegawai'])}}">Riwayat Pegawai</a>
+				    	<a class="nav-link {{$activePage == 'riwayat-pegawai' ? 'active' : ''}}" href="{{route('personel.edit', ['id' => $mid, 'id_jenis_personel' => $id_jenis_personel, 'id_korps' => $id_korps, 'page' => 'riwayat-pegawai'])}}">Riwayat Pegawai</a>
 				  	</li>
 				  	<li class="nav-item">
 				    	<a class="nav-link {{$activePage == 'riwayat-pendidikan' ? 'active' : ''}}" href="{{route('personel.edit', ['id' => $mid, 'id_jenis_personel' => $id_jenis_personel, 'page' => 'riwayat-pendidikan'])}}">Riwayat Pendidikan</a>

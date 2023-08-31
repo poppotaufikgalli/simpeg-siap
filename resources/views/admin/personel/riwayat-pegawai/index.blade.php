@@ -26,6 +26,7 @@
                         'next' => $next, 
                         'sid' => $id ?? '',
                         'id_jenis_personel' => $id_jenis_personel,
+                        'id_korps' => $id_korps,
                     ])          
                 </div>
                 <div class="tab-pane" id="riw-jabatan" role="tabpanel" aria-labelledby="riw-jabatan-tab" tabindex="0">   

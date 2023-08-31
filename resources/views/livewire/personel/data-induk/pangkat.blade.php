@@ -79,7 +79,11 @@
                         <option value="">Pilih Pangkat / Gol.</option> 
                         @if($master_pangkat)
                             @foreach($master_pangkat as $key => $value)
-                                <option value="{{$value->id}}">{{$value->nama_pangkat}} ({{$value->nama}})</option>
+                                @if($id_korps != $value->id_korps)
+                                    <option value="{{$value->id}}" disabled>{{$value->nama_pangkat}} ({{$value->nama}})</option>
+                                @else
+                                    <option value="{{$value->id}}">{{$value->nama_pangkat}} ({{$value->nama}})</option>
+                                @endif
                             @endforeach
                         @endif
                     </select>

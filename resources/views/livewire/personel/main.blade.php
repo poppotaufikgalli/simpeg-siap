@@ -86,11 +86,11 @@
                                 <td align="center">{{ $value->golongan_ruang }}<br>{{$value->nama_pangkat != "" ? "(".$value->nama_pangkat.")" : ""}}</td>
                                 <td>
                                     {{ $value->nip }}
-                                    @if($value->korps != "")
-                                        <br>{{$value->korps}}
+                                    @if($value->id_korps != "")
+                                        <br>{{$value->nama_korps}}
                                     @endif 
-                                    @if($value->kejuruan != "")
-                                        - {{$value->kejuruan}}
+                                    @if($value->id_kejuruan_korps != "")
+                                        - {{$value->singkatan_kejuruan_korps}}
                                     @endif
                                 </td>
                                 <td>

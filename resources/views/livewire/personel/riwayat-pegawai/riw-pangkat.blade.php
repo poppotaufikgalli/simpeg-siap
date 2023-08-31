@@ -102,6 +102,7 @@
                         'kgolru' => $kgolru,
                         'knpang' => $knpang,
                         'id_jenis_personel' => $id_jenis_personel,
+                        'id_korps' => $id_korps,
                     ])
                 </div>
             @endif
