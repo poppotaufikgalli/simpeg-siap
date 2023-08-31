@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Pangkat;
 
 use App\Http\Controllers\Controller;
-use App\Models\MasterJenisKP;
+use App\Models\MasterJenisKp;
 use Illuminate\Http\Request;
 
 class MasterJenisKPController extends Controller
@@ -50,10 +50,10 @@ class MasterJenisKPController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\MasterJenisKP  $masterJenisKP
+     * @param  \App\Models\MasterJenisKp  $masterJenisKP
      * @return \Illuminate\Http\Response
      */
-    public function show(MasterJenisKP $masterJenisKP, $id)
+    public function show(MasterJenisKp $masterJenisKP, $id)
     {
         return view('referensi/formulir', [
             'PageTitle' => "Lihat Data Jenis Kenaikan Pangkat",
@@ -67,10 +67,10 @@ class MasterJenisKPController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\MasterJenisKP  $masterJenisKP
+     * @param  \App\Models\MasterJenisKp  $masterJenisKP
      * @return \Illuminate\Http\Response
      */
-    public function edit(MasterJenisKP $masterJenisKP, $id)
+    public function edit(MasterJenisKp $masterJenisKP, $id)
     {
         return view('referensi/formulir', [
             'PageTitle' => "Edit Data Jenis Kenaikan Pangkat",
@@ -85,10 +85,10 @@ class MasterJenisKPController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\MasterJenisKP  $masterJenisKP
+     * @param  \App\Models\MasterJenisKp  $masterJenisKP
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterJenisKP $masterJenisKP)
+    public function update(Request $request, MasterJenisKp $masterJenisKP)
     {
         //
     }
@@ -99,7 +99,7 @@ class MasterJenisKPController extends Controller
      * @param  \App\Models\MasterJenisKP  $masterJenisKP
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MasterJenisKP $masterJenisKP, Request $request)
+    public function destroy(MasterJenisKp $masterJenisKP, Request $request)
     {
         $id = $request->id;
         $del = $masterJenisKP::find($id);

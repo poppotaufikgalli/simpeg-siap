@@ -6,7 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-use App\Models\MasterJenisKP;
+use App\Models\MasterJenisKp;
 
 class Formulir extends Component
 {
@@ -44,7 +44,7 @@ class Formulir extends Component
 
         $validator->validate();
    
-        MasterJenisKP::create($retData);
+        MasterJenisKp::create($retData);
 
         return redirect('/jenis_kp')->with([
             'success'=> "Data Master Jenis Kenaikan Pangkat Terkait berhasil ditambahkan."

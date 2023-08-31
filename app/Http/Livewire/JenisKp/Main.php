@@ -5,7 +5,7 @@ namespace App\Http\Livewire\JenisKp;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-use App\Models\MasterJenisKP;
+use App\Models\MasterJenisKp;
 
 class Main extends Component
 {
@@ -20,7 +20,7 @@ class Main extends Component
     
     public function render()
     {
-        $retData = MasterJenisKP::where(function($query){
+        $retData = MasterJenisKp::where(function($query){
             if($this->_id != ""){
                 $query->where('id', 'like', '%'.$this->_id.'%');
             }

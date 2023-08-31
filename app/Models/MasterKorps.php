@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
-class MasterJenisKp extends Model
+class MasterKorps extends Model
 {
     use HasFactory;
 
-    protected $table = 'master_jenis_kp';
+    protected $table = 'master_korps';
 
     protected $primaryKey = 'id';
     protected $keyType = 'string';
@@ -20,8 +20,7 @@ class MasterJenisKp extends Model
     protected $fillable = [
         'id',
         'nama',
-        'ref_simpeg',
-        'status'
+        'status',
     ];
 
     public $timestamps = false;
@@ -37,10 +36,6 @@ class MasterJenisKp extends Model
         static::updating(function ($model) {
             $model->updated_by = is_object(Auth::guard(config('app.guards.web'))->user()) ? Auth::guard(config('app.guards.web'))->user()->id : 1;
             $model->updated_at = Carbon::now();
-        });
-
-        static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderByRaw('CONVERT(id, SIGNED) asc');
         });
     }
 }

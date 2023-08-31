@@ -18,8 +18,24 @@
                 <div class="col-sm-3">
                     <select class="form-select" id="id_jenis_personel" wire:model="dataset.id_jenis_personel">
                         <option value="">Pilih Jenis Pangkat</option>
-                        <option value="1">PNS</option>
-                        <option value="2">Militer</option>
+                        @if($master_jenis_personel)
+                            @foreach($master_jenis_personel as $key => $value)
+                                <option value="{{$value->id_jenis_personel}}">{{$value->nama}}</option>   
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="nama" class="col-sm-2 col-form-label">Korps</label>
+                <div class="col-sm-3">
+                    <select class="form-select" id="id_korps" wire:model="dataset.id_korps">
+                        <option value="">Pilih Korps</option>
+                        @if($master_korps)
+                            @foreach($master_korps as $key => $value)
+                                <option value="{{$value->id}}">{{$value->nama}}</option>   
+                            @endforeach
+                        @endif
                     </select>
                 </div>
             </div>

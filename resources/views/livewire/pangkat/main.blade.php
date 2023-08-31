@@ -9,6 +9,17 @@
                     <option value="2">Militer</option>
                 </select>
             </div>
+            <label for="nama" class="col-sm-2 col-form-label">Korps</label>
+            <div class="col-sm-3">
+                <select class="form-select" id="id_korps" wire:model="id_korps">
+                    <option value="">Semua</option>
+                    @if($master_korps)
+                        @foreach($master_korps as $key => $value)
+                            <option value="{{$value->id}}">{{$value->nama}}</option>   
+                        @endforeach
+                    @endif
+                </select>
+            </div>
         </div>
         <div class="table-responsive">
             <table class="table table-sm display" id="tbListData" width="100%" cellspacing="0">

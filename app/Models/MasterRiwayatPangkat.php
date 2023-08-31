@@ -27,7 +27,7 @@ class MasterRiwayatPangkat extends Model
 
     public function jnspangkat()
     {
-        return $this->belongsTo(MasterJenisKP::class, 'knpang');
+        return $this->belongsTo(MasterJenisKp::class, 'knpang');
     }
 
     protected $fillable = [
