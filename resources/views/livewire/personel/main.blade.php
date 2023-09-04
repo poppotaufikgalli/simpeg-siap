@@ -63,6 +63,11 @@
                 </div>
             </div>
         </div>
+        <div class="btn-group mb-2">
+            <button class="btn btn-secondary">CSV</button>
+            <a class="btn btn-secondary" target="_blank" href="{{route('personel.show', ['id_jenis_personel' => $id_jenis_personel, 'tipe' => 'nominatif', 'id' => 0])}}">PDF</a>
+            <button id="btnPrint" class="btn btn-secondary">Print</button>
+        </div>
         <div class="table-responsive">
             <table class="table table-sm display" id="tbListData" width="100%" cellspacing="0">
                 <thead class="table-dark">
@@ -81,7 +86,7 @@
                     @if($pegawai)
                       @foreach($pegawai as $key => $value)
                             <tr>
-                                <td align="center">{{$key +1}}</td>
+                                <td align="center">{{ ($pegawai ->currentpage()-1) * $pegawai ->perpage() + $loop->index + 1 }}</td>
                                 <td>{{ $value->namapeg }}</td>
                                 <td align="center">
                                     {{ $value->golongan_ruang }}<br>{{$value->nama_pangkat != "" ? "(".$value->nama_pangkat.")" : ""}}
@@ -102,7 +107,7 @@
                                 <td>{{ $value->stpu }} - {{ $value->npdum }} - {{ $value->thpendum }}</td>
                                 <td align="center">{{$value->usiath}} th</td>
                                 <td>
-                                    <a target="_blank" href="{{route('personel.show', ['id_jenis_personel' => $id_jenis_personel, 'id' => str_replace('/','-',$value->nip)])}}" class="btn btn-xs btn-info text-white"><i class="bi bi-eye"></i></a>
+                                    <a target="_blank" href="{{route('personel.show', ['id_jenis_personel' => $id_jenis_personel, 'tipe' => 'drh', 'id' => str_replace('/','-',$value->nip)])}}" class="btn btn-xs btn-info text-white"><i class="bi bi-eye"></i></a>
                                     <a href="{{route('personel.edit', ['id_jenis_personel' => $id_jenis_personel, 'id' => str_replace('/','-',$value->nip), 'page' => 'data-induk'])}}" class="btn btn-xs btn-primary"><i class="bi bi-pencil"></i></a>
                                     <button class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal" data-bs-target1="Akses" data-bs-id="{{$value->id}}" data-bs-recipient="{{$value->nama}}"><i class="bi bi-trash"></i></button>
                                 </td>

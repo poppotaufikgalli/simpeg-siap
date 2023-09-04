@@ -82,26 +82,33 @@ class MasterPersonelController extends Controller
      * @param  \App\Models\MasterPersonel  $masterPersonel
      * @return \Illuminate\Http\Response
      */
-    public function show(MasterPersonel $masterPersonel, $id_jenis_personel, $id)
+    public function show(MasterPersonel $masterPersonel, $id_jenis_personel, $id, $tipe='drh')
     {
-        $id = str_replace('-','/',$id);
-        $data['id_jenis_personel'] = $id_jenis_personel;
-        $data['profil'] = $masterPersonel::where('nip','=', $id)->first()->toArray();
-        $data['pangkat'] = DB::table('vriwayatpangkat')->where('nip', '=', $id)->orderBy('kgolru', 'desc')->get()->toArray();
-        $data['cpns'] = DB::table('vcpns')->where('nip','=', $id)->first();
-        $data['pns'] = DB::table('vpns')->where('nip','=', $id)->first();
-        $data['pendum'] = DB::table('vriwayatpendum')->where('nip','=', $id)->orderByRaw('CONVERT(ktpu, SIGNED) asc')->get()->toArray();
-        $data['jabatan'] = DB::table('vriwayatjabatan')->where('nip','=', $id)->get()->toArray();
-        $data['diklat'] = MasterRiwayatDiklat::where('jdiklat','=',1)->where('nip','=', $id)->get()->toArray();
-        $data['diklat_a'] = DB::table('vriwayatdiklat')->whereIn('jdiklat', [2,3,4,5,6,7])->where('nip','=', $id)->get()->toArray();
-        $data['keluarga'] = DB::table('vriwayatkeluarga')->where('nip','=', $id)->get()->toArray();
-        $data['dp3'] = MasterRiwayatDp3::where('nip','=', $id)->get()->toArray();
-        $data['pengargaan'] = DB::table('vriwayatpenghargaan')->where('nip','=', $id)->get()->toArray();
-        $data['tumlar'] = DB::table('vriwayattumlar')->where('nip','=', $id)->get()->toArray();
-        //return view('admin/personel/drh', $data);
-        //dd($data);
-        $pdf = Pdf::loadView('admin/personel/drh', $data);
-        return $pdf->stream('drh-'.$id.'.pdf');
+        if($tipe == 'drh'){
+            $id = str_replace('-','/',$id);
+            $data['id_jenis_personel'] = $id_jenis_personel;
+            $data['profil'] = $masterPersonel::where('nip','=', $id)->first()->toArray();
+            $data['pangkat'] = DB::table('vriwayatpangkat')->where('nip', '=', $id)->orderBy('kgolru', 'desc')->get()->toArray();
+            $data['cpns'] = DB::table('vcpns')->where('nip','=', $id)->first();
+            $data['pns'] = DB::table('vpns')->where('nip','=', $id)->first();
+            $data['pendum'] = DB::table('vriwayatpendum')->where('nip','=', $id)->orderByRaw('CONVERT(ktpu, SIGNED) asc')->get()->toArray();
+            $data['jabatan'] = DB::table('vriwayatjabatan')->where('nip','=', $id)->get()->toArray();
+            $data['diklat'] = MasterRiwayatDiklat::where('jdiklat','=',1)->where('nip','=', $id)->get()->toArray();
+            $data['diklat_a'] = DB::table('vriwayatdiklat')->whereIn('jdiklat', [2,3,4,5,6,7])->where('nip','=', $id)->get()->toArray();
+            $data['keluarga'] = DB::table('vriwayatkeluarga')->where('nip','=', $id)->get()->toArray();
+            $data['dp3'] = MasterRiwayatDp3::where('nip','=', $id)->get()->toArray();
+            $data['pengargaan'] = DB::table('vriwayatpenghargaan')->where('nip','=', $id)->get()->toArray();
+            $data['tumlar'] = DB::table('vriwayattumlar')->where('nip','=', $id)->get()->toArray();
+            //return view('admin/personel/drh', $data);
+            //dd($data);
+            $pdf = Pdf::loadView('admin/personel/drh', $data);
+            return $pdf->stream('drh-'.$id.'.pdf');    
+        }elseif($tipe='nominatif'){
+            $data['id_jenis_personel'] = $id_jenis_personel;
+            $data['list'] = $masterPersonel->where('id_jenis_personel', '=', $id_jenis_personel)->get();
+            return view('admin/personel/nominatif', $data);
+        }
+        
     }
 
     /**

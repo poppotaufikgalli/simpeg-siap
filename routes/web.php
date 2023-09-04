@@ -177,7 +177,7 @@ Route::group(['middleware' => ['auth']], function() {
                 Route::get('/', [MasterPersonelController::class, 'index'])->name('personel');
                 Route::get('/create', [MasterPersonelController::class, 'create'])->name('personel.create');
                 //Route::post('/store', [MasterPersonelController::class, 'store'])->name('personel.store');
-                Route::get('/show/{id}', [MasterPersonelController::class, 'show'])->name('personel.show');
+                Route::get('/show/{id}/{tipe}', [MasterPersonelController::class, 'show'])->name('personel.show');
                 Route::get('/{page}/edit/{id}', [MasterPersonelController::class, 'edit'])->name('personel.edit');
                 //Route::post('/update', [MasterPersonelController::class, 'update'])->name('personel.update');
                 Route::post('/destroy', [MasterPersonelController::class, 'destroy'])->name('personel.destroy');
