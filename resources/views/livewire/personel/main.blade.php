@@ -83,18 +83,18 @@
                             <tr>
                                 <td align="center">{{$key +1}}</td>
                                 <td>{{ $value->namapeg }}</td>
-                                <td align="center">{{ $value->golongan_ruang }}<br>{{$value->nama_pangkat != "" ? "(".$value->nama_pangkat.")" : ""}}</td>
-                                <td>
-                                    {{ $value->nip }}
+                                <td align="center">
+                                    {{ $value->golongan_ruang }}<br>{{$value->nama_pangkat != "" ? "(".$value->nama_pangkat.")" : ""}}
                                     @if($value->id_korps != "")
-                                        <br>{{$value->nama_korps}}
+                                        <br>{{$value->singkatan_korps}}
                                     @endif 
-                                    @if($value->id_kejuruan_korps != "")
-                                        - {{$value->singkatan_kejuruan_korps}}
-                                    @endif
                                 </td>
+                                <td>{{ $value->nip }}</td>
                                 <td>
-                                    {{ $value->njab }} - {{$value->tmtjab != "" ? $value->tmtjab->format('d-m-Y') : ""}}
+                                    {{ $value->njab }}
+                                    @if($value->tmtjab != '')
+                                        <br/>{{$value->tmtjab->format('d-m-Y')}}
+                                    @endif
                                     @if($value->keselon != '99')
                                         <br/>{{$value->kode_eselon}}
                                     @endif
