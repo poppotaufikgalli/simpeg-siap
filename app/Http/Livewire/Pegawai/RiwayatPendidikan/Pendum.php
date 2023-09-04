@@ -164,7 +164,6 @@ class Pendum extends Component
                 $query->orWhere('tk_pendidikan_id', '=', intval($value));
             }
         })->get();
-        dd($this->master_pendidikan);
     }
 
     public function changeStts($selId)
