@@ -19,7 +19,7 @@
             <div class="mb-2 row">
                 <label for="kpej" class="col-sm-2 col-form-label text-truncate">Pj. Penetap</label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="kpej" wire:model="dataset.kpej" required>
+                    <select class="form-select" id="kpej" wire:model="dataset.kpej" required>
                         <option value="">Pilih Pejabat Penetap</option>
                         @if($master_pejabat)
                             @foreach($master_pejabat as $key => $value)
@@ -44,7 +44,7 @@
             <div class="mb-2 row">
                 <label for="id_opd" class="col-sm-2 col-form-label text-truncate">Satker</label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="id_opd" wire:model="dataset.id_opd" wire:change="searchJabatan()" required>
+                    <select class="form-select" id="id_opd" wire:model="dataset.id_opd" wire:change="searchJabatan()" required>
                         <option value="">Pilih OPD</option> 
                         @if($master_opd)
                             @foreach($master_opd as $key => $value)
@@ -57,7 +57,7 @@
             <div class="mb-2 row">
                 <label for="jnsjab" class="col-sm-2 col-form-label text-truncate">Jenis Jabatan</label>
                 <div class="col-sm-4">
-                    <select class="form-control" id="jnsjab" wire:model="dataset.jnsjab" wire:change="changeJnsJab($event.target.value)" required>
+                    <select class="form-select" id="jnsjab" wire:model="dataset.jnsjab" wire:change="changeJnsJab($event.target.value)" required>
                         <option value="">Pilih Jenis Jabatan</option>
                         @if($master_jenis_jabatan)
                             @foreach($master_jenis_jabatan as $key => $value)
@@ -68,7 +68,7 @@
                 </div>
                 <label for="keselon" class="col-sm-2 col-form-label">Eselon</label>
                 <div class="col-sm-4">
-                    <select class="form-control" id="keselon" wire:model="dataset.keselon" wire:change="searchJabatan()" required>
+                    <select class="form-select" id="keselon" wire:model="dataset.keselon" wire:change="searchJabatan()" required>
                         <option value="">Pilih Eselon</option> 
                         @if($master_eselon)
                             @foreach($master_eselon as $key => $value)

@@ -83,8 +83,8 @@
 		  	var hash = location.hash.replace(/^#/, "");
 		  	//alert(hash)
 			if (hash) {
-			  var triggerEl = document.querySelector("#" + hash + "-tab");
-			  triggerEl.click();
+			  	var triggerEl = document.querySelector("#" + hash + "-tab");
+			  	triggerEl.click();
 			}
 		})
 

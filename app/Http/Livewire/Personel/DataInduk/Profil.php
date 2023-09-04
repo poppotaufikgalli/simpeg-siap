@@ -42,8 +42,6 @@ class Profil extends Component
     public $file_bmp;
     public $profile_image = 'assets/img/undraw_profile.svg';
 
-    public $master_kejuruan_korps = [];
-
     public $arsip = [];
 
     protected $listeners = ['updatedArsip', "callModal"];
@@ -205,6 +203,8 @@ class Profil extends Component
             $data['file_bmp'] = $filename;
         }
 
+        //dd($data);
+
         Pegawai::where('nip', '=', $this->sid)->update($data);
 
         //$this->dispatchBrowserEvent('informations', "Data Identitas Pegawai berhasil diubah.");
@@ -231,7 +231,8 @@ class Profil extends Component
             'master_provinsi' => MasterJenisWilayah::where('twil', '=', 1)->get(),
             'master_kpe' => MasterStatusKPE::get(),
             'master_jenis_arsip' => MasterJenisArsip::where('group_arsip_id', '=', 1)->get(),
-            'master_korps' => MasterKorps::where('status', '=', 1)->get(),
+            //'master_korps' => MasterKorps::where('status', '=', 1)->get(),
+            'master_kejuruan_korps' => MasterKejuruanKorps::where('status', '=', 1)->get(),
         ];
 
         return view('livewire.personel.data-induk.profil', $data);
@@ -243,7 +244,6 @@ class Profil extends Component
             $dataset = Pegawai::where('nip', '=', $this->sid)->first();
 
             if($dataset){
-                $this->changeKorps($dataset->id_korps);
                 $this->dataset = $dataset->toArray();
                 $this->dataset['nip'] = (string)$this->sid;
                 $this->profile_image = 'storage/photo/'.$dataset->file_bmp;
@@ -268,10 +268,5 @@ class Profil extends Component
     {
         //dd($this->dataset);
         $this->master_kel = MasterJenisWilayah::where('twil','=', 4)->where('kprov', '=', $this->dataset['alkoprop'])->where('kkab', '=', $this->dataset['alkokab'])->where('kkec', '=', $selId)->get();
-    }
-
-    public function changeKorps($selId)
-    {
-        $this->master_kejuruan_korps = MasterKejuruanKorps::where('status', '=', 1)->where('id_korps', '=', $selId)->get();
     }
 }

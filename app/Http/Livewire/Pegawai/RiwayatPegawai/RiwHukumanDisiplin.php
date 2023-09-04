@@ -123,6 +123,7 @@ class RiwHukumanDisiplin extends Component
 
     public function tambah()
     {
+        $this->dispatchBrowserEvent('tomSelectActive');
         $this->subPage = 'formulir';
         $this->next = "store";
     }
@@ -136,6 +137,7 @@ class RiwHukumanDisiplin extends Component
 
     public function edit($value)
     {
+        $this->dispatchBrowserEvent('tomSelectActive');
         $this->subPage = 'formulir';
         $this->next = "update";
 

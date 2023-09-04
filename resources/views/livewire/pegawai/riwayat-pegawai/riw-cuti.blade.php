@@ -68,7 +68,7 @@
                         <div class="mb-2 row">
                             <label for="jcuti" class="col-sm-2 col-form-label text-truncate">Jenis Cuti</label>
                             <div class="col-sm-10">
-                                <select class="form-control" id="jcuti" wire:model="dataset.jcuti" required>
+                                <select class="form-select" id="jcuti" wire:model="dataset.jcuti" required>
                                     <option value="">Pilih Jenis Cuti</option>
                                     @if($master_jenis_cuti)
                                         @foreach($master_jenis_cuti as $key => $value)
@@ -81,7 +81,7 @@
                         <div class="mb-2 row">
                             <label for="ptetap" class="col-sm-2 col-form-label text-truncate">Pj. Penetap</label>
                             <div class="col-sm-10">
-                                <select class="form-control" id="ptetap" wire:model="dataset.ptetap" required>
+                                <select class="form-select" id="ptetap" wire:model="dataset.ptetap" required>
                                     <option value="">Pilih Pejabat Penetap</option>
                                     @if($master_pejabat)
                                         @foreach($master_pejabat as $key => $value)

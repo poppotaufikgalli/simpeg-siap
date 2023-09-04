@@ -963,7 +963,7 @@ $basicLightbox__duration: .4s; // Transition duration
 $basicLightbox__timing: ease; // Transition timing
 
 
-@import 'tom-select/dist/css/tom-select.default.css';
+@import "tom-select/dist/css/tom-select.bootstrap5";
 @import 'dropzone/dist/dropzone.css';
 @import 'hover.css/scss/hover.scss';
 @import 'datatables.net-dt/css/jquery.dataTables.css';

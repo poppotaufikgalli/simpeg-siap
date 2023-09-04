@@ -41,4 +41,12 @@
     @livewire('modal-upload-arsip', ['sid' => $id ?? ''])
     @livewire('modal-upload-arsip-personel', ['sid' => $id ?? ''])
     @include('partials/modalHapus')
+    <script>
+        document.addEventListener('tomSelectActive', function () {
+            document.querySelectorAll('.select').forEach((el)=>{
+                let settings = {};
+                new TomSelect(el,settings);
+            });
+        });
+    </script>
 </div>

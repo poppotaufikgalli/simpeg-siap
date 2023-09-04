@@ -135,6 +135,7 @@ class RiwOrganisasi extends Component
 
     public function tambah()
     {
+        $this->dispatchBrowserEvent('tomSelectActive');
         $this->subPage = 'formulir';
         $this->next = "store";
     }
@@ -149,6 +150,7 @@ class RiwOrganisasi extends Component
     public function edit($value)
     {
         //dd($value);
+        $this->dispatchBrowserEvent('tomSelectActive');
 
         $this->subPage = 'formulir';
         $this->next = "update";

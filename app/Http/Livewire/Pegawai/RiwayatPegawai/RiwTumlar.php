@@ -120,15 +120,19 @@ class RiwTumlar extends Component
                 $query->orWhere('tk_pendidikan_id', '=', $value);
             }
         })->get();
+
+        $this->dispatchBrowserEvent('tomSelectKjur');
     }
 
     public function tambah(){
+        $this->dispatchBrowserEvent('tomSelectActive');
         $this->next = 'store';
         $this->subPage = 'formulir';
         $this->dataset['nip'] = $this->sid;
     }
 
     public function edit($value){
+        $this->dispatchBrowserEvent('tomSelectActive');
         $this->next = 'update';
         $this->subPage = 'formulir';
 

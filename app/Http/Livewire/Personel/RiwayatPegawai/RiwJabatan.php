@@ -55,11 +55,13 @@ class RiwJabatan extends Component
         $this->next = 'store';
         //$this->dataset = [];
         //$this->dataset['nip'] = $this->sid;
+        $this->dispatchBrowserEvent('tomSelectActive');
         $this->subPage = 'formulir';
     }
 
     public function edit($value){
         $this->next = 'update';
+        $this->dispatchBrowserEvent('tomSelectActive');
         $this->subPage = 'formulir';
 
         //dd($value);

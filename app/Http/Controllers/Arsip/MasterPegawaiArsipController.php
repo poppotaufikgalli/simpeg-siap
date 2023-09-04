@@ -75,7 +75,7 @@ class MasterPegawaiArsipController extends Controller
         $filename = $request->filename .".".$extension;
         $path = 'public/'.$request->sid.'/'.$filename;
 
-        $path = Storage::disk('local')->putFileAs('public/'.$request->sid, $file, $filename);
+        $path = Storage::disk('public')->putFileAs($request->sid, $file, $filename);
         $mime = str_replace('/', '-', $file->getMimeType());
 
         return response()->json([

@@ -68,7 +68,7 @@
                         <div class="mb-2 row">
                             <label for="id_jenis_penghargaan" class="col-sm-2 col-form-label text-truncate">Jenis Penghargaan</label>
                             <div class="col-sm-10">
-                                <select class="form-control" id="id_jenis_penghargaan" wire:model="dataset.id_jenis_penghargaan" required>
+                                <select class="form-select" id="id_jenis_penghargaan" wire:model="dataset.id_jenis_penghargaan" required>
                                     <option value="">Pilih Jenis Penghargaan</option>
                                     @if($master_jenis_penghargaan)
                                         @foreach($master_jenis_penghargaan as $key => $value)

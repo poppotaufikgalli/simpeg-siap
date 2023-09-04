@@ -19,7 +19,7 @@
             <div class="mb-2 row">
                 <label for="kstlud" class="col-sm-2 col-form-label">STLUD</label>
                 <div class="col-sm-4">
-                    <select class="form-control" id="kstlud" wire:model="dataset.kstlud">
+                    <select class="form-select" id="kstlud" wire:model="dataset.kstlud">
                         @if($master_stlud)
                             @foreach($master_stlud as $key => $value)
                                 <option value="{{$value->kstlud}}">{{$value->nstlud}}</option>
@@ -35,7 +35,7 @@
             <div class="mb-2 row">
                 <label for="ptetap" class="col-sm-2 col-form-label">Pj. Penetap</label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="ptetap" wire:model="dataset.ptetap">
+                    <select class="form-select" id="ptetap" wire:model="dataset.ptetap">
                         <option value="">Pilih Pejabat Penetap</option> 
                         @if($master_pejabat)
                             @foreach($master_pejabat as $key => $value)
@@ -75,15 +75,11 @@
             <div class="mb-2 row">
                 <label for="kgolru" class="col-sm-2 col-form-label">Pangkat / Gol</label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="kgolru" wire:model="dataset.kgolru" required>
+                    <select class="form-select" id="kgolru" wire:model="dataset.kgolru" required>
                         <option value="">Pilih Pangkat / Gol.</option> 
                         @if($master_pangkat)
                             @foreach($master_pangkat as $key => $value)
-                                @if($id_korps != $value->id_korps)
-                                    <option value="{{$value->id}}" disabled>{{$value->nama_pangkat}} ({{$value->nama}})</option>
-                                @else
-                                    <option value="{{$value->id}}">{{$value->nama_pangkat}} ({{$value->nama}})</option>
-                                @endif
+                                <option value="{{$value->id}}">{{$value->nama_pangkat}} ({{$value->nama}})</option>
                             @endforeach
                         @endif
                     </select>
@@ -92,7 +88,7 @@
             <div class="mb-2 row">
                 <label for="knpang" class="col-sm-2 col-form-label text-truncate">Jenis Kenaikan Pangkat</label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="knpang" wire:model="dataset.knpang" required>
+                    <select class="form-select" id="knpang" wire:model="dataset.knpang" required>
                         <option value="">Pilih Jenis Kenaikan Pangkat</option> 
                         @if($master_naik_pangkat)
                             @foreach($master_naik_pangkat as $key => $value)

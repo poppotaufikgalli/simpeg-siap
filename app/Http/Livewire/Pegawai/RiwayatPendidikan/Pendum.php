@@ -177,6 +177,7 @@ class Pendum extends Component
 
     public function tambah()
     {
+        $this->dispatchBrowserEvent('tomSelectActive');
         $this->subPage = 'formulir';
         $this->next = "store";
         $this->dataset['negara'] = "INDONESIA";
@@ -194,6 +195,7 @@ class Pendum extends Component
     public function edit($value)
     {
         //dd($value);
+        $this->dispatchBrowserEvent('tomSelectActive');
 
         $this->subPage = 'formulir';
         $this->next = "update";

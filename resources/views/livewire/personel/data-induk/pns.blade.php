@@ -19,7 +19,7 @@
             <div class="mb-2 row">
                 <label for="kpej" class="col-sm-2 col-form-label">Pj. Penetap</label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="kpej" wire:model="dataset.kpej" required>
+                    <select class="form-select" id="kpej" wire:model="dataset.kpej" required>
                         <option value="" selected>Pilih Pejabat Penetap</option>
                         @if($master_pejabat)
                             @foreach($master_pejabat as $key => $value)
@@ -48,7 +48,7 @@
             <div class="mb-2 row">
                 <label for="kgolru" class="col-sm-2 col-form-label">Pangkat / Gol</label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="kgolru" wire:model="dataset.kgolru" required>
+                    <select class="form-select" id="kgolru" wire:model="dataset.kgolru" required>
                         <option value="" selected>Pilih Pangkat / Gol</option>
                         @if($master_pangkat)
                             @foreach($master_pangkat as $key => $value)

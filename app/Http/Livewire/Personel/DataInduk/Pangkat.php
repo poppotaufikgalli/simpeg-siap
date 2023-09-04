@@ -35,7 +35,7 @@ class Pangkat extends Component
     public $lblAkhir = "Tidak";
 
     public $master_jenis_arsip = [];
-    public $master_pangkat = [];
+    //public $master_pangkat = [];
 
     public function store()
     {
@@ -105,8 +105,8 @@ class Pangkat extends Component
         $validator = Validator::make($data, [
             'kgolru' => [
                 'required',
-                Rule::exists('master_pangkat', 'id')                     
-                    ->where('id_korps', $this->id_korps),  
+                /*Rule::exists('master_pangkat', 'id')                     
+                    ->where('id_korps', $this->id_korps),  */
                 Rule::unique('master_riwayat_pangkat')->where(function ($query) use($data) {
                     return $query->where('nip', '=', $this->sid)
                         ->where('kgolru', '=', $data['kgolru'])
@@ -125,7 +125,7 @@ class Pangkat extends Component
             'knpang' => 'required',
         ],[
             'kgolru.required' => 'Pangkat/Golongan Ruang tidak boleh kosong',
-            'kgolru.exists' => 'Pangkat/Golongan Ruang tidak Valid/Tidak sesuai Korps',
+            //'kgolru.exists' => 'Pangkat/Golongan Ruang tidak Valid/Tidak sesuai Korps',
             'kgolru.unique' => 'Pangkat/Golongan Ruang Telah Terdaftar',
             'tmtpang.required' => 'TMT Kenaikan Pangkat tidak boleh kosong',
             'tmtpang.unique' => 'TMT Kenaikan Pangkat Telah Terdaftar',
@@ -179,7 +179,7 @@ class Pangkat extends Component
         return view('livewire.personel.data-induk.pangkat', [
             'master_stlud' => MasterStlud::all(),
             'master_pejabat' => MasterPejabat::all(),
-            //'master_pangkat' => MasterPangkat::where('id_jenis_personel', '=', $this->id_jenis_personel)->where('id_korps', '=', $this->id_korps)->get(),
+            'master_pangkat' => MasterPangkat::where('id_jenis_personel', '=', $this->id_jenis_personel)->get(),
             'master_naik_pangkat' => MasterJenisKp::where('status', '=', 1)->get(),
             //'master_jenis_arsip' => $master_jenis_arsip,
         ]);
@@ -199,10 +199,10 @@ class Pangkat extends Component
             $this->dataset['nip'] = (string)$dataset->nip;
             $this->getMasterArsip('pangkat'.$dataset->kgolru, "Pangkat ".$dataset->npangkat->nama);
 
-            $this->master_pangkat = MasterPangkat::where([
+            /*$this->master_pangkat = MasterPangkat::where([
                 'id_jenis_personel' =>  $this->id_jenis_personel,
                 'id_korps' => $this->id_korps
-            ])->orWhere('id', '=', $dataset->kgolru)->get();
+            ])->orWhere('id', '=', $dataset->kgolru)->get();*/
 
             $this->kgolru = $dataset->kgolru;
             $this->tmtpang = $dataset->tmtpang;
@@ -216,7 +216,7 @@ class Pangkat extends Component
             $this->next = 'store';
             $this->dataset['nip'] = $this->sid;
 
-            $this->master_pangkat = MasterPangkat::where('id_jenis_personel', '=', $this->id_jenis_personel)->where('id_korps', '=', $this->id_korps)->get();
+            //$this->master_pangkat = MasterPangkat::where('id_jenis_personel', '=', $this->id_jenis_personel)->where('id_korps', '=', $this->id_korps)->get();
         }
     }
 }

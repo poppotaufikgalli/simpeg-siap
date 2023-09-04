@@ -76,7 +76,7 @@
                             <div class="mb-2 row">
                                 <label for="ptetap" class="col-sm-2 col-form-label">Pj. Penetap</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" id="ptetap" wire:model="dataset.ptetap" required>
+                                    <select class="form-select" id="ptetap" wire:model="dataset.ptetap" required>
                                         <option value="">Pilih Pejabat Penetap</option> 
                                         @if($master_pejabat)
                                             @foreach($master_pejabat as $key => $value)
@@ -101,7 +101,7 @@
                             <div class="mb-2 row">
                                 <label for="ktpu" class="col-sm-2 col-form-label text-truncate">Tingkat Pendidikan</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" id="ktpu" wire:model="dataset.ktpu" wire:change="changeJur($event.target.value)" required>
+                                    <select class="form-select" id="ktpu" wire:model="dataset.ktpu" wire:change="changeJur($event.target.value)" required>
                                         <option value="">Pilih Tingkat Pendidikan</option>
                                         @if($master_tingkat_pendidikan)
                                             @foreach($master_tingkat_pendidikan as $key => $value)
@@ -114,7 +114,7 @@
                             <div class="mb-2 row">
                                 <label for="kjur" class="col-sm-2 col-form-label text-truncate">Jurusan Pendidikan</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" id="kjur" wire:model="dataset.kjur" required>
+                                    <select class="form-select" id="kjur" wire:model="dataset.kjur" required>
                                         <option value="">Pilih Jurusan Pendidikan</option>
                                         @if($master_pendidikan)
                                             @foreach($master_pendidikan as $key => $value)

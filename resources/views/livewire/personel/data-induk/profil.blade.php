@@ -65,7 +65,7 @@
                     <div class="mb-2 row">
                         <label for="kjkel" class="col-sm-2 col-form-label">Jenis Kelamin</label>
                         <div class="col-sm-4">
-                            <select class="form-control" id="kjkel" wire:model="dataset.kjkel">
+                            <select class="form-select" id="kjkel" wire:model="dataset.kjkel">
                                 <option value="" selected>Pilih Jenis Kelamin</option>
                                 <option value="1">Laki-laki</option>
                                 <option value="2">Perempuan</option>
@@ -73,7 +73,7 @@
                         </div>
                         <label for="kagama" class="col-sm-2 col-form-label">Agama</label>
                         <div class="col-sm-4">
-                            <select class="form-control" id="kagama" wire:model="dataset.kagama">
+                            <select class="form-select" id="kagama" wire:model="dataset.kagama">
                                 <option value="" selected>Pilih Agama</option>
                                 @if($master_agama)
                                     @foreach($master_agama as $key => $value)
@@ -86,7 +86,7 @@
                     <div class="mb-2 row">
                         <label for="kgoldar" class="col-sm-2 col-form-label d-none">Gol. Darah</label>
                         <div class="col-sm-4 d-none">
-                            <select class="form-control" id="kgoldar" wire:model="dataset.kgoldar">
+                            <select class="form-select" id="kgoldar" wire:model="dataset.kgoldar">
                                 <option value="" selected>Pilih Golongan Darah</option>
                                 @if($master_goldar)
                                     @foreach($master_goldar as $key => $value)
@@ -97,7 +97,7 @@
                         </div>
                         <label for="kskawin" class="col-sm-2 col-form-label">Perkawinan</label>
                         <div class="col-sm-4">
-                            <select class="form-control" id="kskawin" wire:model="dataset.kskawin">
+                            <select class="form-select" id="kskawin" wire:model="dataset.kskawin">
                                 <option value="" selected>Pilih Status Perkawinan</option>
                                 @if($master_kawin)
                                     @foreach($master_kawin as $key => $value)
@@ -151,7 +151,7 @@
                         </div>
                         <label for="alkoprop" class="col-sm-2 col-form-label">Provinsi</label>
                         <div class="col-sm-10">
-                            <select class="form-control" id="alkoprop" wire:model="dataset.alkoprop" wire:change="changeProv($event.target.value)">
+                            <select class="form-select" id="alkoprop" wire:model="dataset.alkoprop" wire:change="changeProv($event.target.value)">
                                 <option value="0" selected>Pilih Provinsi</option>
                                 @if($master_provinsi)
                                     @foreach($master_provinsi as $key => $value)
@@ -162,7 +162,7 @@
                         </div>
                         <label for="alkokab" class="col-sm-2 col-form-label">Kab/ Kota</label>
                         <div class="col-sm-10">
-                            <select class="form-control" id="alkokab" wire:model="dataset.alkokab" wire:change="changeKab($event.target.value)">
+                            <select class="form-select" id="alkokab" wire:model="dataset.alkokab" wire:change="changeKab($event.target.value)">
                                 <option value="" selected>Pilih Kabupaten/Kota</option>
                                 @if($master_kab_kota)
                                     @foreach($master_kab_kota as $key => $value)
@@ -173,7 +173,7 @@
                         </div>
                         <label for="alkokec" class="col-sm-2 col-form-label">Kecamatan</label>
                         <div class="col-sm-10">
-                            <select class="form-control" id="alkokec" wire:model="dataset.alkokec" wire:change="changeKec($event.target.value)">
+                            <select class="form-select" id="alkokec" wire:model="dataset.alkokec" wire:change="changeKec($event.target.value)">
                                 <option value="" selected>Pilih Kecamatan</option>
                                 @if($master_kec)
                                     @foreach($master_kec as $key => $value)
@@ -184,7 +184,7 @@
                         </div>
                         <label for="alkodes" class="col-sm-2 col-form-label text-truncate">Kelurahan/ Desa</label>
                         <div class="col-sm-10">
-                            <select class="form-control" id="alkodes" wire:model="dataset.alkodes">
+                            <select class="form-select" id="alkodes" wire:model="dataset.alkodes">
                                 <option value="" selected>Pilih Desa/Kelurahan</option>
                                 @if($master_kel)
                                     @foreach($master_kel as $key => $value)
@@ -209,21 +209,8 @@
                     <div class="mb-2 row">
                         <label for="korps" class="col-sm-2 col-form-label">Korps</label>
                         <div class="col-sm-10">
-                            <select class="form-control" id="id_korps" wire:model="dataset.id_korps" wire:change="changeKorps($event.target.value)">
+                            <select class="form-select" id="id_korps" wire:model="dataset.id_korps">
                                 <option value="" selected>Pilih Korps</option>
-                                @if($master_korps)
-                                    @foreach($master_korps as $key => $value)
-                                        <option value="{{$value->id}}">{{$value->nama}}</option>
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mb-2 row">
-                        <label for="kejuruan" class="col-sm-2 col-form-label">Kejuruan</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" id="id_kejuruan_korps" wire:model="dataset.id_kejuruan_korps">
-                                <option value="" selected>Pilih Kejuruan Korps</option>
                                 @if($master_kejuruan_korps)
                                     @foreach($master_kejuruan_korps as $key => $value)
                                         <option value="{{$value->id}}">{{$value->nama}} ({{$value->singkatan}})</option>
@@ -235,7 +222,7 @@
                     <div class="mb-2 row">
                         <label for="kduduk" class="col-sm-2 col-form-label">Kedudukan Kepegawaian</label>
                         <div class="col-sm-10">
-                            <select class="form-control" id="kduduk" wire:model="dataset.kduduk">
+                            <select class="form-select" id="kduduk" wire:model="dataset.kduduk">
                                 <option value="" selected>Pilih Kedudukan Kepegawaian</option>
                                 @if($master_kedudukan_pegawai)
                                     @foreach($master_kedudukan_pegawai as $key => $value)
@@ -271,7 +258,7 @@
                         <div class="col-sm-4">
                             <input type="text" class="form-control" id="naskes" wire:model="dataset.naskes">
                         </div>
-                        <label for="ntaspen" class="col-sm-2 col-form-label">No. Taspen</label>
+                        <label for="ntaspen" class="col-sm-2 col-form-label">No. Asabri</label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control" id="ntaspen" wire:model="dataset.ntaspen">
                         </div>
@@ -279,7 +266,7 @@
                     <div class="mb-2 row gy-2 d-none">
                         <label for="stat_kpe" class="col-sm-2 col-form-label">Status KPE</label>
                         <div class="col-sm-4">
-                            <select class="form-control" id="stat_kpe" wire:model="dataset.stat_kpe">
+                            <select class="form-select" id="stat_kpe" wire:model="dataset.stat_kpe">
                                 <option value="" selected>Pilih Status KPE</option>
                                 @if($master_kpe)
                                     @foreach($master_kpe as $key => $value)
@@ -335,6 +322,16 @@
                     profile_picture.src = URL.createObjectURL(file)
                 }
             })
+
+            /*document.querySelectorAll('.select').forEach((el)=>{
+                let settings = {};
+                new TomSelect(el,settings);
+            });*/
+            /*document.querySelectorAll('select.form-select').forEach((el) => {
+                console.log(el)
+                let settings = {};
+                new TomSelect(el,settings);
+            })*/
         });
     </script>
 </div>

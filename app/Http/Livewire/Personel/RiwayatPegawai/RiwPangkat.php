@@ -59,6 +59,7 @@ class RiwPangkat extends Component
     public function tambah(){
         //$this->next = 'store';
         $this->subPage = 'formulir';
+        $this->dispatchBrowserEvent('tomSelectActive');
     }
 
     public function edit($value){
@@ -68,6 +69,7 @@ class RiwPangkat extends Component
         $this->tmtpang = $value['tmtpang'];
         $this->kgolru = $value['kgolru'];
         $this->knpang = $value['knpang'];
+        $this->dispatchBrowserEvent('tomSelectActive');
     }
 
     public function delete($value){
