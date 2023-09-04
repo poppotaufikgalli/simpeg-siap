@@ -64,9 +64,7 @@
             </div>
         </div>
         <div class="btn-group mb-2">
-            <button class="btn btn-secondary">CSV</button>
             <a class="btn btn-secondary" target="_blank" href="{{route('personel.show', ['id_jenis_personel' => $id_jenis_personel, 'tipe' => 'nominatif', 'id' => 0])}}">PDF</a>
-            <button id="btnPrint" class="btn btn-secondary">Print</button>
         </div>
         <div class="table-responsive">
             <table class="table table-sm display" id="tbListData" width="100%" cellspacing="0">

@@ -106,7 +106,9 @@ class MasterPersonelController extends Controller
         }elseif($tipe='nominatif'){
             $data['id_jenis_personel'] = $id_jenis_personel;
             $data['list'] = $masterPersonel->where('id_jenis_personel', '=', $id_jenis_personel)->get();
-            return view('admin/personel/nominatif', $data);
+            //return view('admin/personel/nominatif', $data);
+            $pdf = Pdf::loadView('admin/personel/nominatif', $data);
+            return $pdf->stream('drh-'.$id.'.pdf');    
         }
         
     }
