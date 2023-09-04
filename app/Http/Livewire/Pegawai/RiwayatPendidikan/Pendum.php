@@ -161,9 +161,10 @@ class Pendum extends Component
         $sel = explode(',', $dt->ref_simpeg);
         $this->master_pendidikan = MasterPendidikan::where('status', '=', 1)->where(function($query) use($sel){
             foreach ($sel as $key => $value) {
-                $query->orWhere('tk_pendidikan_id', '=', $value);
+                $query->orWhere('tk_pendidikan_id', '=', intval($value));
             }
         })->get();
+        dd($this->master_pendidikan);
     }
 
     public function changeStts($selId)
