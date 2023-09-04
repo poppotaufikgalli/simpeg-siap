@@ -163,7 +163,7 @@ class Pendum extends Component
             foreach ($sel as $key => $value) {
                 $query->orWhere('tk_pendidikan_id', '=', intval($value));
             }
-        })->get();
+        })->orderBy('nama')->get();
     }
 
     public function changeStts($selId)
