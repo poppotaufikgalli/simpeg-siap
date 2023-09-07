@@ -9,7 +9,7 @@
 			<div class="card-header">
 				<div class="d-flex gap-2 justify-content-between align-items-center">
 					<div>
-						<a href="{{route('personel', ['id_jenis_personel' => $id_jenis_personel])}}" class="btn btn-secondary btn-sm">
+						<a href="{{route('arsip_elektronik', ['id_jenis_personel' => $id_jenis_personel])}}" class="btn btn-secondary btn-sm">
 							<i class="bi bi-chevron-left"></i>
 						</a>	
 						<span>{{$PageTitle ?? $title}}</span>
@@ -19,26 +19,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="card-body mb-3">
-				@php($mid = str_replace('/','-', $id))
-				@php($activePage = request()->route('page'))
-				<ul class="nav nav-tabs">
-				  	<li class="nav-item">
-				    	<a class="nav-link {{$activePage == 'data-induk' ? 'active' : ''}}" aria-current="page" href="{{route('personel.edit', ['id' => $mid, 'id_jenis_personel' => $id_jenis_personel, 'page' => 'data-induk'])}}">Data Induk</a>
-				  	</li>
-				  	<li class="nav-item">
-				    	<a class="nav-link {{$activePage == 'riwayat-pegawai' ? 'active' : ''}}" href="{{route('personel.edit', ['id' => $mid, 'id_jenis_personel' => $id_jenis_personel, 'id_korps' => $id_korps, 'page' => 'riwayat-pegawai'])}}">Riwayat Pegawai</a>
-				  	</li>
-				  	<li class="nav-item">
-				    	<a class="nav-link {{$activePage == 'riwayat-pendidikan' ? 'active' : ''}}" href="{{route('personel.edit', ['id' => $mid, 'id_jenis_personel' => $id_jenis_personel, 'page' => 'riwayat-pendidikan'])}}">Riwayat Pendidikan</a>
-				  	</li>
-				  	<li class="nav-item">
-				    	<a class="nav-link {{$activePage == 'data-keluarga' ? 'active' : ''}}" href="{{route('personel.edit', ['id' => $mid, 'id_jenis_personel' => $id_jenis_personel, 'page' => 'data-keluarga'])}}">Data Keluarga</a>
-				  	</li>
-				</ul>
-				@php($selRoute = 'admin.personel.'.$page.'.index')
-				@include($selRoute)
-			</div>
+			@php($mylive = str_replace('_','-',$route) . '.formulir')
+			@livewire($mylive, ['method' => $method, 'next' => $next, 'sid' => $id ?? ''])
 		</div>
 	</div>
 @endsection

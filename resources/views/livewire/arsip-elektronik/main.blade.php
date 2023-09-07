@@ -34,7 +34,7 @@
                                 </td>
                                 <td align="center">
                                     @php($nip = str_replace('/', '-', $value->nip))
-                                    <a href="{{route('arsip_elektronik.show', ['id' => $nip])}}" class="btn btn-xs btn-info text-white"><i class="bi bi-eye"></i></a>
+                                    <a href="{{route('arsip_elektronik.show', ['id' => $nip, 'id_jenis_personel' => $id_jenis_personel])}}" class="btn btn-xs btn-info text-white"><i class="bi bi-eye"></i></a>
                                 </td>   
                             </tr>
                       @endforeach

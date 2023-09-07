@@ -190,7 +190,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('/create', [MasterPegawaiArsipController::class, 'create'])->name('arsip_elektronik.create');
             Route::post('/upload', [MasterPegawaiArsipController::class, 'upload'])->name('arsip_elektronik.upload');
             Route::post('/store', [MasterPegawaiArsipController::class, 'store'])->name('arsip_elektronik.store');
-            Route::get('/show/{id}', [MasterPegawaiArsipController::class, 'show'])->name('arsip_elektronik.show');
+            Route::get('{id_jenis_personel}/show/{id}', [MasterPegawaiArsipController::class, 'show'])->name('arsip_elektronik.show');
             Route::get('/edit/{id}', [MasterPegawaiArsipController::class, 'edit'])->name('arsip_elektronik.edit');
             Route::post('/destroy', [MasterPegawaiArsipController::class, 'destroy'])->name('arsip_elektronik.destroy');
         });

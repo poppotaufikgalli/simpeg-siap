@@ -154,15 +154,16 @@ class MasterPegawaiArsipController extends Controller
      * @param  \App\Models\MasterPegawaiArsip  $masterPegawaiArsip
      * @return \Illuminate\Http\Response
      */
-    public function show(MasterPegawaiArsip $masterPegawaiArsip, $id)
+    public function show(MasterPegawaiArsip $masterPegawaiArsip, $id_jenis_personel, $id)
     {
         $nip = str_replace('-','/', $id);
-        return view('referensi/formulir', [
+        return view('admin/arsip_elektronik/formulir', [
             'PageTitle' => "Edit Arsip Elektronik",
             'route' => 'arsip_elektronik',
             'next' => 'update',
             'method' => 'edit',
             'id' => $nip,
+            'id_jenis_personel' => $id_jenis_personel,
         ]);
     }
 
