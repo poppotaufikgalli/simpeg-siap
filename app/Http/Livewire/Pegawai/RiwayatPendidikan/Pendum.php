@@ -45,7 +45,7 @@ class Pendum extends Component
            return $value === "" ? NULL : $value;
         }, $this->dataset);
 
-        dd($data);
+        //dd($data);
 
         $validator = Validator::make($data, [
             'ktpu' => [
