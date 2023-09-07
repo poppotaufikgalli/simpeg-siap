@@ -29,7 +29,7 @@ class Pendum extends Component
 
     public $master_pendidikan = [];
 
-    protected $listeners = ["tambah", "tutup", "edit", "delete", "callModal"];
+    protected $listeners = ["tambah", "tutup", "edit", "delete", "callModal", "changeJur"];
 
     public function callModal($idx, $ktpu, $kjur){
         $hash = preg_replace("![^a-z0-9]+!i", "-", strtolower($ktpu));
@@ -44,6 +44,8 @@ class Pendum extends Component
         $data = array_map(function($value) {
            return $value === "" ? NULL : $value;
         }, $this->dataset);
+
+        dd($data);
 
         $validator = Validator::make($data, [
             'ktpu' => [
@@ -157,6 +159,7 @@ class Pendum extends Component
 
     public function changeJur($selId)
     {
+        //dd($selId);
         $dt = MasterTingkatPendidikan::find($selId);
         $sel = explode(',', $dt->ref_simpeg);
         $this->master_pendidikan = MasterPendidikan::where('status', '=', 1)->where(function($query) use($sel){
@@ -164,6 +167,8 @@ class Pendum extends Component
                 $query->orWhere('tk_pendidikan_id', '=', intval($value));
             }
         })->orderBy('nama')->get();
+
+        $this->dispatchBrowserEvent('listOfJurusan', $this->master_pendidikan);
     }
 
     public function changeStts($selId)

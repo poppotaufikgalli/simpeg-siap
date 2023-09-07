@@ -185,7 +185,7 @@ return [
         /*
          * Package Service Providers...
          */
-        Shetabit\Visitor\Provider\VisitorServiceProvider::class,
+        //
         /*
          * Application Service Providers...
          */

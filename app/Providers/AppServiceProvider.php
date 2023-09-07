@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
  
-        View::composer('*', function($view)
+        /*View::composer('*', function($view)
         {
             $ctl = new Controller;
             $navbars = $ctl->GetMenu();
@@ -43,6 +43,6 @@ class AppServiceProvider extends ServiceProvider
             $view->with('links', $links);
             $view->with('kontens', $kontens);
             $view->with('avisit', $visit);
-        });
+        });*/
     }
 }

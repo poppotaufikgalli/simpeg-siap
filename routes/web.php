@@ -185,6 +185,28 @@ Route::group(['middleware' => ['auth']], function() {
             });
         });
 
+        Route::prefix('arsip_elektronik')->group(function () {
+            Route::get('{id_jenis_personel}/', [MasterPegawaiArsipController::class, 'index'])->name('arsip_elektronik');
+            Route::get('/create', [MasterPegawaiArsipController::class, 'create'])->name('arsip_elektronik.create');
+            Route::post('/upload', [MasterPegawaiArsipController::class, 'upload'])->name('arsip_elektronik.upload');
+            Route::post('/store', [MasterPegawaiArsipController::class, 'store'])->name('arsip_elektronik.store');
+            Route::get('/show/{id}', [MasterPegawaiArsipController::class, 'show'])->name('arsip_elektronik.show');
+            Route::get('/edit/{id}', [MasterPegawaiArsipController::class, 'edit'])->name('arsip_elektronik.edit');
+            Route::post('/destroy', [MasterPegawaiArsipController::class, 'destroy'])->name('arsip_elektronik.destroy');
+        });
+
+        /*Route::prefix('arsip_elektronik')->group(function () {
+            Route::prefix('{id_jenis_personel}')->group(function () {
+                Route::get('/', [MasterPegawaiArsipController::class, 'index'])->name('arsip_elektronik');
+                Route::get('/create', [MasterPegawaiArsipController::class, 'create'])->name('arsip_elektronik.create');
+                Route::post('/upload', [MasterPegawaiArsipController::class, 'upload'])->name('arsip_elektronik.upload');
+                Route::post('/store', [MasterPegawaiArsipController::class, 'store'])->name('arsip_elektronik.store');
+                Route::get('/show/{id}', [MasterPegawaiArsipController::class, 'show'])->name('arsip_elektronik.show');
+                Route::get('/edit/{id}', [MasterPegawaiArsipController::class, 'edit'])->name('arsip_elektronik.edit');
+                Route::post('/destroy', [MasterPegawaiArsipController::class, 'destroy'])->name('arsip_elektronik.destroy');
+            });
+        });*/
+
         Route::prefix('jenis_personel')->group(function () {
             Route::get('/', [MasterJenisPersonelController::class, 'index'])->name('jenis_personel');
             Route::get('/create', [MasterJenisPersonelController::class, 'create'])->name('jenis_personel.create');
@@ -455,16 +477,6 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('/show/{id}', [MasterGroupArsipController::class, 'show'])->name('group_arsip.show');
             Route::get('/edit/{id}', [MasterGroupArsipController::class, 'edit'])->name('group_arsip.edit');
             Route::post('/destroy', [MasterGroupArsipController::class, 'destroy'])->name('group_arsip.destroy');
-        });
-
-        Route::prefix('arsip_elektronik')->group(function () {
-            Route::get('/', [MasterPegawaiArsipController::class, 'index'])->name('arsip_elektronik');
-            Route::get('/create', [MasterPegawaiArsipController::class, 'create'])->name('arsip_elektronik.create');
-            Route::post('/upload', [MasterPegawaiArsipController::class, 'upload'])->name('arsip_elektronik.upload');
-            Route::post('/store', [MasterPegawaiArsipController::class, 'store'])->name('arsip_elektronik.store');
-            Route::get('/show/{id}', [MasterPegawaiArsipController::class, 'show'])->name('arsip_elektronik.show');
-            Route::get('/edit/{id}', [MasterPegawaiArsipController::class, 'edit'])->name('arsip_elektronik.edit');
-            Route::post('/destroy', [MasterPegawaiArsipController::class, 'destroy'])->name('arsip_elektronik.destroy');
         });
 
         /*Route::prefix('tipedokhukum')->group(function () {

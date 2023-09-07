@@ -20,11 +20,12 @@ class MasterPegawaiArsipController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id_jenis_personel)
     {
-        return view('referensi/index', [
+        return view('admin/arsip_elektronik/index', [
             'PageTitle' => 'Arsip Elektronik',
             'route' => 'arsip_elektronik',
+            'id_jenis_personel' => $id_jenis_personel
         ]);
     }
 

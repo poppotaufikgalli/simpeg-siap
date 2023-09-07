@@ -62,6 +62,15 @@
 					  	<div class="progress-bar progress-bar-striped" style="width: {{$width * 100}}%"> {{number_format($width * 100, 2)}} % </div>
 						</div>
 
+						<!--<div class="progress-stacked mt-3">
+						  <div class="progress" role="progressbar" aria-label="Segment one" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
+						    <div class="progress-bar">PNS</div>
+						  </div>
+						  <div class="progress" role="progressbar" aria-label="Segment two" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
+						    <div class="progress-bar bg-success">Militer</div>
+						  </div>
+						</div>-->
+
 						<div class="d-flex justify-content-between align-items-center gap-3 mt-3">
 							<div class="shadow card card-body bg-primary text-light h3 text-center">Jumlah Data : {{$arsip['ref']}}</div>
 							<div class="shadow card card-body bg-success text-light h3 text-center">Jumlah Arsip : {{$arsip['jml']}}</div>

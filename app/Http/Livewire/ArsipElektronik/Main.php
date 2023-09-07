@@ -14,8 +14,7 @@ class Main extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public $nip;
-    public $namapeg;
+    public $id_jenis_personel;
     
     public function render()
     {
@@ -28,17 +27,7 @@ class Main extends Component
                 DB::raw('(select COUNT(c.filename) FROM varsipelektronik c WHERE c.nip = vpersonel.nip) as jml2'),
                 DB::raw('(select COUNT(d.jnsdok) FROM master_jenis_arsip d) as jml3'), 
                 DB::raw('(select COUNT(e.jnsdok) FROM master_pegawai_arsip e JOIN master_jenis_arsip f on (e.jnsdok=f.jnsdok) WHERE e.nip = vpersonel.nip) as jml4')
-            )->where(function($query){
-                if($this->nip != ""){
-                $query->where('vpersonel.nip', 'like', '%'.$this->nip.'%');
-                }
-
-                if($this->namapeg != ""){
-                    $query->where('vpersonel.namapeg', 'like', '%'.$this->namapeg.'%');
-                }    
-            })->get();
-            //})->toSql();
-        //dd($retData0);
+            )->where('id_jenis_personel', '=', $this->id_jenis_personel)->get();
         
         $this->resetPage();
 

@@ -11,23 +11,7 @@
         
         @livewire('side-jns-personel')
 
-        @if(in_array('unit_kerja', Session::get('menu')))
-        <li class="nav-item {{$selRoute == 'unit_kerja' ? 'active' : ''}}">
-			<a class="nav-link py-2" href="{{route('unit_kerja')}}">
-				<i class="bi bi-people-fill"></i>
-				<span>Satuan Kerja</span>
-			</a>
-		</li>
-		@endif
-        
-        @if(in_array('arsip_elektronik', Session::get('dokakses')))
-		<li class="nav-item {{$selRoute == 'arsip_elektronik' ? 'active' : ''}}">
-			<a class="nav-link" href="{{route('arsip_elektronik')}}">
-				<i class="bi bi-columns-gap"></i>
-				<span>Arsip Elektronik</span>
-			</a>
-		</li>
-		@endif
+		@livewire('side-jns-arsip-elektronik')
 		
 		@if(in_array('group', Session::get('menu')) || in_array('user', Session::get('menu')))
 			<!-- Divider -->
@@ -62,6 +46,15 @@
 		<div class="sidebar-heading">
 			Data Referensi
 		</div>
+
+		@if(in_array('unit_kerja', Session::get('menu')))
+        <li class="nav-item {{$selRoute == 'unit_kerja' ? 'active' : ''}}">
+			<a class="nav-link py-2" href="{{route('unit_kerja')}}">
+				<i class="bi bi-people-fill"></i>
+				<span>Satuan Kerja</span>
+			</a>
+		</li>
+		@endif
 		
 		@if(in_array('jenis_personel', Session::get('menu')))
 		<li class="nav-item {{$selRoute == 'jenis_personel' ? 'active' : ''}}">

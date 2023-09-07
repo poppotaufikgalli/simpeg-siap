@@ -42,6 +42,33 @@
             </table>
         </div>
     </div>
+    <!--<div class="card card-body">
+        <x-tom-select
+              id="testUser"
+              name="testUser"
+              class="form-control"
+              wire:model="testUser"
+              :selected-items="[1]"
+              :options="[
+                  [
+                      'id' => 1,
+                      'title' => 'John Doe',
+                      'subtitle' => 'hello@test.test'
+                  ],
+                  [
+                      'id' => 2,
+                      'title' => 'Winter Doe',
+                      'subtitle' => 'winter@test.test'
+                  ],
+                  [
+                      'id' => 3,
+                      'title' => 'Summer Doe',
+                      'subtitle' => 'summer@test.test'
+                  ]
+              ]"
+              placeholder="Pick a user"
+          />
+    </div>-->
     <div id="formulir" class="{{$subPage == 'formulir' ? 'd-block' : 'd-none'}}">
         <div class="card">
             <div class="card-header">
@@ -94,38 +121,38 @@
                         <div class="mb-2 row">
                             <label for="nsek" class="col-sm-2 col-form-label text-truncate">Nama Sekolah</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="nsek" wire:model="dataset.nsek">
+                                <input type="text" class="form-control" id="nsek" wire:model.lazy="dataset.nsek">
                             </div>
                         </div>
                         <div class="mb-2 row">
                             <label for="tempat" class="col-sm-2 col-form-label text-truncate">Tempat</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="tempat" wire:model="dataset.tempat">
+                                <input type="text" class="form-control" id="tempat" wire:model.lazy="dataset.tempat">
                             </div>
                         </div>
                         <div class="mb-2 row">
                             <label for="negara" class="col-sm-2 col-form-label text-truncate">Negara</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="negara" wire:model="dataset.negara">
+                                <input type="text" class="form-control" id="negara" wire:model.lazy="dataset.negara">
                             </div>
                         </div>
                         <div class="mb-2 row">
                             <label for="nkepsek" class="col-sm-2 col-form-label text-truncate">Nama Kepsek / Direktur / Rektor</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="nkepsek" wire:model="dataset.nkepsek">
+                                <input type="text" class="form-control" id="nkepsek" wire:model.lazy="dataset.nkepsek">
                             </div>
                         </div>
                         <hr>
                         <div class="mb-2 row">
                             <label for="nsttb" class="col-sm-2 col-form-label text-truncate">No STTB</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="nsttb" wire:model="dataset.nsttb">
+                                <input type="text" class="form-control" id="nsttb" wire:model.lazy="dataset.nsttb">
                             </div>
                         </div>
                         <div class="mb-2 row">
                             <label for="tsttb" class="col-sm-2 col-form-label text-truncate">Tgl STTB</label>
                             <div class="col-sm-4">
-                                <input type="date" class="form-control" id="tsttb" wire:model="dataset.tsttb">
+                                <input type="date" class="form-control" id="tsttb" wire:model.lazy="dataset.tsttb">
                             </div>
                         </div>
                         <div class="mb-2 row">
@@ -147,4 +174,36 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('livewire:load', function () {
+            var tsel = [];
+            document.addEventListener('tomSelectActive', function(e){
+                document.querySelectorAll('select.form-select').forEach((el) => {
+                    //let settings = {};
+                    //tsel[el.id] = new TomSelect(el,settings);
+                    //new TomSelect(el,settings);
+                })    
+            })
+            
+            //document.addEventListener('listOfJurusan', function(e){
+                //var kjur = document.getElementById('kjur');
+                //var select = kjur.tomselect;
+                //kjur.addOptions(e.detail)
+                /*tsel.kjur.destroy();
+                tsel.kjur = new TomSelect('#kjur', {
+                    //maxItems: null,
+                    valueField: 'id',
+                    labelField: 'title',
+                    searchField: 'title',
+                    options: e.detail,
+                    create: false
+                });*/
+                //tsel.kjur.addOptions(e.detail);
+                //console.log(tsel)
+                //tsel.kjur.sync()
+                //tsel.kjur.setValue(0)
+                //console.log(e)
+            //})
+        })
+    </script>
 </div>

@@ -15,12 +15,8 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
-        "@ckeditor/ckeditor5-alignment": "^35.4.0",
-        "@ckeditor/ckeditor5-build-classic": "^35.4.0",
-        "@ckeditor/ckeditor5-font": "^37.0.1",
-        "@ckeditor/ckeditor5-horizontal-line": "^37.0.1",
-        "@ckeditor/ckeditor5-html-embed": "^36.0.1",
         "@popperjs/core": "^2.11.6",
+        "alpinejs": "^3.13.0",
         "bootstrap": "^5.2.2",
         "bootstrap-icons": "^1.10.2",
         "ckeditor5": "^35.4.0",
