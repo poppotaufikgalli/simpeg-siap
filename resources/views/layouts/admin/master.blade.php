@@ -20,7 +20,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-2">
-						<span>Copyright &copy; SIAP Koarmabar@2023</span>
+						<span>Copyright &copy; Simpers Koarmada I @2023</span>
 					</div>
 				</div>
 			</footer>
