@@ -17,4 +17,5 @@
 			@livewire('personel.main', ['id_jenis_personel' => $id_jenis_personel ?? 0])
 		</div>
 	</div>
+	@include('partials/modalHapus')
 @endsection

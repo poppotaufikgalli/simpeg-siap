@@ -107,7 +107,8 @@
                                 <td>
                                     <a target="_blank" href="{{route('personel.show', ['id_jenis_personel' => $id_jenis_personel, 'tipe' => 'drh', 'id' => str_replace('/','-',$value->nip)])}}" class="btn btn-xs btn-info text-white"><i class="bi bi-eye"></i></a>
                                     <a href="{{route('personel.edit', ['id_jenis_personel' => $id_jenis_personel, 'id' => str_replace('/','-',$value->nip), 'page' => 'data-induk'])}}" class="btn btn-xs btn-primary"><i class="bi bi-pencil"></i></a>
-                                    <button class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal" data-bs-target1="Akses" data-bs-id="{{$value->id}}" data-bs-recipient="{{$value->nama}}"><i class="bi bi-trash"></i></button>
+                                    
+                                    <button class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal" data-bs-target1="Data Personel" data-bs-id="{{$value->nip}}" data-bs-recipient="{{$value->nama}}" data-bs-router="personel/{{$id_jenis_personel}}"><i class="bi bi-trash"></i></button>
                                 </td>
                             </tr>
                       @endforeach

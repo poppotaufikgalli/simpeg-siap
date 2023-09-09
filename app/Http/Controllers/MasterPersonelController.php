@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pegawai;
 use App\Models\MasterPersonel;
 use App\Models\MasterJenisPersonel;
 use App\Models\MasterRiwayatPendum;
@@ -161,9 +162,13 @@ class MasterPersonelController extends Controller
      * @param  \App\Models\MasterPersonel  $masterPersonel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MasterPersonel $masterPersonel)
+    public function destroy(MasterPersonel $masterPersonel, Request $request)
     {
-        //
+        $id = $request->id;
+        $del = Pegawai::where('nip', '=', $id)->first();
+        $del->delete();
+
+        return redirect()->back()->withSuccess('Berhasil Menghapus Data Personel');
     }
 
     public function uploadArsip(Request $request)
