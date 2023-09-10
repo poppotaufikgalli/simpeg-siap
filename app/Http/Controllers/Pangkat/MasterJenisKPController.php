@@ -50,10 +50,10 @@ class MasterJenisKPController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\MasterJenisKp  $masterJenisKP
+     * @param  \App\Models\MasterJenisKp  $masterJenisKp
      * @return \Illuminate\Http\Response
      */
-    public function show(MasterJenisKp $masterJenisKP, $id)
+    public function show(MasterJenisKp $masterJenisKp, $id)
     {
         return view('referensi/formulir', [
             'PageTitle' => "Lihat Data Jenis Kenaikan Pangkat",
@@ -67,10 +67,10 @@ class MasterJenisKPController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\MasterJenisKp  $masterJenisKP
+     * @param  \App\Models\MasterJenisKp  $masterJenisKp
      * @return \Illuminate\Http\Response
      */
-    public function edit(MasterJenisKp $masterJenisKP, $id)
+    public function edit(MasterJenisKp $masterJenisKp, $id)
     {
         return view('referensi/formulir', [
             'PageTitle' => "Edit Data Jenis Kenaikan Pangkat",
@@ -85,10 +85,10 @@ class MasterJenisKPController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\MasterJenisKp  $masterJenisKP
+     * @param  \App\Models\MasterJenisKp  $masterJenisKp
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterJenisKp $masterJenisKP)
+    public function update(Request $request, MasterJenisKp $masterJenisKp)
     {
         //
     }
@@ -96,13 +96,13 @@ class MasterJenisKPController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\MasterJenisKP  $masterJenisKP
+     * @param  \App\Models\MasterJenisKP  $masterJenisKp
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MasterJenisKp $masterJenisKP, Request $request)
+    public function destroy(MasterJenisKp $masterJenisKp, Request $request)
     {
         $id = $request->id;
-        $del = $masterJenisKP::find($id);
+        $del = $masterJenisKp::find($id);
         $del->delete();
 
         return redirect('/jenis_kp')->withSuccess('Berhasil Menghapus Data');

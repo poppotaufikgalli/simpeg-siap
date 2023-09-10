@@ -78,7 +78,7 @@ class Formulir extends Component
 
         $validator->validate();
    
-        MasterJenisKP::find($this->sid)->update($retData);
+        MasterJenisKp::find($this->sid)->update($retData);
 
         return redirect('/jenis_kp')->with([
             'success'=> "Data Master Jenis Kenaikan Pangkat Terkait berhasil diubah."
@@ -98,7 +98,7 @@ class Formulir extends Component
     public function mount()
     {
         if($this->sid != ''){
-            $dataset = MasterJenisKP::find($this->sid);
+            $dataset = MasterJenisKp::find($this->sid);
 
             if($dataset){
                 $this->changeStts($dataset->status);
