@@ -134,7 +134,7 @@ if(myPieChartPusat){
 
   //chart.options.plugins.legend.position = 'right';
 
-  axios.get('/api/getRekapPersonel/').then(res => {
+  axios.get('/api/getRekapPersonel').then(res => {
   	//console.log(res.data)
   	const data = res.data;
   	if(data){
@@ -185,7 +185,7 @@ if(myPieChartDaerah){
 
   //chart.options.plugins.legend.position = 'right';
 
-  axios.get('/api/getRekapJnsHukum/').then(res => {
+  axios.get('/api/getRekapJnsHukum').then(res => {
   	const data = res.data;
   	console.log(res.data)
   	if(data){
