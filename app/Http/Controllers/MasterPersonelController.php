@@ -109,7 +109,7 @@ class MasterPersonelController extends Controller
             $data['list'] = $masterPersonel->where('id_jenis_personel', '=', $id_jenis_personel)->get();
             //return view('admin/personel/nominatif', $data);
             $pdf = Pdf::loadView('admin/personel/nominatif', $data);
-            return $pdf->stream('drh-'.$id.'.pdf');    
+            return $pdf->stream('nominatif-'.$id_jenis_personel.'.pdf');    
         }
         
     }

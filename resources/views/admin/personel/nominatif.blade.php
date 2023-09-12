@@ -51,7 +51,7 @@
 							<tr>
 								<th>NO</th>
 								<th width="15%">NAMA<br>TEMPAT TANGGAL LAHIR</th>
-								<th>PANGKAT/GOL<br>TMT</th>
+								<th width="15%">PANGKAT/GOL<br>TMT</th>
 								<th>NIP</th>
 								<th>SATKER</th>
 								<th>JENIS KELAMIN</th>
@@ -59,7 +59,6 @@
 								<th>STATUS</th>
 								<th>AGAMA</th>
 								<th>STATUS<br>RUMAH</th>
-								<th width="30%">ALAMAT RUMAH</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -84,13 +83,6 @@
 										<td align="center">{{$value->nkawin}}</td>
 										<td align="center">{{$value->nagama}}</td>
 										<td align="center">{{$value->stts_rumah}}</td>
-										<td>
-											{{$value->aljalan}}
-											{{$value->aldes}}
-											{{$value->alkec}}
-											{{$value->alkab}}
-											{{$value->alprop}}
-										</td>
 									</tr>
 								@endforeach
 							@endif
