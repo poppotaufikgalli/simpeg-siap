@@ -28,6 +28,11 @@
 		th {
 			background-color: lightgray;
 		}
+		div{
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+
 	</style>
 </head>
 <body>
@@ -39,58 +44,84 @@
 				</td>
 				<td width="10%">
 					<img src="{{ public_path('assets/img/Lambang_Satuan_Koarmada_I.png') }}" alt="app_logo" height="100">
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">&nbsp;</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<table style="width: 100%" border="1">
-						<thead>
-							<tr>
-								<th>NO</th>
-								<th width="15%">NAMA<br>TEMPAT TANGGAL LAHIR</th>
-								<th width="15%">PANGKAT/GOL<br>TMT</th>
-								<th>NIP</th>
-								<th>SATKER</th>
-								<th>JENIS KELAMIN</th>
-								<th width="15%">JABATAN<br>TMT<br>DASAR</th>
-								<th>STATUS</th>
-								<th>AGAMA</th>
-								<th>STATUS<br>RUMAH</th>
-							</tr>
-						</thead>
-						<tbody>
-							@if($list)
-								@foreach($list as $key=> $value)
-									<tr>
-										<td>{{$key+1}}</td>
-										<td>{{$value->namapeg}}<br>{{$value->ktlahir}}, {{$value->tlahir != '' ? date("d-m-Y", strtotime($value->tlahir)) : ''}}</td>
-										<td align="center">
-											{{$value->golongan_ruang}} ({{$value->nama_pangkat}})
-											<br>{{$value->tmtpang != '' ? date("d-m-Y", strtotime($value->tmtpang)) : ''}}
-											<br>{{$value->singkatan_korps}}
-										</td>
-										<td align="center">{{$value->nip}}</td>
-										<td align="center">{{$value->nama_opd}}</td>
-										<td align="center">{{$value->kjkel == 1 ? "Laki-Laki" : "Perempuan"}}</td>
-										<td>
-											{{$value->njab}}
-											<br>{{$value->tmtjab != '' ? date("d-m-Y", strtotime($value->tmtjab)) : ''}}
-											<br>{{$value->nskjabat}} - {{$value->tskjabat}}
-										</td>
-										<td align="center">{{$value->nkawin}}</td>
-										<td align="center">{{$value->nagama}}</td>
-										<td align="center">{{$value->stts_rumah}}</td>
-									</tr>
-								@endforeach
-							@endif
-						</tbody>
-					</table>
-				</td>
+				</td>		
 			</tr>
 		</table>
+		
+		<div style="display: table ; width: 100%;">
+			<div style="display: table-row">
+				<div style="width: 5%; border: 1px solid black; display: table-cell; text-align: center; vertical-align: middle; background-color: lightgray;">
+					NO
+				</div>
+				<div style="width: 15%; border: 1px solid black; display: table-cell; text-align: center; vertical-align: middle; background-color: lightgray;">
+					NAMA<br>TEMPAT TANGGAL LAHIR
+				</div>
+				<div style="width: 10%; border: 1px solid black; display: table-cell; text-align: center; vertical-align: middle; background-color: lightgray;">
+					PANGKAT/GOL<br>TMT
+				</div>
+				<div style="width: 10%; border: 1px solid black; display: table-cell; text-align: center; vertical-align: middle; background-color: lightgray;">
+					NIP
+				</div>
+				<div style="width: 10%; border: 1px solid black; display: table-cell; text-align: center; vertical-align: middle; background-color: lightgray;">
+					SATKER
+				</div>
+				<div style="width: 10%; border: 1px solid black; display: table-cell; text-align: center; vertical-align: middle; background-color: lightgray;">
+					JENIS KELAMIN
+				</div>
+				<div style="width: 10%; border: 1px solid black; display: table-cell; text-align: center; vertical-align: middle; background-color: lightgray;">
+					JABATAN<br>TMT<br>DASAR
+				</div>
+				<div style="width: 7%; border: 1px solid black; display: table-cell; text-align: center; vertical-align: middle; background-color: lightgray;">
+					STATUS
+				</div>
+				<div style="width: 10%; border: 1px solid black; display: table-cell; text-align: center; vertical-align: middle; background-color: lightgray;">
+					AGAMA
+				</div>
+				<div style="width: 10%; border: 1px solid black; display: table-cell; text-align: center; vertical-align: middle; background-color: lightgray;">
+					STATUS RUMAH
+				</div>
+			</div>
+			@if($list)
+				@foreach($list as $key=> $value)
+				<div style="display: table-row">
+					<div style="width: 5%; border: 1px solid black; display: table-cell; text-align: center;">
+						{{$key+1}}
+					</div>
+					<div style="border: 1px solid black; display: table-cell;">
+						{{$value->namapeg}}<br>{{$value->ktlahir}}, {{$value->tlahir != '' ? date("d-m-Y", strtotime($value->tlahir)) : ''}}
+					</div>
+					<div style="border: 1px solid black; display: table-cell;">
+						{{$value->golongan_ruang}} ({{$value->nama_pangkat}})
+						<br>{{$value->tmtpang != '' ? date("d-m-Y", strtotime($value->tmtpang)) : ''}}
+						<br>{{$value->singkatan_korps}}
+					</div>
+					<div style="border: 1px solid black; display: table-cell;">
+						{{$value->nip}}
+					</div>
+					<div style="border: 1px solid black; display: table-cell;">
+						{{$value->nama_opd}}
+					</div>
+					<div style="border: 1px solid black; display: table-cell;">
+						{{$value->kjkel == 1 ? "Laki-Laki" : "Perempuan"}}
+					</div>
+					<div style="border: 1px solid black; display: table-cell;">
+						{{$value->njab}}
+						<br>{{$value->tmtjab != '' ? date("d-m-Y", strtotime($value->tmtjab)) : ''}}
+						<br>{{$value->nskjabat}} - {{$value->tskjabat}}
+					</div>
+					<div style="border: 1px solid black; display: table-cell;">
+						{{$value->nkawin}}
+					</div>
+					<div style="border: 1px solid black; display: table-cell;">
+						{{$value->nagama}}
+					</div>
+					<div style="border: 1px solid black; display: table-cell;">
+						{{$value->stts_rumah}}
+					</div>
+				</div>
+				@endforeach
+			@endif
+		</div>
 	</div>
 </body>
 </html>
