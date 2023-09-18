@@ -119,7 +119,8 @@ class MasterPegawaiArsipController extends Controller
         $filename = $request->filename ?? $request->sid."_".$request->jnsdok."_".$request->page_id.".".$extension;
         $path = 'public/'.$request->sid.'/'.$filename;
         //dd(Storage::exists($path));
-
+        
+        Storage::disk('local')->makeDirectory('public/'.$request->sid);
         $path = Storage::disk('local')->putFileAs('public/'.$request->sid, $file, $filename);
         $mime = str_replace('/', '-', $file->getMimeType());
 
